@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        android:gravity="center|start">
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center|start"
+            android:id="@+id/btn_type">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-$"
+                android:textSize="22sp"
+                android:textColor="@color/dark_grey"
+                android:layout_marginStart="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cash"
+                android:textSize="22sp"
+                android:textColor="@color/dark_grey"
+                android:layout_marginStart="30dp" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/arrow_drop_down"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="156dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/input_num"
+            android:text="200.00"
+            android:gravity="end|center"
+            android:paddingEnd="20dp"
+            android:textSize="24sp"/>
+        
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:padding="4dp"/>
+
+</LinearLayout>

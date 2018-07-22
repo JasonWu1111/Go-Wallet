@@ -14,28 +14,26 @@ import com.rightteam.accountbook.bean.BillBean;
 /**
  * Created by JasonWu on 7/21/2018
  */
-public class BillListAdapter extends BaseRvAdapter<BillBean> {
-    public final static int VIEW_TYPE_DATE = 0;
-    public final static int VIEW_TYPE_BILL = 1;
+public class TypeListAdapter extends BaseRvAdapter<BillBean> {
 
-    public BillListAdapter(Context context) {
+    public TypeListAdapter(Context context) {
         super(context);
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new BillListViewHolder(LayoutInflater.from(mContext).inflate(R.layout.view_adapter_bill, parent, false));
+        return new TypeListViewHolder(LayoutInflater.from(mContext).inflate(R.layout.view_adapter_type, parent, false));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((BillListViewHolder)holder).bind(position);
+        ((TypeListViewHolder)holder).bind(position);
     }
 
-    class BillListViewHolder extends RecyclerView.ViewHolder{
+    class TypeListViewHolder extends RecyclerView.ViewHolder{
 
-        BillListViewHolder(View itemView) {
+        TypeListViewHolder(View itemView) {
             super(itemView);
         }
 

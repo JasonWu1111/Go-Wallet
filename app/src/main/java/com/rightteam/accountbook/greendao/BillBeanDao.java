@@ -15,7 +15,7 @@ import com.rightteam.accountbook.bean.BillBean;
 /** 
  * DAO for table "BILL_BEAN".
 */
-public class BillBeanDao extends AbstractDao<BillBean, Integer> {
+public class BillBeanDao extends AbstractDao<BillBean, Long> {
 
     public static final String TABLENAME = "BILL_BEAN";
 
@@ -24,8 +24,13 @@ public class BillBeanDao extends AbstractDao<BillBean, Integer> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, int.class, "id", true, "ID");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Price = new Property(1, float.class, "price", false, "PRICE");
+        public final static Property Time = new Property(2, long.class, "time", false, "TIME");
+        public final static Property Category = new Property(3, int.class, "category", false, "CATEGORY");
+        public final static Property Type = new Property(4, int.class, "type", false, "TYPE");
+        public final static Property WalletId = new Property(5, Long.class, "walletId", false, "WALLET_ID");
+        public final static Property Remark = new Property(6, String.class, "remark", false, "REMARK");
     }
 
 
@@ -41,8 +46,13 @@ public class BillBeanDao extends AbstractDao<BillBean, Integer> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"BILL_BEAN\" (" + //
-                "\"ID\" INTEGER PRIMARY KEY NOT NULL ," + // 0: id
-                "\"PRICE\" REAL NOT NULL );"); // 1: price
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
+                "\"PRICE\" REAL NOT NULL ," + // 1: price
+                "\"TIME\" INTEGER NOT NULL ," + // 2: time
+                "\"CATEGORY\" INTEGER NOT NULL ," + // 3: category
+                "\"TYPE\" INTEGER NOT NULL ," + // 4: type
+                "\"WALLET_ID\" INTEGER," + // 5: walletId
+                "\"REMARK\" TEXT);"); // 6: remark
     }
 
     /** Drops the underlying database table. */
@@ -54,44 +64,89 @@ public class BillBeanDao extends AbstractDao<BillBean, Integer> {
     @Override
     protected final void bindValues(DatabaseStatement stmt, BillBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
         stmt.bindDouble(2, entity.getPrice());
+        stmt.bindLong(3, entity.getTime());
+        stmt.bindLong(4, entity.getCategory());
+        stmt.bindLong(5, entity.getType());
+ 
+        Long walletId = entity.getWalletId();
+        if (walletId != null) {
+            stmt.bindLong(6, walletId);
+        }
+ 
+        String remark = entity.getRemark();
+        if (remark != null) {
+            stmt.bindString(7, remark);
+        }
     }
 
     @Override
     protected final void bindValues(SQLiteStatement stmt, BillBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
         stmt.bindDouble(2, entity.getPrice());
+        stmt.bindLong(3, entity.getTime());
+        stmt.bindLong(4, entity.getCategory());
+        stmt.bindLong(5, entity.getType());
+ 
+        Long walletId = entity.getWalletId();
+        if (walletId != null) {
+            stmt.bindLong(6, walletId);
+        }
+ 
+        String remark = entity.getRemark();
+        if (remark != null) {
+            stmt.bindString(7, remark);
+        }
     }
 
     @Override
-    public Integer readKey(Cursor cursor, int offset) {
-        return cursor.getInt(offset + 0);
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
     public BillBean readEntity(Cursor cursor, int offset) {
         BillBean entity = new BillBean( //
-            cursor.getInt(offset + 0), // id
-            cursor.getFloat(offset + 1) // price
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+            cursor.getFloat(offset + 1), // price
+            cursor.getLong(offset + 2), // time
+            cursor.getInt(offset + 3), // category
+            cursor.getInt(offset + 4), // type
+            cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5), // walletId
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // remark
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, BillBean entity, int offset) {
-        entity.setId(cursor.getInt(offset + 0));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setPrice(cursor.getFloat(offset + 1));
+        entity.setTime(cursor.getLong(offset + 2));
+        entity.setCategory(cursor.getInt(offset + 3));
+        entity.setType(cursor.getInt(offset + 4));
+        entity.setWalletId(cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5));
+        entity.setRemark(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     @Override
-    protected final Integer updateKeyAfterInsert(BillBean entity, long rowId) {
-        return entity.getId();
+    protected final Long updateKeyAfterInsert(BillBean entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     @Override
-    public Integer getKey(BillBean entity) {
+    public Long getKey(BillBean entity) {
         if(entity != null) {
             return entity.getId();
         } else {
@@ -101,7 +156,7 @@ public class BillBeanDao extends AbstractDao<BillBean, Integer> {
 
     @Override
     public boolean hasKey(BillBean entity) {
-        throw new UnsupportedOperationException("Unsupported for entities with a non-null key");
+        return entity.getId() != null;
     }
 
     @Override
