@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Car"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/grey_dark"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/bill_icon"
         android:layout_marginStart="12dp"/>
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:text="-$200.00"
-        android:textColor="@color/dark_grey"
+        android:textColor="@color/grey_dark"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"/>
 

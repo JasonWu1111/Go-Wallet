@@ -12,7 +12,9 @@ import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.adapter.BillListAdapter;
 import com.rightteam.accountbook.base.BaseFragment;
 import com.rightteam.accountbook.bean.BillBean;
+import com.rightteam.accountbook.bean.WalletBean;
 import com.rightteam.accountbook.greendao.BillBeanDao;
+import com.rightteam.accountbook.greendao.WalletBeanDao;
 import com.rightteam.accountbook.module.KeepActivity;
 
 import java.util.ArrayList;
@@ -36,8 +38,8 @@ public class TransactionFragment extends BaseFragment {
     @Override
     protected void initViews() {
         BillListAdapter adapter = new BillListAdapter(getContext());
-        BillBeanDao billDao = MyApplication.getsDaoSession().getBillBeanDao();
-        List<BillBean> beans = billDao.queryBuilder().list();
+        WalletBeanDao walletDao = MyApplication.getsDaoSession().getWalletBeanDao();
+        List<BillBean> beans = walletDao.queryBuilder().list().get(0).getBills();
         adapter.setData(beans);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);

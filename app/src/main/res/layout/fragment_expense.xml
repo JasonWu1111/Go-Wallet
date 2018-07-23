@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:text="-$"
                 android:textSize="22sp"
-                android:textColor="@color/dark_grey"
+                android:textColor="@color/grey_dark"
                 android:layout_marginStart="30dp" />
 
             <TextView
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="Cash"
                 android:textSize="22sp"
-                android:textColor="@color/dark_grey"
+                android:textColor="@color/grey_dark"
                 android:layout_marginStart="30dp" />
 
             <ImageView

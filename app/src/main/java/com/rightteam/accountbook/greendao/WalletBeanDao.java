@@ -30,6 +30,8 @@ public class WalletBeanDao extends AbstractDao<WalletBean, Long> {
         public final static Property StartTime = new Property(3, long.class, "startTime", false, "START_TIME");
     }
 
+    private DaoSession daoSession;
+
 
     public WalletBeanDao(DaoConfig config) {
         super(config);
@@ -37,6 +39,7 @@ public class WalletBeanDao extends AbstractDao<WalletBean, Long> {
     
     public WalletBeanDao(DaoConfig config, DaoSession daoSession) {
         super(config, daoSession);
+        this.daoSession = daoSession;
     }
 
     /** Creates the underlying database table. */
@@ -87,6 +90,12 @@ public class WalletBeanDao extends AbstractDao<WalletBean, Long> {
             stmt.bindString(3, title);
         }
         stmt.bindLong(4, entity.getStartTime());
+    }
+
+    @Override
+    protected final void attachEntity(WalletBean entity) {
+        super.attachEntity(entity);
+        entity.__setDaoSession(daoSession);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.rightteam.accountbook.module;
 
+import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,30 +13,32 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.rightteam.accountbook.MyApplication;
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.adapter.MainAdapter;
+import com.rightteam.accountbook.adapter.OnItemClickListener;
 import com.rightteam.accountbook.adapter.WalletListAdapter;
 import com.rightteam.accountbook.base.BaseActivity;
 import com.rightteam.accountbook.bean.BillBean;
+import com.rightteam.accountbook.greendao.WalletBeanDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity {
 
     //    @BindView(R.id.toolbar)
 //    Toolbar toolbar;
-    @BindView(R.id.nav_view)
-    NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+    @BindView(R.id.drawer_recycler_view)
+    RecyclerView walletList;
 
     private boolean mIsWalletShow = true;
 
@@ -46,18 +49,20 @@ public class MainActivity extends BaseActivity
 
     @Override
     protected void initViews() {
-//        setSupportActionBar(toolbar);
 
-//        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show());
 
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 //                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 //        drawerLayout.addDrawerListener(toggle);
 //        toggle.syncState();
+        View decorView = getWindow().getDecorView();
+        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+        decorView.setSystemUiVisibility(option);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+
         initDrawerView();
 
-        navView.setNavigationItemSelectedListener(this);
+//        navView.setNavigationItemSelectedListener(this);
         List<String> titles = new ArrayList<>();
         titles.add("Transaction");
         titles.add("Statements");
@@ -70,19 +75,14 @@ public class MainActivity extends BaseActivity
     }
 
     private void initDrawerView() {
-//        View headerView = navView.getHeaderView(0);
-        RecyclerView walletList = navView.getHeaderView(0).findViewById(R.id.drawer_recycler_view);
-        ImageView btnWallet = navView.getHeaderView(0).findViewById(R.id.btn_wallet);
-        btnWallet.setOnClickListener(v -> {
-            mIsWalletShow = !mIsWalletShow;
-            walletList.setVisibility(mIsWalletShow ? View.VISIBLE : View.GONE);
-        });
+//        btnWallet.setOnClickListener(v -> {
+//            mIsWalletShow = !mIsWalletShow;
+//            walletList.setVisibility(mIsWalletShow ? View.VISIBLE : View.GONE);
+//        });
         WalletListAdapter adapter = new WalletListAdapter(this);
-        List<BillBean> beans = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            beans.add(new BillBean());
-        }
-        adapter.setData(beans);
+        WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
+        adapter.setData(walletBeanDao.queryBuilder().list());
+        adapter.setOnItemClickListener((position, action, data) -> drawerLayout.closeDrawer(GravityCompat.START));
         walletList.setLayoutManager(new LinearLayoutManager(this));
         walletList.setAdapter(adapter);
     }
@@ -99,12 +99,5 @@ public class MainActivity extends BaseActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
     }
 }

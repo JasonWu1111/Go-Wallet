@@ -10,11 +10,12 @@ import android.view.ViewGroup;
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.base.BaseRvAdapter;
 import com.rightteam.accountbook.bean.BillBean;
+import com.rightteam.accountbook.bean.WalletBean;
 
 /**
  * Created by JasonWu on 7/21/2018
  */
-public class WalletListAdapter extends BaseRvAdapter<BillBean> {
+public class WalletListAdapter extends BaseRvAdapter<WalletBean> {
     private final static int VIEW_TYPE_WALLET = 0;
     private final static int VIEW_TYPE_ADD = 1;
 

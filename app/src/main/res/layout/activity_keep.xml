@@ -68,9 +68,9 @@
         android:layout_height="48dp"
         app:tabIndicatorColor="@color/grey"
         app:tabIndicatorHeight="1dp"
-        app:tabSelectedTextColor="@color/dark_grey"
+        app:tabSelectedTextColor="@color/grey_dark"
         app:tabTextAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        app:tabTextColor="@color/dark_grey" />
+        app:tabTextColor="@color/grey_dark" />
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"

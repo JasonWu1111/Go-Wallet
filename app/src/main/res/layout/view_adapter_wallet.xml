@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Wallet 1"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/grey_dark"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 

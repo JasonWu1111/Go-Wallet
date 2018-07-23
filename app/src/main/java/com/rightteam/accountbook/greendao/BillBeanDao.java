@@ -1,5 +1,6 @@
 package com.rightteam.accountbook.greendao;
 
+import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
@@ -8,6 +9,8 @@ import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
+import org.greenrobot.greendao.query.Query;
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import com.rightteam.accountbook.bean.BillBean;
 
@@ -33,6 +36,7 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         public final static Property Remark = new Property(6, String.class, "remark", false, "REMARK");
     }
 
+    private Query<BillBean> walletBean_BillsQuery;
 
     public BillBeanDao(DaoConfig config) {
         super(config);
@@ -164,4 +168,18 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         return true;
     }
     
+    /** Internal query to resolve the "bills" to-many relationship of WalletBean. */
+    public List<BillBean> _queryWalletBean_Bills(Long walletId) {
+        synchronized (this) {
+            if (walletBean_BillsQuery == null) {
+                QueryBuilder<BillBean> queryBuilder = queryBuilder();
+                queryBuilder.where(Properties.WalletId.eq(null));
+                walletBean_BillsQuery = queryBuilder.build();
+            }
+        }
+        Query<BillBean> query = walletBean_BillsQuery.forCurrentThread();
+        query.setParameter(0, walletId);
+        return query.list();
+    }
+
 }

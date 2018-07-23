@@ -16,13 +16,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Car"
-        android:textColor="@color/dark_grey" />
+        android:textColor="@color/grey_dark" />
 
     <View
         android:layout_width="36dp"
         android:layout_height="2dp"
         android:layout_marginTop="4dp"
-        android:background="@color/dark_grey"
+        android:background="@color/grey_dark"
         android:visibility="invisible"/>
 
 </LinearLayout>

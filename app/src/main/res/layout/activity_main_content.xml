@@ -6,27 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".module.MainActivity"
     android:orientation="vertical"
-    android:background="@color/white">
-
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
-
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="@dimen/toolbar_height"-->
-            <!--android:background="@color/colorPrimary"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
-            <!--app:title="@string/app_name"/>-->
-
-    <!--</android.support.design.widget.AppBarLayout>-->
+    android:background="@drawable/blue_gradient"
+    android:fitsSystemWindows="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:background="@color/white">
+        android:layout_height="@dimen/toolbar_height">
         
         <android.support.design.widget.TabLayout
             android:layout_width="match_parent"
@@ -35,14 +20,15 @@
             app:tabIndicatorColor="@color/grey"
             app:tabIndicatorHeight="1dp"
             android:id="@+id/tab_layout"
-            app:tabTextColor="@color/dark_grey"
-            app:tabSelectedTextColor="@color/dark_grey"
+            app:tabTextColor="@color/grey_dark"
+            app:tabSelectedTextColor="@color/grey_dark"
             app:tabTextAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/view_pager"/>
+        android:id="@+id/view_pager"
+        android:background="@color/white"/>
 
 </LinearLayout>

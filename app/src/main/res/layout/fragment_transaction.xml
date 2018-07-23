@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="All"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="$3,946.85"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="07/2018"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="$3,197.10"
-                    android:textColor="@color/dark_grey"
+                    android:textColor="@color/grey_dark"
                     android:textSize="16sp" />
 
             </LinearLayout>
