@@ -5,8 +5,9 @@
     <color name="colorAccent">#333333</color>
 
     <color name="white">#FFFFFF</color>
-    <color name="light_grey">#FFAAAAAA</color>
-    <color name="grey">#999999</color>
+    <color name="light_grey">#FFECECEC</color>
+    <color name="light_grey2">#FFE3E3E3</color>
+    <color name="grey">#FFAAAAAA</color>
     <color name="grey_dark">#FF595959</color>
     <color name="light_purple">#efecf5</color>
 

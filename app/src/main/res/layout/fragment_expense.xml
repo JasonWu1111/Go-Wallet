@@ -7,36 +7,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:orientation="horizontal"
-        android:gravity="center|start">
+        android:orientation="horizontal">
         
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="104dp"
+            android:layout_height="34dp"
             android:orientation="horizontal"
-            android:gravity="center|start"
-            android:id="@+id/btn_type">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-$"
-                android:textSize="22sp"
-                android:textColor="@color/grey_dark"
-                android:layout_marginStart="30dp" />
+            android:gravity="center"
+            android:id="@+id/btn_type"
+            android:background="@drawable/frame_long_blue">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cash"
-                android:textSize="22sp"
-                android:textColor="@color/grey_dark"
-                android:layout_marginStart="30dp" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/arrow_drop_down"/>
+                android:textSize="16sp"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

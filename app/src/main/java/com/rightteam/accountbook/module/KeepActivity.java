@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.flyco.tablayout.SlidingTabLayout;
 import com.rightteam.accountbook.MyApplication;
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.adapter.MainAdapter;
@@ -26,7 +27,7 @@ public class KeepActivity extends BaseActivity {
     @BindView(R.id.calendar_text)
     TextView calendarText;
     @BindView(R.id.tab_layout)
-    TabLayout tabLayout;
+    SlidingTabLayout tabLayout;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
 
@@ -47,7 +48,7 @@ public class KeepActivity extends BaseActivity {
         fragments.add(new Fragment());
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager(), titles, fragments);
         viewPager.setAdapter(mainAdapter);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setViewPager(viewPager);
     }
 
     @Override

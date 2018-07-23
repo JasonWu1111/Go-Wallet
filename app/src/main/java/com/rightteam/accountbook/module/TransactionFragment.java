@@ -39,7 +39,11 @@ public class TransactionFragment extends BaseFragment {
     protected void initViews() {
         BillListAdapter adapter = new BillListAdapter(getContext());
         WalletBeanDao walletDao = MyApplication.getsDaoSession().getWalletBeanDao();
-        List<BillBean> beans = walletDao.queryBuilder().list().get(0).getBills();
+//        List<BillBean> beans = walletDao.queryBuilder().list().get(0).getBills();
+        List<BillBean> beans = new ArrayList<>();
+        for(int i = 0 ; i < 6; i++){
+            beans.add(new BillBean());
+        }
         adapter.setData(beans);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);

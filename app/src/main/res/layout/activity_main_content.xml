@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".module.MainActivity"
-    android:orientation="vertical"
     android:background="@drawable/blue_gradient"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height">
-        
-        <android.support.design.widget.TabLayout
+        android:layout_height="70dp">
+
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_alignParentBottom="true"
-            app:tabIndicatorColor="@color/grey"
-            app:tabIndicatorHeight="1dp"
-            android:id="@+id/tab_layout"
-            app:tabTextColor="@color/grey_dark"
-            app:tabSelectedTextColor="@color/grey_dark"
-            app:tabTextAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            app:tl_indicator_color="@color/white"
+            app:tl_indicator_height="2dp"
+            app:tl_indicator_width="32dp"
+            app:tl_tab_space_equal="true"
+            app:tl_textSelectColor="@color/white"
+            app:tl_textUnselectColor="@color/white"
+            app:tl_textsize="16sp" />
+
+        <ImageView
+            android:id="@+id/btn_drawer"
+            android:layout_width="17dp"
+            android:layout_height="16.7dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/wallet" />
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/view_pager"
-        android:background="@color/white"/>
+        android:background="@color/white" />
 
 </LinearLayout>

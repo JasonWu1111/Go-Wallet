@@ -15,8 +15,9 @@ import com.rightteam.accountbook.bean.BillBean;
  * Created by JasonWu on 7/21/2018
  */
 public class BillListAdapter extends BaseRvAdapter<BillBean> {
-    public final static int VIEW_TYPE_DATE = 0;
-    public final static int VIEW_TYPE_BILL = 1;
+    private final static int VIEW_TYPE_DATE = 0;
+    private final static int VIEW_TYPE_BILL_TOP = 1;
+    private final static int VIEW_TYPE_BILL_NORMAL = 2;
 
     public BillListAdapter(Context context) {
         super(context);
@@ -25,21 +26,39 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new BillListViewHolder(LayoutInflater.from(mContext).inflate(R.layout.view_adapter_bill, parent, false));
+        int layoutId = -1;
+        switch (viewType) {
+            case VIEW_TYPE_DATE:
+                layoutId = R.layout.view_adapter_date;
+                break;
+            default:
+                layoutId = R.layout.view_adapter_bill;
+                break;
+        }
+        return new BillListViewHolder(LayoutInflater.from(mContext).inflate(layoutId, parent, false));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((BillListViewHolder)holder).bind(position);
+        ((BillListViewHolder) holder).bind(position);
     }
 
-    class BillListViewHolder extends RecyclerView.ViewHolder{
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return VIEW_TYPE_DATE;
+        } else {
+            return VIEW_TYPE_BILL_NORMAL;
+        }
+    }
+
+    class BillListViewHolder extends RecyclerView.ViewHolder {
 
         BillListViewHolder(View itemView) {
             super(itemView);
         }
 
-        void bind(int position){
+        void bind(int position) {
 
         }
     }
