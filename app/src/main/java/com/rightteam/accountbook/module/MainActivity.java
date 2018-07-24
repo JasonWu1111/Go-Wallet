@@ -1,6 +1,5 @@
 package com.rightteam.accountbook.module;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -18,13 +17,13 @@ import com.rightteam.accountbook.adapter.MainAdapter;
 import com.rightteam.accountbook.adapter.WalletListAdapter;
 import com.rightteam.accountbook.base.BaseActivity;
 import com.rightteam.accountbook.bean.WalletBean;
+import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.greendao.WalletBeanDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
@@ -41,6 +40,7 @@ public class MainActivity extends BaseActivity {
     ImageView btnWallet;
 
     private boolean mIsWalletShow = true;
+    private long mCurWalletId;
 
     @Override
     protected int getLayoutResId() {
@@ -55,7 +55,11 @@ public class MainActivity extends BaseActivity {
         titles.add("Transaction");
         titles.add("Statements");
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(new TransactionFragment());
+        Fragment fragment = new TransactionFragment();
+        Bundle bundle = new Bundle();
+        bundle.putLong(KeyDef.WALLET_ID, mCurWalletId);
+        fragment.setArguments(bundle);
+        fragments.add(fragment);
         fragments.add(new Fragment());
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager(), titles, fragments);
         viewPager.setAdapter(mainAdapter);
@@ -69,7 +73,10 @@ public class MainActivity extends BaseActivity {
         if (beans.size() == 0) {
             WalletBean bean = new WalletBean(null, 0, "Wallet1", System.currentTimeMillis());
             walletBeanDao.insert(bean);
+            mCurWalletId = bean.getId();
             beans = walletBeanDao.queryBuilder().list();
+        }else {
+            mCurWalletId = beans.get(0).getId();
         }
         adapter.setData(beans);
         adapter.setOnItemClickListener((position, action, data) -> drawerLayout.closeDrawer(GravityCompat.START));

@@ -3,6 +3,7 @@ package com.rightteam.accountbook.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class MainAdapter extends FragmentPagerAdapter {
     private List<String> titles;
     private List<Fragment> fragments;
+    private Fragment mCurrentFragment;
 
     public MainAdapter(FragmentManager fm, List<String> titles, List<Fragment> fragments) {
         super(fm);
@@ -35,4 +37,13 @@ public class MainAdapter extends FragmentPagerAdapter {
         return titles.get(position);
     }
 
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        mCurrentFragment = (Fragment) object;
+        super.setPrimaryItem(container, position, object);
+    }
+
+    public Fragment getCurrentFragment() {
+        return mCurrentFragment;
+    }
 }

@@ -49,7 +49,7 @@
                             android:src="@drawable/ic_all" />
 
                         <TextView
-                            android:id="@+id/text_type"
+                            android:id="@+id/text_cat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="7.2dp"
@@ -61,7 +61,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/arrow_drop_down"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginStart="5dp"/>
 
                     </LinearLayout>
 

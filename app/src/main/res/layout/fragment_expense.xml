@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/btn_type"
+            android:id="@+id/btn_cat"
             android:layout_width="104dp"
             android:layout_height="34dp"
             android:layout_marginStart="30dp"
@@ -19,28 +19,49 @@
             android:background="@drawable/frame_long_blue"
             android:gravity="center"
             android:orientation="horizontal">
+            
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/cash"
+                android:layout_marginRight="8dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cash"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
-
+                android:textSize="16sp"
+                android:id="@+id/text_cat"/>
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/input_num"
-            android:layout_width="156dp"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="26dp"
-            android:background="@null"
-            android:gravity="end|center"
-            android:text="-$200.00"
-            android:textColor="@color/grey_dark"
-            android:textSize="30sp" />
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:layout_marginRight="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey_dark"
+                android:textSize="30sp"
+                android:text="- $"/>
+
+            <EditText
+                android:id="@+id/edit_price"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:inputType="number"
+                android:text="0.00"
+                android:textColor="@color/grey_dark"
+                android:textSize="30sp" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -48,13 +69,38 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp" />
+        android:paddingRight="8dp" />
 
-    <EditText
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="24dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:backgroundTint="@color/grey" />
+        android:layout_marginTop="24dp">
+
+        <ImageView
+            android:id="@+id/icon_pen"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:src="@drawable/pen" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grey" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/icon_pen"
+            android:background="@null"
+            android:backgroundTint="@color/grey"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/grey"
+            android:padding="2dp"
+            android:id="@+id/edit_memo"/>
+    </RelativeLayout>
+
 
 </LinearLayout>

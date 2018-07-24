@@ -1,4 +1,4 @@
-package com.rightteam.accountbook.Utils;
+package com.rightteam.accountbook.utils;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -10,8 +10,8 @@ import java.util.TimeZone;
 
 public class DateUtils {
 
-    private static final String DEFAULT_DAY_PATTERN = "dd/MM/yyyy";
-    private static final String WEEK_DAY_PATTERN = "EEEE, dd MMMM";
+    public static final String DEFAULT_DAY_PATTERN = "dd/MM/yyyy";
+    public static final String WEEK_DAY_PATTERN = "EEEE, dd MMMM";
 
     public static String formatNumberWithComma(float value) {
         BigDecimal bigDecimal = new BigDecimal(value);
@@ -38,7 +38,7 @@ public class DateUtils {
         if (calendar.get(Calendar.YEAR) == today.get(Calendar.YEAR)
                 && calendar.get(Calendar.MONTH) == today.get(Calendar.MONTH)
                 && calendar.get(Calendar.DAY_OF_MONTH) == today.get(Calendar.DAY_OF_MONTH)) {
-            return "today";
+            return "TODAY";
         } else {
             return formatTimestamp(time, pattern);
         }

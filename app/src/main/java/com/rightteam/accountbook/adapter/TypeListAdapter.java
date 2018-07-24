@@ -6,15 +6,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.base.BaseRvAdapter;
-import com.rightteam.accountbook.bean.BillBean;
+import com.rightteam.accountbook.bean.TypeBean;
+import com.rightteam.accountbook.constants.ResIds;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by JasonWu on 7/21/2018
  */
-public class TypeListAdapter extends BaseRvAdapter<BillBean> {
+public class TypeListAdapter extends BaseRvAdapter<TypeBean> {
 
     public TypeListAdapter(Context context) {
         super(context);
@@ -28,17 +34,24 @@ public class TypeListAdapter extends BaseRvAdapter<BillBean> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((TypeListViewHolder)holder).bind(position);
+        ((TypeListViewHolder) holder).bind(position);
     }
 
-    class TypeListViewHolder extends RecyclerView.ViewHolder{
+    class TypeListViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.icon_type)
+        ImageView iconType;
+        @BindView(R.id.text_cat)
+        TextView textType;
 
         TypeListViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
-        void bind(int position){
-
+        void bind(int position) {
+            iconType.setImageResource(ResIds.TYPE_ICONS[getData().get(position).getType()]);
+//            iconType.setImageResource(R.drawable.travel);
+            textType.setText(getData().get(position).getName());
         }
     }
 }

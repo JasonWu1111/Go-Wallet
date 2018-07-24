@@ -5,5 +5,5 @@ package com.rightteam.accountbook.adapter;
  */
 
 public interface OnItemClickListener {
-    void onClick(int position, String action, String data);
+    void onClick(int position, String action, Long id);
 }
