@@ -22,32 +22,41 @@
             android:layout_marginTop="20dp"
             android:src="@drawable/close" />
 
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:src="@drawable/frame_long_white"
+            android:alpha="0.25"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"/>
+
         <TextView
             android:id="@+id/calendar_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:gravity="center|top"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
             android:text="07/17/2018"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true" />
 
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             app:tl_indicator_color="@color/white"
-            app:tl_indicator_height="2dp"
-            app:tl_indicator_width="32dp"
+            app:tl_indicator_height="12.7dp"
+            app:tl_indicator_width="25.5dp"
             app:tl_tab_space_equal="true"
             app:tl_textSelectColor="@color/white"
             app:tl_textUnselectColor="@color/white"
-            app:tl_textsize="16sp" />
+            app:tl_textsize="16sp"
+            app:tl_indicator_style="TRIANGLE"/>
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager

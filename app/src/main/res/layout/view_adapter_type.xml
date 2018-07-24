@@ -6,8 +6,8 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/car" />
 
@@ -16,13 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Car"
-        android:textColor="@color/grey_dark" />
-
-    <View
-        android:layout_width="36dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/grey_dark"
-        android:visibility="invisible"/>
+        android:textColor="@color/grey2"
+        android:textSize="12sp"/>
 
 </LinearLayout>

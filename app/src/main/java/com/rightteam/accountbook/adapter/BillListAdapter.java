@@ -1,6 +1,7 @@
 package com.rightteam.accountbook.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.base.BaseRvAdapter;
 import com.rightteam.accountbook.bean.BillBean;
+import com.rightteam.accountbook.module.DetailActivity;
 
 /**
  * Created by JasonWu on 7/21/2018
@@ -59,7 +61,9 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
         }
 
         void bind(int position) {
-
+            itemView.setOnClickListener(v -> {
+                mContext.startActivity(new Intent(mContext, DetailActivity.class));
+            });
         }
     }
 }

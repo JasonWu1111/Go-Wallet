@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/type_all"
-        android:title="All" />
-    <item
         android:id="@+id/type_cash"
         android:title="Cash" />
     <item

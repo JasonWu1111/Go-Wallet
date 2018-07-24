@@ -56,32 +56,32 @@ public class KeepActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.btn_close, R.id.btn_sure, R.id.btn_calendar})
+    @OnClick({R.id.btn_close})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_close:
                 finish();
                 break;
-            case R.id.btn_sure:
-                BillBeanDao billDao = MyApplication.getsDaoSession().getBillBeanDao();
-                BillBean bill = new BillBean(null, 200.00f, System.currentTimeMillis(), 1, 1, 1L, "");
-                billDao.insert(bill);
-                finish();
-                break;
-            case R.id.btn_calendar:
-                View dialogView = View.inflate(this, R.layout.dialog_calendar, null);
-                final DatePicker datePicker = dialogView.findViewById(R.id.view_calendar);
-                new AlertDialog.Builder(this)
-                        .setView(dialogView)
-                        .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-                        .setPositiveButton("OK", (dialog, which) -> {
-                            mCurDate = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
-                            calendarText.setText(mCurDate);
-                            dialog.dismiss();
-                        })
-                        .create()
-                        .show();
-                break;
+//            case R.id.btn_sure:
+//                BillBeanDao billDao = MyApplication.getsDaoSession().getBillBeanDao();
+//                BillBean bill = new BillBean(null, 200.00f, System.currentTimeMillis(), 1, 1, 1L, "");
+//                billDao.insert(bill);
+//                finish();
+//                break;
+//            case R.id.btn_calendar:
+//                View dialogView = View.inflate(this, R.layout.dialog_calendar, null);
+//                final DatePicker datePicker = dialogView.findViewById(R.id.view_calendar);
+//                new AlertDialog.Builder(this)
+//                        .setView(dialogView)
+//                        .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+//                        .setPositiveButton("OK", (dialog, which) -> {
+//                            mCurDate = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
+//                            calendarText.setText(mCurDate);
+//                            dialog.dismiss();
+//                        })
+//                        .create()
+//                        .show();
+//                break;
         }
     }
 
