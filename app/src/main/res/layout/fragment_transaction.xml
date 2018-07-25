@@ -7,7 +7,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="34dp"
         android:background="@drawable/blue_gradient" />
 
     <LinearLayout
@@ -16,11 +16,13 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:layout_width="310dp"
-            android:layout_height="130dp"
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
             android:layout_gravity="center|top"
-            app:cardCornerRadius="5dp"
-            android:elevation="100dp">
+            android:layout_marginLeft="28.5dp"
+            android:layout_marginRight="28.5dp"
+            android:elevation="100dp"
+            app:cardCornerRadius="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,14 +40,14 @@
                     <LinearLayout
                         android:id="@+id/btn_choose_cat"
                         android:layout_width="wrap_content"
-                        android:layout_height="28dp"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="15dp"
                         android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="15dp">
+                        android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="25.3dp"
-                            android:layout_height="25.3dp"
+                            android:layout_width="28.5dp"
+                            android:layout_height="28.5dp"
                             android:src="@drawable/ic_all" />
 
                         <TextView
@@ -55,22 +57,22 @@
                             android:layout_marginStart="7.2dp"
                             android:text="All"
                             android:textColor="@color/grey_dark"
-                            android:textSize="16sp" />
+                            android:textSize="20sp" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/arrow_drop_down"
-                            android:layout_marginStart="5dp"/>
+                            android:layout_marginStart="5dp"
+                            android:src="@drawable/arrow_drop_down" />
 
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/light_grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -78,16 +80,16 @@
                         android:layout_marginTop="10dp"
                         android:text="Expense"
                         android:textColor="@color/orange"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/text_expense_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="$1,800.00"
                         android:textColor="@color/grey"
-                        android:textSize="13sp"
-                        android:id="@+id/text_expense_total"/>
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -100,10 +102,10 @@
                     <LinearLayout
                         android:id="@+id/btn_choose_date"
                         android:layout_width="wrap_content"
-                        android:layout_height="28dp"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="15dp"
                         android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="15dp">
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/text_date"
@@ -112,22 +114,22 @@
                             android:layout_marginStart="7.2dp"
                             android:text="07/2018"
                             android:textColor="@color/grey_dark"
-                            android:textSize="16sp" />
+                            android:textSize="20sp" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/arrow_drop_down"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/arrow_drop_down" />
 
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/light_grey"
-                        android:layout_marginEnd="28dp"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/light_grey" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -135,16 +137,16 @@
                         android:layout_marginTop="10dp"
                         android:text="Income"
                         android:textColor="@color/green"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/text_income_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="$3,600.00"
                         android:textColor="@color/grey"
-                        android:textSize="13sp"
-                        android:id="@+id/text_income_total"/>
+                        android:textSize="16sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -165,7 +167,7 @@
         android:layout_height="56dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:elevation="8dp"
         android:src="@drawable/add"
-        tools:ignore="ContentDescription"
-        android:elevation="8dp"/>
+        tools:ignore="ContentDescription" />
 </FrameLayout>

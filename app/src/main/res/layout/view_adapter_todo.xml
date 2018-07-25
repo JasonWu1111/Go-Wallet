@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="80dp"
     android:orientation="horizontal"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="25dp"
+    android:layout_marginLeft="28dp"
+    android:layout_marginRight="28dp"
     android:background="@drawable/frame_stroke_blue"
-    android:gravity="center">
+    android:gravity="center"
+    android:layout_marginTop="15dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don’t forget to do accounting."
         android:textColor="@color/grey2"
-        android:textSize="14sp"/>
+        android:textSize="18sp"/>
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:src="@drawable/add_small"
         android:layout_marginStart="13.5dp"/>
 </LinearLayout>

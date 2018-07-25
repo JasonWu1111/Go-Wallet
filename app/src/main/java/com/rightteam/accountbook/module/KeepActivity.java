@@ -1,5 +1,6 @@
 package com.rightteam.accountbook.module;
 
+import android.app.DatePickerDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +20,8 @@ import com.rightteam.accountbook.utils.CommonUtils;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,8 +40,6 @@ public class KeepActivity extends BaseActivity {
     private long mCurWalletId;
     private long mCurBillId;
     private MainAdapter mMainAdapter;
-
-
 
 
     @Override
@@ -73,29 +74,25 @@ public class KeepActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_close:
-//                setResult(RESULT_OK);
                 finish();
                 break;
             case R.id.btn_sure:
-                ((ExpenseFragment)mMainAdapter.getCurrentFragment()).CreateBill(mCurWalletId);
-//                setResult(RESULT_OK);
+                ((ExpenseFragment) mMainAdapter.getCurrentFragment()).CreateBill(mCurWalletId);
                 EventBus.getDefault().post(new UpdateBillListEvent());
                 finish();
                 break;
             case R.id.text_calendar:
-                View dialogView = View.inflate(this, R.layout.dialog_calendar, null);
-                final DatePicker datePicker = dialogView.findViewById(R.id.view_calendar);
-                new AlertDialog.Builder(this)
-                        .setView(dialogView)
-                        .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-                        .setPositiveButton("OK", (dialog, which) -> {
-                            mCurDate = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
-                            calendarText.setText(mCurDate);
-                            dialog.dismiss();
-                        })
-                        .create()
-                        .show();
-                break;
+                Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view1, year1, month1, dayOfMonth) -> {
+                    mCurDate = (month1 + 1) + "/" + dayOfMonth + "/" + year1;
+                    calendarText.setText(mCurDate);
+                }, year, month, day);
+                DatePicker dp = datePickerDialog.getDatePicker();
+                dp.setMaxDate(new Date().getTime());
+                datePickerDialog.show();
         }
     }
 

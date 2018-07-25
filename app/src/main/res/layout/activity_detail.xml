@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="411dp"
     android:layout_height="match_parent"
     tools:context=".module.DetailActivity"
     android:fitsSystemWindows="true"
@@ -15,48 +15,51 @@
         android:fitsSystemWindows="true"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="14dp"
-        android:id="@+id/btn_back">
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_back"
+        android:padding="4dp">
         
         <ImageView
-            android:layout_width="9dp"
-            android:layout_height="16dp"
+            android:layout_width="10dp"
+            android:layout_height="20dp"
             android:src="@drawable/back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Details"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor="@color/white"
-            android:layout_marginStart="10dp"/>
+            android:layout_marginStart="11.5dp"
+            android:textStyle="bold"/>
         
     </LinearLayout>
     
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="318dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="56dp">
+        android:layout_height="363dp"
+        android:layout_marginLeft="28.5dp"
+        android:layout_marginRight="28.5dp"
+        android:layout_marginTop="68.5dp"
+        app:cardCornerRadius="5dp">
 
         <LinearLayout
-            android:layout_width="282dp"
+            android:layout_width="310dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="center">
             
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:layout_marginTop="16dp"
                 android:paddingLeft="11dp"
                 android:paddingRight="11dp">
                 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="36.5dp"
+                    android:layout_height="36.5dp"
                     android:src="@drawable/car2"
                     android:padding="2dp"
                     android:layout_centerVertical="true"
@@ -71,7 +74,7 @@
                     android:layout_toEndOf="@+id/icon_type"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/grey_dark"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:id="@+id/text_type"/>
 
                 <TextView
@@ -81,7 +84,7 @@
                     android:text="-$200.00"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="10dp"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@color/grey"
                     android:id="@+id/text_price"/>
 
@@ -95,7 +98,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:paddingLeft="11dp"
                 android:paddingRight="11dp">
 
@@ -106,7 +109,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/grey_dark"
-                    android:textSize="18sp"/>
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -115,7 +118,7 @@
                     android:text="Cash"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="10dp"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@color/grey"
                     android:id="@+id/text_cat"/>
 
@@ -129,7 +132,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:paddingLeft="11dp"
                 android:paddingRight="11dp">
 
@@ -140,16 +143,16 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/grey_dark"
-                    android:textSize="18sp"/>
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="07/17/2018"
+                    android:text="07/17/2020"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="10dp"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@color/grey"
                     android:id="@+id/text_date"/>
 
@@ -175,13 +178,13 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="12dp"
                     android:textColor="@color/grey_dark"
-                    android:textSize="18sp"/>
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Four Wheeler"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textColor="@color/grey"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
@@ -196,25 +199,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="40dp">
 
                 <TextView
-                    android:layout_width="122dp"
-                    android:layout_height="40dp"
+                    android:layout_width="139dp"
+                    android:layout_height="46dp"
                     android:background="@drawable/frame_long_blue2"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:text="Modify"
                     android:gravity="center"
                     android:layout_marginEnd="30dp"
                     android:id="@+id/btn_modify"/>
 
                 <TextView
-                    android:layout_width="122dp"
-                    android:layout_height="40dp"
+                    android:layout_width="139dp"
+                    android:layout_height="46dp"
                     android:background="@drawable/frame_long_blue2"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:text="Delete"
                     android:gravity="center"
                     android:id="@+id/btn_delete"/>
@@ -229,7 +232,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="126dp"
         android:background="@color/white"/>
 
 </RelativeLayout>

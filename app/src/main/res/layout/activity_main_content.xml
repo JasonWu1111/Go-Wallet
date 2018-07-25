@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="90dp">
 
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/tab_layout"
@@ -21,19 +21,22 @@
             android:layout_marginRight="24dp"
             app:tl_indicator_color="@color/white"
             app:tl_indicator_height="2dp"
-            app:tl_indicator_width="32dp"
+            app:tl_indicator_width="40dp"
             app:tl_tab_space_equal="true"
             app:tl_textSelectColor="@color/white"
             app:tl_textUnselectColor="@color/white"
-            app:tl_textsize="16sp" />
+            app:tl_textsize="20sp"
+            app:tl_textBold="BOTH"
+            />
 
         <ImageView
             android:id="@+id/btn_drawer"
-            android:layout_width="17dp"
-            android:layout_height="16.7dp"
+            android:layout_width="23.3dp"
+            android:layout_height="23dp"
             android:layout_marginStart="22dp"
-            android:layout_marginTop="6dp"
-            android:src="@drawable/wallet" />
+            android:layout_marginTop="9.5dp"
+            android:src="@drawable/wallet"
+            android:padding="2dp"/>
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager

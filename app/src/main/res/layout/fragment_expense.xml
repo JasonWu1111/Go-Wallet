@@ -7,49 +7,49 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="68dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/btn_cat"
-            android:layout_width="104dp"
-            android:layout_height="34dp"
+            android:layout_width="119dp"
+            android:layout_height="38dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="26dp"
             android:background="@drawable/frame_long_blue"
             android:gravity="center"
             android:orientation="horizontal">
-            
+
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/cash"
-                android:layout_marginEnd="8dp"/>
+                android:layout_width="27.5dp"
+                android:layout_height="20.5dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/cash" />
 
             <TextView
+                android:id="@+id/text_cat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cash"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:id="@+id/text_cat"/>
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:layout_alignParentEnd="true"
+            android:layout_height="42dp"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="34dp"
             android:gravity="center"
-            android:layout_marginEnd="40dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="- $"
                 android:textColor="@color/grey_dark"
-                android:textSize="30sp"
-                android:text="- $"/>
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/edit_price"
@@ -59,7 +59,7 @@
                 android:inputType="number|numberDecimal"
                 android:text="0.00"
                 android:textColor="@color/grey_dark"
-                android:textSize="30sp" />
+                android:textSize="32sp" />
 
         </LinearLayout>
 
@@ -68,20 +68,19 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingRight="8dp" />
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="24dp"
+        android:layout_height="28dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="24dp">
 
         <ImageView
             android:id="@+id/icon_pen"
-            android:layout_width="21dp"
-            android:layout_height="21dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/pen" />
 
         <View
@@ -91,15 +90,17 @@
             android:background="@color/grey" />
 
         <EditText
+            android:id="@+id/edit_memo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
             android:layout_toEndOf="@+id/icon_pen"
             android:background="@null"
             android:backgroundTint="@color/grey"
-            android:layout_marginStart="4dp"
-            android:textColor="@color/grey"
+            android:maxLines="1"
             android:padding="2dp"
-            android:id="@+id/edit_memo"/>
+            android:singleLine="true"
+            android:textColor="@color/grey" />
     </RelativeLayout>
 
 </LinearLayout>
