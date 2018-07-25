@@ -14,20 +14,22 @@ public class BillBean {
     private Long id;
     private float price;
     private long time;
-    private int category;
+    private String category;
     private int type;
     private Long walletId;
-    private String remark;
-    @Generated(hash = 901322169)
-    public BillBean(Long id, float price, long time, int category, int type,
-            Long walletId, String remark) {
+    private String memo;
+    private boolean isExpense;
+    @Generated(hash = 1134697105)
+    public BillBean(Long id, float price, long time, String category, int type,
+            Long walletId, String memo, boolean isExpense) {
         this.id = id;
         this.price = price;
         this.time = time;
         this.category = category;
         this.type = type;
         this.walletId = walletId;
-        this.remark = remark;
+        this.memo = memo;
+        this.isExpense = isExpense;
     }
     @Generated(hash = 562884989)
     public BillBean() {
@@ -50,10 +52,10 @@ public class BillBean {
     public void setTime(long time) {
         this.time = time;
     }
-    public int getCategory() {
+    public String getCategory() {
         return this.category;
     }
-    public void setCategory(int category) {
+    public void setCategory(String category) {
         this.category = category;
     }
     public int getType() {
@@ -68,10 +70,17 @@ public class BillBean {
     public void setWalletId(Long walletId) {
         this.walletId = walletId;
     }
-    public String getRemark() {
-        return this.remark;
+    public String getMemo() {
+        return this.memo;
     }
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setMemo(String memo) {
+        this.memo = memo;
     }
+    public boolean getIsExpense() {
+        return this.isExpense;
+    }
+    public void setIsExpense(boolean isExpense) {
+        this.isExpense = isExpense;
+    }
+
 }

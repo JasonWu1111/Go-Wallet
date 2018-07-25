@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.base.BaseRvAdapter;
 import com.rightteam.accountbook.bean.TypeBean;
-import com.rightteam.accountbook.constants.ResIds;
+import com.rightteam.accountbook.constants.ResDef;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -49,7 +49,7 @@ public class TypeListAdapter extends BaseRvAdapter<TypeBean> {
         }
 
         void bind(int position) {
-            iconType.setImageResource(ResIds.TYPE_ICONS[getData().get(position).getType()]);
+            iconType.setImageResource(ResDef.TYPE_ICONS[getData().get(position).getType()]);
 //            iconType.setImageResource(R.drawable.travel);
             textType.setText(getData().get(position).getName());
         }

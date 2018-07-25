@@ -8,7 +8,8 @@
         android:layout_width="1dp"
         android:layout_height="10dp"
         android:layout_marginStart="61dp"
-        android:background="@color/light_grey2" />
+        android:background="@color/light_grey2"
+        android:id="@+id/view_top"/>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -25,7 +26,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/text_cat"
+            android:id="@+id/text_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -37,7 +38,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/text_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

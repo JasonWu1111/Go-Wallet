@@ -6,11 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.constants.KeyDef;
-import com.rightteam.accountbook.utils.DateUtils;
+import com.rightteam.accountbook.constants.ResDef;
+import com.rightteam.accountbook.utils.CommonUtils;
 import com.rightteam.accountbook.base.BaseRvAdapter;
 import com.rightteam.accountbook.bean.BillBean;
 
@@ -70,6 +72,7 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
         if(data.size() == 0){
             itemTypes.add(VIEW_TYPE_BILL_TODO);
             itemData.add("");
+            notifyDataSetChanged();
             return;
         }
 
@@ -77,7 +80,7 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
         boolean hasAddTodo = false;
         boolean isTodayFirst = true;
         for (BillBean billBean : data) {
-            String curDate = DateUtils.formatWithToday(billBean.getTime(), DateUtils.WEEK_DAY_PATTERN);
+            String curDate = CommonUtils.formatWithToday(billBean.getTime(), CommonUtils.WEEK_DAY_PATTERN);
             if (curDate.equals(date)) {
                 hasAddTodo = true;
                 if (isTodayFirst && date.equals("TODAY")) {
@@ -128,7 +131,19 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
                     dateText.setText((String)itemData.get(position));
                     break;
                 case VIEW_TYPE_BILL_TOP:
+                    View view = itemView.findViewById(R.id.view_top);
+                    view.setVisibility(View.INVISIBLE);
                 case VIEW_TYPE_BILL_NORMAL:
+                    BillBean bean = (BillBean)itemData.get(position);
+                    ImageView icon = itemView.findViewById(R.id.icon_bill);
+                    TextView textType = itemView.findViewById(R.id.text_type);
+                    TextView textPrice = itemView.findViewById(R.id.text_price);
+                    icon.setImageResource(ResDef.TYPE_ICONS[bean.getType()]);
+                    textType.setText(ResDef.TYPE_NAMES[bean.getType()]);
+                    textPrice.setTextColor(mContext.getResources().getColor(bean.getIsExpense() ? R.color.orange : R.color.green));
+                    String price = CommonUtils.formatPriceWithSource(bean.getPrice(), bean.getIsExpense());
+                    textPrice.setText(price);
+
                     itemView.setOnClickListener(v -> {
                         onItemClickListener.onClick(position, KeyDef.JUMP_TO_DETAIL, ((BillBean)itemData.get(position)).getId());
                     });

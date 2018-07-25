@@ -11,8 +11,12 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.adapter.MainAdapter;
 import com.rightteam.accountbook.base.BaseActivity;
+import com.rightteam.accountbook.bean.BillBean;
 import com.rightteam.accountbook.constants.KeyDef;
-import com.rightteam.accountbook.utils.DateUtils;
+import com.rightteam.accountbook.event.UpdateBillListEvent;
+import com.rightteam.accountbook.utils.CommonUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +35,11 @@ public class KeepActivity extends BaseActivity {
 
     private String mCurDate;
     private long mCurWalletId;
+    private long mCurBillId;
     private MainAdapter mMainAdapter;
+
+
+
 
     @Override
     protected int getLayoutResId() {
@@ -41,7 +49,8 @@ public class KeepActivity extends BaseActivity {
     @Override
     protected void initViews() {
         mCurWalletId = getIntent().getLongExtra(KeyDef.WALLET_ID, -1);
-        calendarText.setText(DateUtils.formatTimestamp(System.currentTimeMillis(), DateUtils.DEFAULT_DAY_PATTERN));
+        mCurBillId = getIntent().getLongExtra(KeyDef.BILL_ID, -1);
+        calendarText.setText(CommonUtils.formatTimestamp(System.currentTimeMillis(), CommonUtils.DEFAULT_DAY_PATTERN));
 
         List<String> titles = new ArrayList<>();
         titles.add("Expense");
@@ -64,13 +73,14 @@ public class KeepActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_close:
-                setResult(RESULT_OK);
+//                setResult(RESULT_OK);
                 finish();
                 break;
             case R.id.btn_sure:
                 ((ExpenseFragment)mMainAdapter.getCurrentFragment()).CreateBill(mCurWalletId);
-                setResult(RESULT_OK);
-//                finish();
+//                setResult(RESULT_OK);
+                EventBus.getDefault().post(new UpdateBillListEvent());
+                finish();
                 break;
             case R.id.text_calendar:
                 View dialogView = View.inflate(this, R.layout.dialog_calendar, null);

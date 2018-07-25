@@ -10,10 +10,27 @@
     android:background="@drawable/blue_gradient">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="106dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="14dp"
+        android:id="@+id/btn_back">
+        
+        <ImageView
+            android:layout_width="9dp"
+            android:layout_height="16dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"/>
         
     </LinearLayout>
     
@@ -54,7 +71,8 @@
                     android:layout_toEndOf="@+id/icon_type"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/grey_dark"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:id="@+id/text_type"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -64,7 +82,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="10dp"
                     android:textSize="18sp"
-                    android:textColor="@color/grey"/>
+                    android:textColor="@color/grey"
+                    android:id="@+id/text_price"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -97,7 +116,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="10dp"
                     android:textSize="18sp"
-                    android:textColor="@color/grey"/>
+                    android:textColor="@color/grey"
+                    android:id="@+id/text_cat"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -130,7 +150,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="10dp"
                     android:textSize="18sp"
-                    android:textColor="@color/grey"/>
+                    android:textColor="@color/grey"
+                    android:id="@+id/text_date"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -156,16 +177,16 @@
                     android:textColor="@color/grey_dark"
                     android:textSize="18sp"/>
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Four Wheeler"
                     android:textSize="18sp"
                     android:textColor="@color/grey"
-                    android:background="@null"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/text_memo"/>
 
 
             </LinearLayout>
@@ -185,7 +206,8 @@
                     android:textSize="18sp"
                     android:text="Modify"
                     android:gravity="center"
-                    android:layout_marginEnd="30dp" />
+                    android:layout_marginEnd="30dp"
+                    android:id="@+id/btn_modify"/>
 
                 <TextView
                     android:layout_width="122dp"
@@ -194,7 +216,8 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:text="Delete"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:id="@+id/btn_delete"/>
 
             </LinearLayout>
 

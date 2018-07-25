@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
+    android:layout_height="56dp"
     android:gravity="center|start"
     android:orientation="horizontal">
 
@@ -13,7 +13,8 @@
         android:layout_marginStart="24dp"
         android:padding="1dp"
         android:src="@drawable/calendar"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        android:layout_marginTop="4dp"/>
 
     <TextView
         android:id="@+id/text_cat"
@@ -23,5 +24,6 @@
         android:text="TODAY"
         android:textColor="@color/grey"
         android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginTop="4dp"/>
 </LinearLayout>

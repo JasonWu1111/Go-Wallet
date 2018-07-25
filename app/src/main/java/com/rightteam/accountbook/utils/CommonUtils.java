@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class DateUtils {
+public class CommonUtils {
 
     public static final String DEFAULT_DAY_PATTERN = "dd/MM/yyyy";
     public static final String WEEK_DAY_PATTERN = "EEEE, dd MMMM";
@@ -60,5 +60,9 @@ public class DateUtils {
         String weekDay = formatWithToday(System.currentTimeMillis(), WEEK_DAY_PATTERN);
         System.out.println(weekDay);
 
+    }
+
+    public static String formatPriceWithSource(float price, boolean isExpense){
+        return (isExpense ? "-" : "+") + " $" + formatNumberWithComma(price);
     }
 }

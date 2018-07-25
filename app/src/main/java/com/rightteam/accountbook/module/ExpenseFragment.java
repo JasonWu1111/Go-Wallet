@@ -1,13 +1,10 @@
 package com.rightteam.accountbook.module;
 
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,7 +17,6 @@ import com.rightteam.accountbook.bean.BillBean;
 import com.rightteam.accountbook.bean.TypeBean;
 import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.utils.AssetsHelper;
-import com.rightteam.accountbook.utils.DateUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,9 +27,7 @@ import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by JasonWu on 7/22/2018
@@ -50,7 +44,7 @@ public class ExpenseFragment extends BaseFragment {
     EditText editMemo;
 
     private int mCurType;
-    private int mCurCat;
+    private String mCurCat;
 
     @Override
     protected int getLayoutResId() {
@@ -59,7 +53,7 @@ public class ExpenseFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
-        mCurCat = 1;
+        mCurCat = "Cash";
         List<TypeBean> beans = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(AssetsHelper.readData(getContext(), "data/typeList.json"));
@@ -93,12 +87,7 @@ public class ExpenseFragment extends BaseFragment {
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.bill_cat2, popup.getMenu());
         popup.setOnMenuItemClickListener(item -> {
-            switch (item.getTitle().toString()){
-                case "Cash":
-                    mCurCat = 1;
-                case "Card":
-                    mCurCat = 2;
-            }
+            mCurCat = item.getTitle().toString();
             textCat.setText(mCurCat);
             return true;
         });
@@ -112,7 +101,12 @@ public class ExpenseFragment extends BaseFragment {
                 , mCurCat
                 , new Random().nextInt(10)
                 , walletId
-                , editMemo.getEditableText().toString());
+                , editMemo.getEditableText().toString()
+                , true);
         billDao.insert(bill);
+    }
+
+    public void UpdateBill(long walletId){
+        BillBeanDao billDao = MyApplication.getsDaoSession().getBillBeanDao();
     }
 }

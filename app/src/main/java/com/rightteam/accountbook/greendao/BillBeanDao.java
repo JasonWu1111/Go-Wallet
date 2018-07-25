@@ -30,10 +30,11 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Price = new Property(1, float.class, "price", false, "PRICE");
         public final static Property Time = new Property(2, long.class, "time", false, "TIME");
-        public final static Property Category = new Property(3, int.class, "category", false, "CATEGORY");
+        public final static Property Category = new Property(3, String.class, "category", false, "CATEGORY");
         public final static Property Type = new Property(4, int.class, "type", false, "TYPE");
         public final static Property WalletId = new Property(5, Long.class, "walletId", false, "WALLET_ID");
-        public final static Property Remark = new Property(6, String.class, "remark", false, "REMARK");
+        public final static Property Memo = new Property(6, String.class, "memo", false, "MEMO");
+        public final static Property IsExpense = new Property(7, boolean.class, "isExpense", false, "IS_EXPENSE");
     }
 
     private Query<BillBean> walletBean_BillsQuery;
@@ -53,10 +54,11 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"PRICE\" REAL NOT NULL ," + // 1: price
                 "\"TIME\" INTEGER NOT NULL ," + // 2: time
-                "\"CATEGORY\" INTEGER NOT NULL ," + // 3: category
+                "\"CATEGORY\" TEXT," + // 3: category
                 "\"TYPE\" INTEGER NOT NULL ," + // 4: type
                 "\"WALLET_ID\" INTEGER," + // 5: walletId
-                "\"REMARK\" TEXT);"); // 6: remark
+                "\"MEMO\" TEXT," + // 6: memo
+                "\"IS_EXPENSE\" INTEGER NOT NULL );"); // 7: isExpense
     }
 
     /** Drops the underlying database table. */
@@ -75,7 +77,11 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         }
         stmt.bindDouble(2, entity.getPrice());
         stmt.bindLong(3, entity.getTime());
-        stmt.bindLong(4, entity.getCategory());
+ 
+        String category = entity.getCategory();
+        if (category != null) {
+            stmt.bindString(4, category);
+        }
         stmt.bindLong(5, entity.getType());
  
         Long walletId = entity.getWalletId();
@@ -83,10 +89,11 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
             stmt.bindLong(6, walletId);
         }
  
-        String remark = entity.getRemark();
-        if (remark != null) {
-            stmt.bindString(7, remark);
+        String memo = entity.getMemo();
+        if (memo != null) {
+            stmt.bindString(7, memo);
         }
+        stmt.bindLong(8, entity.getIsExpense() ? 1L: 0L);
     }
 
     @Override
@@ -99,7 +106,11 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         }
         stmt.bindDouble(2, entity.getPrice());
         stmt.bindLong(3, entity.getTime());
-        stmt.bindLong(4, entity.getCategory());
+ 
+        String category = entity.getCategory();
+        if (category != null) {
+            stmt.bindString(4, category);
+        }
         stmt.bindLong(5, entity.getType());
  
         Long walletId = entity.getWalletId();
@@ -107,10 +118,11 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
             stmt.bindLong(6, walletId);
         }
  
-        String remark = entity.getRemark();
-        if (remark != null) {
-            stmt.bindString(7, remark);
+        String memo = entity.getMemo();
+        if (memo != null) {
+            stmt.bindString(7, memo);
         }
+        stmt.bindLong(8, entity.getIsExpense() ? 1L: 0L);
     }
 
     @Override
@@ -124,10 +136,11 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getFloat(offset + 1), // price
             cursor.getLong(offset + 2), // time
-            cursor.getInt(offset + 3), // category
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // category
             cursor.getInt(offset + 4), // type
             cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5), // walletId
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // remark
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // memo
+            cursor.getShort(offset + 7) != 0 // isExpense
         );
         return entity;
     }
@@ -137,10 +150,11 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setPrice(cursor.getFloat(offset + 1));
         entity.setTime(cursor.getLong(offset + 2));
-        entity.setCategory(cursor.getInt(offset + 3));
+        entity.setCategory(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setType(cursor.getInt(offset + 4));
         entity.setWalletId(cursor.isNull(offset + 5) ? null : cursor.getLong(offset + 5));
-        entity.setRemark(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setMemo(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setIsExpense(cursor.getShort(offset + 7) != 0);
      }
     
     @Override
