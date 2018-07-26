@@ -8,7 +8,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.rightteam.accountbook.MyApplication;
@@ -36,8 +39,8 @@ public class MainActivity extends BaseActivity {
     ViewPager viewPager;
     @BindView(R.id.drawer_recycler_view)
     RecyclerView walletList;
-    @BindView(R.id.btn_wallet)
-    ImageView btnWallet;
+    @BindView(R.id.drawer_view)
+    LinearLayout drawerView;
 
     private boolean mIsWalletShow = true;
     private long mCurWalletId;
@@ -67,6 +70,14 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initDrawerView() {
+        WindowManager wm = getWindowManager();//获取屏幕宽高
+        int width1 = wm.getDefaultDisplay().getWidth();
+        int height1 = wm.getDefaultDisplay().getHeight();
+        ViewGroup.LayoutParams para = drawerView.getLayoutParams();//获取drawerlayout的布局
+        para.width = width1 * 5 / 8;//修改宽度
+        para.height = height1;//修改高度
+        drawerView.setLayoutParams(para); //设置修改后的布局。
+
         WalletListAdapter adapter = new WalletListAdapter(this);
         WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
         List<WalletBean> beans = walletBeanDao.queryBuilder().list();
@@ -75,7 +86,7 @@ public class MainActivity extends BaseActivity {
             walletBeanDao.insert(bean);
             mCurWalletId = bean.getId();
             beans = walletBeanDao.queryBuilder().list();
-        }else {
+        } else {
             mCurWalletId = beans.get(0).getId();
         }
         adapter.setData(beans);
@@ -83,6 +94,8 @@ public class MainActivity extends BaseActivity {
         walletList.setLayoutManager(new LinearLayoutManager(this));
         walletList.setAdapter(adapter);
     }
+
+
 
     @Override
     protected void updateData() {

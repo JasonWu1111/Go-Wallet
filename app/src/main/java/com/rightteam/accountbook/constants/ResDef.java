@@ -32,6 +32,13 @@ public class ResDef {
             R.drawable.others2
     };
 
+    public static int[] TYPE_ICONS3 = {
+            R.drawable.salary,
+            R.drawable.investment,
+            R.drawable.bonus,
+            R.drawable.others
+    };
+
     public static String[] TYPE_NAMES = {
             "Car",
             "Travel",
@@ -44,6 +51,14 @@ public class ResDef {
             "Entertainment",
             "others"
     };
+
+    public static String[] TYPE_NAMES2 = {
+            "Salary",
+            "Travel",
+            "Transport",
+            "Clothes",
+    };
+
 
     public static String[] CATEGORY = {
             "All",

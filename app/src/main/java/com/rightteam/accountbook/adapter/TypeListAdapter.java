@@ -49,9 +49,9 @@ public class TypeListAdapter extends BaseRvAdapter<TypeBean> {
         }
 
         void bind(int position) {
-            iconType.setImageResource(ResDef.TYPE_ICONS[getData().get(position).getType()]);
+            iconType.setImageResource(ResDef.TYPE_ICONS[position]);
 //            iconType.setImageResource(R.drawable.travel);
-            textType.setText(getData().get(position).getName());
+            textType.setText(ResDef.TYPE_NAMES[position]);
         }
     }
 }

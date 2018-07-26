@@ -55,15 +55,9 @@ public class ExpenseFragment extends BaseFragment {
     protected void initViews() {
         mCurCat = "Cash";
         List<TypeBean> beans = new ArrayList<>();
-        try {
-            JSONObject jsonObject = new JSONObject(AssetsHelper.readData(getContext(), "data/typeList.json"));
-            JSONArray jsonArray = (JSONArray) jsonObject.get("data");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                TypeBean typeBean = new Gson().fromJson(jsonArray.get(i).toString(), TypeBean.class);
-                beans.add(typeBean);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        for (int i = 0; i < 10; i++) {
+            TypeBean typeBean = new TypeBean();
+            beans.add(typeBean);
         }
 
         TypeListAdapter adapter = new TypeListAdapter(getContext());
@@ -106,7 +100,7 @@ public class ExpenseFragment extends BaseFragment {
         billDao.insert(bill);
     }
 
-    public void UpdateBill(long walletId){
+    public void UpdateBill(long walletId) {
         BillBeanDao billDao = MyApplication.getsDaoSession().getBillBeanDao();
     }
 }
