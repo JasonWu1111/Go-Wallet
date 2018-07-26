@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_gradient"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".module.DetailActivity">
+
+    <LinearLayout
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fitsSystemWindows="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11.5dp"
+            android:text="Wallet"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="351dp"
+        android:layout_marginLeft="28.5dp"
+        android:layout_marginRight="28.5dp"
+        android:layout_marginTop="68.5dp"
+        app:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="310dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cover"
+                android:textColor="@color/grey_dark"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="16dp"
+                android:paddingLeft="2dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="85dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:layout_width="84.5dp"
+                    android:layout_height="84.5dp"
+                    android:src="@drawable/wallet1"
+                    android:outlineProvider="bounds"
+                    android:background="@null"
+                    android:padding="1dp"
+                    android:id="@+id/image_wallet1"
+                    android:tag="0"/>
+
+                <View
+                    android:layout_width="23dp"
+                    android:layout_height="0dp" />
+
+                <ImageView
+                    android:layout_width="84.5dp"
+                    android:layout_height="84.5dp"
+                    android:src="@drawable/wallet2"
+                    android:outlineProvider="bounds"
+                    android:background="@null"
+                    android:padding="1dp"
+                    android:id="@+id/image_wallet2"
+                    android:tag="1"/>
+
+                <View
+                    android:layout_width="23dp"
+                    android:layout_height="0dp" />
+
+                <ImageView
+                    android:layout_width="84.5dp"
+                    android:layout_height="84.5dp"
+                    android:src="@drawable/wallet3"
+                    android:outlineProvider="bounds"
+                    android:background="@null"
+                    android:padding="1dp"
+                    android:id="@+id/image_wallet3"
+                    android:tag="2"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@color/grey_dark"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="26dp"
+                android:paddingLeft="2dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp">
+
+                <ImageView
+                    android:id="@+id/icon_pen"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/pen" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/grey" />
+
+                <EditText
+                    android:id="@+id/edit_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_toEndOf="@+id/icon_pen"
+                    android:background="@null"
+                    android:backgroundTint="@color/grey"
+                    android:maxLines="1"
+                    android:padding="2dp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="139dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/frame_long_blue2"
+                    android:gravity="center"
+                    android:text="Cancel"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/btn_ok"
+                    android:layout_width="139dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/frame_long_blue2"
+                    android:gravity="center"
+                    android:text="OK"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="136dp"
+        android:background="@color/white" />
+
+</RelativeLayout>

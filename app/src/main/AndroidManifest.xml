@@ -26,6 +26,8 @@
         <activity
             android:name=".module.DetailActivity"
             android:theme="@style/TranslucentTheme" />
+        <activity android:name=".module.WalletActivity"
+            android:theme="@style/TranslucentTheme"/>
     </application>
 
 </manifest>

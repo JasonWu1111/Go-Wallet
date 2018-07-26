@@ -4,11 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="194dp"
     android:layout_height="85dp"
-    app:cardCornerRadius="5dp"
     android:layout_marginBottom="9.5dp"
-    android:layout_marginTop="2dp"
     android:layout_marginLeft="2dp"
-    android:layout_marginRight="2dp">
+    android:layout_marginRight="2dp"
+    android:layout_marginTop="2dp"
+    app:cardCornerRadius="4dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -23,13 +23,15 @@
                 android:layout_width="97dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/wallet1" />
+                android:src="@drawable/wallet2"
+                android:id="@+id/image_cover"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center|top"
-                android:orientation="vertical">
+                android:gravity="top"
+                android:orientation="vertical"
+                android:paddingLeft="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -37,28 +39,77 @@
                     android:layout_marginTop="8dp"
                     android:text="Wallet 1"
                     android:textColor="@color/grey_dark"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:id="@+id/text_title"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/light_grey3"
                     android:text="Starting time"
-                    android:textSize="13sp"/>
+                    android:textColor="@color/light_grey3"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="07/22/2018"
                     android:textColor="@color/light_grey3"
-                    android:text="07/22/2018" />
+                    android:id="@+id/text_date"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/state_chosen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/frame_long_blue3"
+            android:visibility="invisible">
+
+            <ImageView
+                android:layout_width="12.5dp"
+                android:layout_height="14dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/label" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/state_change"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.4"
+                android:background="@color/black" />
+
+            <ImageView
+                android:id="@+id/btn_modify"
+                android:layout_width="35dp"
+                android:layout_height="32.5dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="31dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_modify" />
+
+            <ImageView
+                android:id="@+id/btn_delete"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="31dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_delete" />
+
+        </RelativeLayout>
+
     </FrameLayout>
-
-
 
 </android.support.v7.widget.CardView>

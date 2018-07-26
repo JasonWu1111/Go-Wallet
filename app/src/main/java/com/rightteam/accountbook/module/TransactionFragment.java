@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import com.rightteam.accountbook.adapter.BillListAdapter;
 import com.rightteam.accountbook.base.BaseFragment;
 import com.rightteam.accountbook.bean.BillBean;
 import com.rightteam.accountbook.constants.KeyDef;
+import com.rightteam.accountbook.event.ChangeWalletEvent;
 import com.rightteam.accountbook.event.UpdateBillListEvent;
 import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.utils.CommonUtils;
@@ -46,6 +48,7 @@ public class TransactionFragment extends BaseFragment {
     private float mExTotal;
     private float mInTotal;
     private String mCurCat;
+    private BillBeanDao billBeanDao;
 
     @Override
     protected int getLayoutResId() {
@@ -55,7 +58,7 @@ public class TransactionFragment extends BaseFragment {
     @Override
     protected void initViews() {
         EventBus.getDefault().register(this);
-
+        billBeanDao = MyApplication.getsDaoSession().getBillBeanDao();
         mCurWalletId = getArguments() != null ? getArguments().getLong(KeyDef.WALLET_ID) : -1;
         mAdapter = new BillListAdapter(getContext());
         mAdapter.setOnItemClickListener((position, action, id) -> {
@@ -79,7 +82,7 @@ public class TransactionFragment extends BaseFragment {
 //        List<BillBean> beans = walletBean.getBills();
         mExTotal = 0f;
         mInTotal = 0f;
-        BillBeanDao billBeanDao = MyApplication.getsDaoSession().getBillBeanDao();
+
         List<BillBean> beans = billBeanDao.queryBuilder().where(BillBeanDao.Properties.WalletId.eq(mCurWalletId)).list();
         for (BillBean bean : beans) {
             if (bean.getIsExpense()) {
@@ -136,6 +139,12 @@ public class TransactionFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onUpdateData(UpdateBillListEvent event) {
+        updateData();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onWalletChange(ChangeWalletEvent event) {
+        mCurWalletId = event.getWalletId();
         updateData();
     }
 }

@@ -59,6 +59,11 @@ public class ResDef {
             "Clothes",
     };
 
+    public static int[] WALLET_COVER = {
+            R.drawable.wallet1,
+            R.drawable.wallet2,
+            R.drawable.wallet3
+    };
 
     public static String[] CATEGORY = {
             "All",

@@ -93,7 +93,7 @@
         <ImageView
             android:layout_width="22.5dp"
             android:layout_height="22.5dp"
-            android:src="@drawable/ic_setting"
+            android:src="@drawable/ic_feedback"
             android:layout_centerVertical="true"
             android:layout_marginStart="27.5dp"
             android:id="@+id/icon_feedback"/>

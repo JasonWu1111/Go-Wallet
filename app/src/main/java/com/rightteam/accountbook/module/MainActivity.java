@@ -1,6 +1,7 @@
 package com.rightteam.accountbook.module;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -10,18 +11,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.rightteam.accountbook.MyApplication;
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.adapter.MainAdapter;
+import com.rightteam.accountbook.adapter.OnItemClickListener;
 import com.rightteam.accountbook.adapter.WalletListAdapter;
 import com.rightteam.accountbook.base.BaseActivity;
 import com.rightteam.accountbook.bean.WalletBean;
 import com.rightteam.accountbook.constants.KeyDef;
+import com.rightteam.accountbook.event.UpdateBillListEvent;
+import com.rightteam.accountbook.event.UpdateWalletListEvent;
 import com.rightteam.accountbook.greendao.WalletBeanDao;
+import com.rightteam.accountbook.utils.SharedPreferencesUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +52,7 @@ public class MainActivity extends BaseActivity {
 
     private boolean mIsWalletShow = true;
     private long mCurWalletId;
+    private WalletListAdapter mWalletAdapter;
 
     @Override
     protected int getLayoutResId() {
@@ -52,7 +61,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        initDrawerView();
+        EventBus.getDefault().register(this);
+        mCurWalletId = SharedPreferencesUtil.getInstance().getLong(KeyDef.CURRENT_WALLET_ID, -1);
 
         List<String> titles = new ArrayList<>();
         titles.add("Transaction");
@@ -67,6 +77,8 @@ public class MainActivity extends BaseActivity {
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager(), titles, fragments);
         viewPager.setAdapter(mainAdapter);
         tabLayout.setViewPager(viewPager);
+
+        initDrawerView();
     }
 
     private void initDrawerView() {
@@ -77,29 +89,29 @@ public class MainActivity extends BaseActivity {
         para.width = width1 * 5 / 8;//修改宽度
         para.height = height1;//修改高度
         drawerView.setLayoutParams(para); //设置修改后的布局。
-
-        WalletListAdapter adapter = new WalletListAdapter(this);
-        WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
-        List<WalletBean> beans = walletBeanDao.queryBuilder().list();
-        if (beans.size() == 0) {
-            WalletBean bean = new WalletBean(null, 0, "Wallet1", System.currentTimeMillis());
-            walletBeanDao.insert(bean);
-            mCurWalletId = bean.getId();
-            beans = walletBeanDao.queryBuilder().list();
-        } else {
-            mCurWalletId = beans.get(0).getId();
-        }
-        adapter.setData(beans);
-        adapter.setOnItemClickListener((position, action, data) -> drawerLayout.closeDrawer(GravityCompat.START));
-        walletList.setLayoutManager(new LinearLayoutManager(this));
-        walletList.setAdapter(adapter);
     }
-
 
 
     @Override
     protected void updateData() {
+        WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
+        List<WalletBean> beans = new ArrayList<>();
 
+        if(mCurWalletId == -1){
+            WalletBean bean = new WalletBean(null, 0, "Wallet1", System.currentTimeMillis());
+            walletBeanDao.insert(bean);
+            WalletBean bean1 = walletBeanDao.queryBuilder().list().get(0);
+            beans.add(bean1);
+            mCurWalletId = bean1.getId();
+            SharedPreferencesUtil.getInstance().putLong(KeyDef.CURRENT_WALLET_ID, bean1.getId());
+        }else {
+            beans = walletBeanDao.queryBuilder().list();
+        }
+
+        mWalletAdapter = new WalletListAdapter(this, mCurWalletId);
+        mWalletAdapter.setData(beans);
+        walletList.setLayoutManager(new LinearLayoutManager(this));
+        walletList.setAdapter(mWalletAdapter);
     }
 
     @Override
@@ -120,5 +132,16 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_wallet:
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUpdateData(UpdateWalletListEvent event) {
+        updateData();
     }
 }
