@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="56dp"
     android:gravity="center|start"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp">
 
     <ImageView
         android:id="@+id/icon_bill"
         android:layout_width="30dp"
         android:layout_height="30.7dp"
         android:layout_marginStart="27.5dp"
-        android:src="@drawable/calendar"
+        android:src="@drawable/ic_calendar"
         tools:ignore="ContentDescription"
         android:layout_marginTop="4dp"/>
 

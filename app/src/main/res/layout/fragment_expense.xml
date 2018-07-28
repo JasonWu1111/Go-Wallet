@@ -24,7 +24,7 @@
                 android:layout_width="27.5dp"
                 android:layout_height="20.5dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/cash" />
+                android:src="@drawable/ic_cash" />
 
             <TextView
                 android:id="@+id/text_cat"
@@ -81,7 +81,7 @@
             android:id="@+id/icon_pen"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/pen" />
+            android:src="@drawable/ic_pen" />
 
         <View
             android:layout_width="match_parent"

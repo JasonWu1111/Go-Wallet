@@ -6,40 +6,74 @@ import com.rightteam.accountbook.R;
  * Created by wuzhiqiang on 2018/7/24
  */
 public class ResDef {
-    public static int[] TYPE_ICONS = {
-            R.drawable.car,
-            R.drawable.travel,
-            R.drawable.transport,
-            R.drawable.clothes,
-            R.drawable.health,
-            R.drawable.pets,
-            R.drawable.shopping,
-            R.drawable.food,
-            R.drawable.entertainment,
-            R.drawable.others
+    public static int[] TYPE_ICONS_EX = {
+            R.drawable.ex_car,
+            R.drawable.ex_travel,
+            R.drawable.ex_transport,
+            R.drawable.ex_clothes,
+            R.drawable.ex_health,
+            R.drawable.ex_pets,
+            R.drawable.ex_shopping,
+            R.drawable.ex_food,
+            R.drawable.ex_entertainment,
+            R.drawable.ex_others
     };
 
-    public static int[] TYPE_ICONS2 = {
-            R.drawable.car2,
-            R.drawable.travel2,
-            R.drawable.transport2,
-            R.drawable.clothes2,
-            R.drawable.health2,
-            R.drawable.pets2,
-            R.drawable.shopping2,
-            R.drawable.food2,
-            R.drawable.entertainment2,
-            R.drawable.others2
+    public static int[] TYPE_ICONS_GREY_EX = {
+            R.drawable.ex_car_grey,
+            R.drawable.ex_travel_grey,
+            R.drawable.ex_transport_grey,
+            R.drawable.ex_clothes_grey,
+            R.drawable.ex_health_grey,
+            R.drawable.ex_pets_grey,
+            R.drawable.ex_shopping_grey,
+            R.drawable.ex_food_grey,
+            R.drawable.ex_entertainment_grey,
+            R.drawable.ex_others_grey
     };
 
-    public static int[] TYPE_ICONS3 = {
-            R.drawable.salary,
-            R.drawable.investment,
-            R.drawable.bonus,
-            R.drawable.others
+    public static int[] TYPE_ICONS2_EX = {
+            R.drawable.ex_car2,
+            R.drawable.ex_travel2,
+            R.drawable.ex_transport2,
+            R.drawable.ex_clothes2,
+            R.drawable.ex_health2,
+            R.drawable.ex_pets2,
+            R.drawable.ex_shopping2,
+            R.drawable.ex_food2,
+            R.drawable.ex_entertainment2,
+            R.drawable.ex_others2
     };
 
-    public static String[] TYPE_NAMES = {
+    public static int[] TYPE_ICONS_IN = {
+            R.drawable.in_salary,
+            R.drawable.in_investment,
+            R.drawable.in_bonus,
+            R.drawable.in_others
+    };
+
+    public static int[] TYPE_ICONS2_IN = {
+            R.drawable.in_salary,
+            R.drawable.in_investment,
+            R.drawable.in_bonus,
+            R.drawable.in_others
+    };
+
+    public static int[] TYPE_ICONS_GREY_IN = {
+            R.drawable.in_salary_grey,
+            R.drawable.in_investment_grey,
+            R.drawable.in_bonus_grey,
+            R.drawable.in_others_grey
+    };
+
+    public static int[] TYPE_ICONS2_GREY_IN = {
+            R.drawable.in_salary,
+            R.drawable.in_investment,
+            R.drawable.in_bonus,
+            R.drawable.in_others
+    };
+
+    public static String[] TYPE_NAMES_EX = {
             "Car",
             "Travel",
             "Transport",
@@ -49,20 +83,20 @@ public class ResDef {
             "Shopping",
             "Food",
             "Entertainment",
-            "others"
+            "Others"
     };
 
-    public static String[] TYPE_NAMES2 = {
+    public static String[] TYPE_NAMES_IN = {
             "Salary",
-            "Travel",
-            "Transport",
-            "Clothes",
+            "Investment",
+            "Bonus",
+            "Others"
     };
 
     public static int[] WALLET_COVER = {
-            R.drawable.wallet1,
-            R.drawable.wallet2,
-            R.drawable.wallet3
+            R.drawable.cover_wallet1,
+            R.drawable.cover_wallet2,
+            R.drawable.cover_wallet3
     };
 
     public static String[] CATEGORY = {

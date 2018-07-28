@@ -35,7 +35,7 @@
             android:layout_height="23dp"
             android:layout_marginStart="22dp"
             android:layout_marginTop="9.5dp"
-            android:src="@drawable/wallet"
+            android:src="@drawable/ic_drawer"
             android:padding="2dp"/>
     </RelativeLayout>
 

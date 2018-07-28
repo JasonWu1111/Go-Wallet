@@ -6,7 +6,7 @@
 
     <View
         android:layout_width="1dp"
-        android:layout_height="15dp"
+        android:layout_height="12dp"
         android:layout_marginStart="66dp"
         android:background="@color/light_grey2"
         android:id="@+id/view_top"/>
@@ -22,7 +22,7 @@
             android:layout_height="34dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="49dp"
-            android:src="@drawable/car"
+            android:src="@drawable/ex_car"
             tools:ignore="ContentDescription" />
 
         <TextView

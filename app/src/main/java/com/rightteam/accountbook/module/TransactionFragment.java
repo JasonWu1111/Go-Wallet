@@ -15,7 +15,6 @@ import com.rightteam.accountbook.adapter.BillListAdapter;
 import com.rightteam.accountbook.base.BaseFragment;
 import com.rightteam.accountbook.bean.BillBean;
 import com.rightteam.accountbook.constants.KeyDef;
-import com.rightteam.accountbook.event.ChangeWalletEvent;
 import com.rightteam.accountbook.event.UpdateBillListEvent;
 import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.utils.CommonUtils;
@@ -64,7 +63,7 @@ public class TransactionFragment extends BaseFragment {
         mAdapter.setOnItemClickListener((position, action, id) -> {
             switch (action) {
                 case KeyDef.JUMP_TO_DETAIL:
-                    startActivity(new Intent(getContext(), DetailActivity.class).putExtra(KeyDef.BILL_ID, id));
+                    JumpToDetail(id);
                     break;
                 case KeyDef.JUMP_TO_KEEP:
                     JumpToKeep();
@@ -99,6 +98,13 @@ public class TransactionFragment extends BaseFragment {
         }
 
         mAdapter.setData(beans);
+    }
+
+    private void JumpToDetail(long billId){
+        Intent intent = new Intent(getContext(), DetailActivity.class);
+        intent.putExtra(KeyDef.WALLET_ID, mCurWalletId);
+        intent.putExtra(KeyDef.BILL_ID, billId);
+        startActivity(intent);
     }
 
     private void JumpToKeep() {
@@ -139,11 +145,6 @@ public class TransactionFragment extends BaseFragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onUpdateData(UpdateBillListEvent event) {
-        updateData();
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onWalletChange(ChangeWalletEvent event) {
         mCurWalletId = event.getWalletId();
         updateData();
     }

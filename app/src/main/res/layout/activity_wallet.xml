@@ -23,7 +23,7 @@
         <ImageView
             android:layout_width="10dp"
             android:layout_height="20dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
                 <ImageView
                     android:layout_width="84.5dp"
                     android:layout_height="84.5dp"
-                    android:src="@drawable/wallet1"
+                    android:src="@drawable/cover_wallet1"
                     android:outlineProvider="bounds"
                     android:background="@null"
                     android:padding="1dp"
@@ -83,7 +83,7 @@
                 <ImageView
                     android:layout_width="84.5dp"
                     android:layout_height="84.5dp"
-                    android:src="@drawable/wallet2"
+                    android:src="@drawable/cover_wallet2"
                     android:outlineProvider="bounds"
                     android:background="@null"
                     android:padding="1dp"
@@ -97,7 +97,7 @@
                 <ImageView
                     android:layout_width="84.5dp"
                     android:layout_height="84.5dp"
-                    android:src="@drawable/wallet3"
+                    android:src="@drawable/cover_wallet3"
                     android:outlineProvider="bounds"
                     android:background="@null"
                     android:padding="1dp"
@@ -127,7 +127,7 @@
                     android:id="@+id/icon_pen"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/pen" />
+                    android:src="@drawable/ic_pen" />
 
                 <View
                     android:layout_width="match_parent"

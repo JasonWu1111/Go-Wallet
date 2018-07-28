@@ -21,7 +21,7 @@ public class CommonUtils {
     }
 
     public static String formatTimestamp(long time, String pattern) {
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.US);
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.getDefault());
 //        sdf.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
         return sdf.format(new Date(time));
     }
@@ -44,5 +44,11 @@ public class CommonUtils {
 
     public static String formatPriceWithSource(float price, boolean isExpense){
         return (isExpense ? "-" : "+") + " $" + formatNumberWithComma(price);
+    }
+
+    public static String formatDateSimple(int year, int month, int dayOfMonth){
+        String m = (month < 10 ? "0" : "")  + month;
+        String d = (dayOfMonth < 10 ? "0" : "")  + dayOfMonth;
+        return m + "/" + d + "/" + year;
     }
 }

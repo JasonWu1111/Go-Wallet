@@ -27,6 +27,7 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
     private final static int VIEW_TYPE_BILL_TOP = 1;
     private final static int VIEW_TYPE_BILL_NORMAL = 2;
     private final static int VIEW_TYPE_BILL_TODO = 3;
+    private final static int VIEW_TYPE_BLANK = 4;
 
     private List<Integer> itemTypes = new ArrayList<>();
     private List<Object> itemData = new ArrayList<>();
@@ -52,6 +53,9 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
             case VIEW_TYPE_BILL_TODO:
                 layoutId = R.layout.view_adapter_todo;
                 break;
+            case VIEW_TYPE_BLANK:
+                layoutId = R.layout.view_adapter_blank;
+                break;
         }
         return new BillListViewHolder(LayoutInflater.from(mContext).inflate(layoutId, parent, false));
     }
@@ -71,6 +75,8 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
 
         if(data.size() == 0){
             itemTypes.add(VIEW_TYPE_BILL_TODO);
+            itemData.add("");
+            itemTypes.add(VIEW_TYPE_BLANK);
             itemData.add("");
             notifyDataSetChanged();
             return;
@@ -105,6 +111,8 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
                 itemData.add(billBean);
             }
         }
+        itemTypes.add(VIEW_TYPE_BLANK);
+        itemData.add("");
         notifyDataSetChanged();
     }
 
@@ -138,8 +146,8 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
                     ImageView icon = itemView.findViewById(R.id.icon_bill);
                     TextView textType = itemView.findViewById(R.id.text_type);
                     TextView textPrice = itemView.findViewById(R.id.text_price);
-                    icon.setImageResource(ResDef.TYPE_ICONS[bean.getType()]);
-                    textType.setText(ResDef.TYPE_NAMES[bean.getType()]);
+                    icon.setImageResource(bean.getIsExpense() ? ResDef.TYPE_ICONS_EX[bean.getType()] : ResDef.TYPE_ICONS_IN[bean.getType()]);
+                    textType.setText(bean.getIsExpense() ? ResDef.TYPE_NAMES_EX[bean.getType()] : ResDef.TYPE_NAMES_IN[bean.getType()]);
                     textPrice.setTextColor(mContext.getResources().getColor(bean.getIsExpense() ? R.color.orange : R.color.green));
                     String price = CommonUtils.formatPriceWithSource(bean.getPrice(), bean.getIsExpense());
                     textPrice.setText(price);

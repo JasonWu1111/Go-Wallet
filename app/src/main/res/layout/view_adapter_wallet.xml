@@ -23,7 +23,7 @@
                 android:layout_width="97dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/wallet2"
+                android:src="@drawable/cover_wallet2"
                 android:id="@+id/image_cover"/>
 
             <LinearLayout
@@ -73,7 +73,7 @@
                 android:layout_height="14dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="5dp"
-                android:src="@drawable/label" />
+                android:src="@drawable/ic_label" />
 
         </RelativeLayout>
 

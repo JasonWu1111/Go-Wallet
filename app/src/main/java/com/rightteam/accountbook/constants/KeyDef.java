@@ -9,4 +9,5 @@ public class KeyDef {
     public static final String BILL_ID = "bill_id";
     public static final String WALLET_ID = "wallet_id";
     public static final String CURRENT_WALLET_ID = "current_wallet_id";
+    public static final String IS_EXPENSE = "is_expense";
 }

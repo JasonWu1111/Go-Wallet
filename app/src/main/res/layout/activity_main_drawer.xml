@@ -35,7 +35,7 @@
         <ImageView
             android:layout_width="15.2dp"
             android:layout_height="7.6dp"
-            android:src="@drawable/triangle"
+            android:src="@drawable/ic_triangle"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="30dp"
             android:scaleY="-1"

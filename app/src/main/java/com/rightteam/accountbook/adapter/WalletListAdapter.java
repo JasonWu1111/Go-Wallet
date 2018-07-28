@@ -19,7 +19,7 @@ import com.rightteam.accountbook.base.BaseRvAdapter;
 import com.rightteam.accountbook.bean.WalletBean;
 import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.constants.ResDef;
-import com.rightteam.accountbook.event.ChangeWalletEvent;
+import com.rightteam.accountbook.event.UpdateBillListEvent;
 import com.rightteam.accountbook.module.WalletActivity;
 import com.rightteam.accountbook.utils.CommonUtils;
 import com.rightteam.accountbook.utils.SharedPreferencesUtil;
@@ -125,7 +125,7 @@ public class WalletListAdapter extends BaseRvAdapter<WalletBean> {
                     mCurWalletId = bean.getId();
                     notifyDataSetChanged();
                     SharedPreferencesUtil.getInstance().putLong(KeyDef.CURRENT_WALLET_ID, mCurWalletId);
-                    EventBus.getDefault().post(new ChangeWalletEvent(mCurWalletId));
+                    EventBus.getDefault().post(new UpdateBillListEvent(mCurWalletId));
                 }
             });
             itemView.setOnLongClickListener(v -> {

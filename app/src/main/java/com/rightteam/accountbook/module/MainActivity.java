@@ -50,9 +50,9 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.drawer_view)
     LinearLayout drawerView;
 
-    private boolean mIsWalletShow = true;
     private long mCurWalletId;
     private WalletListAdapter mWalletAdapter;
+    private WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
 
     @Override
     protected int getLayoutResId() {
@@ -63,6 +63,13 @@ public class MainActivity extends BaseActivity {
     protected void initViews() {
         EventBus.getDefault().register(this);
         mCurWalletId = SharedPreferencesUtil.getInstance().getLong(KeyDef.CURRENT_WALLET_ID, -1);
+        if(mCurWalletId == -1){
+            WalletBean bean = new WalletBean(null, 0, "Wallet1", System.currentTimeMillis());
+            walletBeanDao.insert(bean);
+            WalletBean bean1 = walletBeanDao.queryBuilder().list().get(0);
+            mCurWalletId = bean1.getId();
+            SharedPreferencesUtil.getInstance().putLong(KeyDef.CURRENT_WALLET_ID, bean1.getId());
+        }
 
         List<String> titles = new ArrayList<>();
         titles.add("Transaction");
@@ -94,20 +101,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void updateData() {
-        WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
-        List<WalletBean> beans = new ArrayList<>();
-
-        if(mCurWalletId == -1){
-            WalletBean bean = new WalletBean(null, 0, "Wallet1", System.currentTimeMillis());
-            walletBeanDao.insert(bean);
-            WalletBean bean1 = walletBeanDao.queryBuilder().list().get(0);
-            beans.add(bean1);
-            mCurWalletId = bean1.getId();
-            SharedPreferencesUtil.getInstance().putLong(KeyDef.CURRENT_WALLET_ID, bean1.getId());
-        }else {
-            beans = walletBeanDao.queryBuilder().list();
-        }
-
+        List<WalletBean> beans = walletBeanDao.queryBuilder().list();
         mWalletAdapter = new WalletListAdapter(this, mCurWalletId);
         mWalletAdapter.setData(beans);
         walletList.setLayoutManager(new LinearLayoutManager(this));

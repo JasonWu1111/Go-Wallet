@@ -23,7 +23,7 @@
         <ImageView
             android:layout_width="10dp"
             android:layout_height="20dp"
-            android:src="@drawable/back" />
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                 <ImageView
                     android:layout_width="36.5dp"
                     android:layout_height="36.5dp"
-                    android:src="@drawable/car2"
+                    android:src="@drawable/ex_car2"
                     android:padding="2dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="8dp"
