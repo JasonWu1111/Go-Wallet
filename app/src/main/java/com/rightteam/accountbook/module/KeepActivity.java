@@ -67,10 +67,10 @@ public class KeepActivity extends BaseActivity {
         bundle1.putBoolean(KeyDef.IS_EXPENSE, true);
         bundle2.putBoolean(KeyDef.IS_EXPENSE, false);
 
-        if(mCurBillId != -1){
-            if(mCurBill.getIsExpense()){
+        if (mCurBillId != -1) {
+            if (mCurBill.getIsExpense()) {
                 bundle1.putLong(KeyDef.BILL_ID, mCurBillId);
-            }else {
+            } else {
                 bundle2.putLong(KeyDef.BILL_ID, mCurBillId);
             }
         }
@@ -83,22 +83,22 @@ public class KeepActivity extends BaseActivity {
         viewPager.setAdapter(mMainAdapter);
         tabLayout.setViewPager(viewPager);
 
-        if(mCurBillId != -1){
-            if(mCurBill.getIsExpense()){
-                viewPager.setCurrentItem(0 ,true);
-            }else {
-                viewPager.setCurrentItem(1 ,true);
+        if (mCurBillId != -1) {
+            if (mCurBill.getIsExpense()) {
+                viewPager.setCurrentItem(0, true);
+            } else {
+                viewPager.setCurrentItem(1, true);
             }
         }
     }
 
-    private void handleIntent(){
+    private void handleIntent() {
         mCurWalletId = getIntent().getLongExtra(KeyDef.WALLET_ID, -1);
         mCurBillId = getIntent().getLongExtra(KeyDef.BILL_ID, -1);
-        if(mCurBillId == -1){
+        if (mCurBillId == -1) {
             mDateTimeMillis = System.currentTimeMillis();
             calendarText.setText(CommonUtils.formatTimestamp(System.currentTimeMillis(), CommonUtils.DEFAULT_DAY_PATTERN));
-        }else {
+        } else {
             mCurBill = billBeanDao.queryBuilder().where(BillBeanDao.Properties.Id.eq(mCurBillId)).unique();
             mDateTimeMillis = mCurBill.getTime();
             calendarText.setText(CommonUtils.formatTimestamp(mDateTimeMillis, CommonUtils.DEFAULT_DAY_PATTERN));
@@ -122,12 +122,13 @@ public class KeepActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.btn_sure:
-                ((KeepFragment) mMainAdapter.getCurrentFragment()).CreateBill(mCurWalletId);
-                EventBus.getDefault().post(new UpdateBillListEvent(mCurWalletId));
-                if(mCurBillId != -1){
-                    EventBus.getDefault().post(new ModifyBillEvent());
+                if (((KeepFragment) mMainAdapter.getCurrentFragment()).CreateBill(mCurWalletId)) {
+                    EventBus.getDefault().post(new UpdateBillListEvent(mCurWalletId));
+                    if (mCurBillId != -1) {
+                        EventBus.getDefault().post(new ModifyBillEvent());
+                    }
+                    finish();
                 }
-                finish();
                 break;
             case R.id.text_calendar:
                 Calendar c = Calendar.getInstance();

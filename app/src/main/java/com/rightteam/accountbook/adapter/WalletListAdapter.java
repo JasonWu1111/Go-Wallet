@@ -44,13 +44,13 @@ public class WalletListAdapter extends BaseRvAdapter<WalletBean> {
     private HashMap<Long, Boolean> map = new HashMap<>();
     private long mCurWalletId = -1;
 
-    public WalletListAdapter(Context context, long walletId) {
+    public WalletListAdapter(Context context) {
         super(context);
-        mCurWalletId = walletId;
+
     }
 
-    public long getCurWalletId() {
-        return mCurWalletId;
+    public void setCurWalletId(long walletId) {
+        mCurWalletId = walletId;
     }
 
     @Override
@@ -107,22 +107,26 @@ public class WalletListAdapter extends BaseRvAdapter<WalletBean> {
         @BindView(R.id.state_change)
         RelativeLayout stateChange;
 
+        private int mPosition;
+        private WalletBean mWallet;
+
         WalletViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
         void bind(int position) {
-            WalletBean bean = getData().get(position);
-            imageCover.setImageResource(ResDef.WALLET_COVER[bean.getImageId()]);
-            textTitle.setText(bean.getTitle());
-            textDate.setText(CommonUtils.formatTimestamp(bean.getStartTime(), CommonUtils.DEFAULT_DAY_PATTERN));
-            stateChosen.setVisibility(map.get(bean.getId()) ? View.VISIBLE : View.INVISIBLE);
+            mPosition = position;
+            mWallet = getData().get(position);
+            imageCover.setImageResource(ResDef.WALLET_COVER[mWallet.getImageId()]);
+            textTitle.setText(mWallet.getTitle());
+            textDate.setText(CommonUtils.formatTimestamp(mWallet.getStartTime(), CommonUtils.DEFAULT_DAY_PATTERN));
+            stateChosen.setVisibility(map.get(mWallet.getId()) ? View.VISIBLE : View.INVISIBLE);
             itemView.setOnClickListener(v -> {
-                if (mCurWalletId != bean.getId()) {
+                if (mCurWalletId != mWallet.getId()) {
                     map.put(mCurWalletId, false);
-                    map.put(bean.getId(), true);
-                    mCurWalletId = bean.getId();
+                    map.put(mWallet.getId(), true);
+                    mCurWalletId = mWallet.getId();
                     notifyDataSetChanged();
                     SharedPreferencesUtil.getInstance().putLong(KeyDef.CURRENT_WALLET_ID, mCurWalletId);
                     EventBus.getDefault().post(new UpdateBillListEvent(mCurWalletId));
@@ -138,8 +142,10 @@ public class WalletListAdapter extends BaseRvAdapter<WalletBean> {
         public void onViewClicked(View view) {
             switch (view.getId()) {
                 case R.id.btn_modify:
+                    onItemClickListener.onClick(mPosition, KeyDef.ACTION_MODIFY, mWallet.getId());
                     break;
                 case R.id.btn_delete:
+                    onItemClickListener.onClick(mPosition, KeyDef.ACTION_DELETE, mWallet.getId());
                     break;
                 case R.id.state_change:
                     stateChange.setVisibility(View.INVISIBLE);

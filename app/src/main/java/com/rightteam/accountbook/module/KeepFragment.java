@@ -17,6 +17,7 @@ import com.rightteam.accountbook.bean.TypeBean;
 import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.utils.CommonUtils;
+import com.rightteam.accountbook.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,8 @@ public class KeepFragment extends BaseFragment {
     EditText editPrice;
     @BindView(R.id.edit_memo)
     EditText editMemo;
+    @BindView(R.id.text_dollar)
+    TextView textDollar;
 
     private long mCurBillId = -1;
     private BillBean mCurBill;
@@ -48,7 +51,7 @@ public class KeepFragment extends BaseFragment {
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_expense;
+        return R.layout.fragment_keep;
     }
 
     @Override
@@ -58,6 +61,8 @@ public class KeepFragment extends BaseFragment {
             mIsExpense = getArguments().getBoolean(KeyDef.IS_EXPENSE);
             mCurBillId = getArguments().getLong(KeyDef.BILL_ID, -1);
         }
+
+        textDollar.setText(mIsExpense ? "- $" : "+ $");
 
         if (mCurBillId != -1) {
             mCurBill = billBeanDao.queryBuilder().where(BillBeanDao.Properties.Id.eq(mCurBillId)).unique();
@@ -101,9 +106,21 @@ public class KeepFragment extends BaseFragment {
         popup.show();
     }
 
-    public void CreateBill(long walletId) {
+    public boolean CreateBill(long walletId) {
+        String price = editPrice.getEditableText().toString();
+
+        if(price.equals("")){
+            ToastUtil.showToast("Please enter the amount.");
+            return false;
+        }
+
+        if(mAdapter.getCurType() == -1){
+            ToastUtil.showToast("Please select the classification.");
+            return false;
+        }
+
         BillBean bill = new BillBean(mCurBillId != -1 ? mCurBillId : null
-                , Float.valueOf(editPrice.getEditableText().toString())
+                , Float.valueOf(price)
                 , ((KeepActivity) getActivity()).getDateTimeMillis()
                 , mCurCat
                 , mAdapter.getCurType()
@@ -115,5 +132,6 @@ public class KeepFragment extends BaseFragment {
         }else {
             billBeanDao.insert(bill);
         }
+        return true;
     }
 }

@@ -12,6 +12,8 @@ public class CommonUtils {
 
     public static final String DEFAULT_DAY_PATTERN = "MM/dd/yyyy";
     public static final String WEEK_DAY_PATTERN = "EEEE, dd MMMM";
+    public static final String YEAR_MONTH_PATTERN = "yyyyMM";
+
 
     public static String formatNumberWithComma(float value) {
         BigDecimal bigDecimal = new BigDecimal(value);
@@ -50,5 +52,23 @@ public class CommonUtils {
         String m = (month < 10 ? "0" : "")  + month;
         String d = (dayOfMonth < 10 ? "0" : "")  + dayOfMonth;
         return m + "/" + d + "/" + year;
+    }
+
+    public static String formatDateSimple(int year, int month){
+        String m = (month < 10 ? "0" : "")  + month;
+        return m + "/" + year;
+    }
+
+
+    public static long transformStartMonthToMillis(int year, int month){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, 0);
+        return calendar.getTimeInMillis();
+    }
+
+    public static long transformEndMonthToMillis(int year, int month){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month + 1, 0);
+        return calendar.getTimeInMillis() - 1;
     }
 }

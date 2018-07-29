@@ -8,6 +8,7 @@ import com.rightteam.accountbook.MyApplication;
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.base.BaseActivity;
 import com.rightteam.accountbook.bean.WalletBean;
+import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.event.UpdateWalletListEvent;
 import com.rightteam.accountbook.greendao.WalletBeanDao;
 
@@ -31,6 +32,9 @@ public class WalletActivity extends BaseActivity {
 
     private int mCurCoverType = 0;
     private List<ImageView> covers = new ArrayList<>();
+    private long mCurWalletId = -1;
+    private WalletBean mCurWallet;
+    private WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
 
     @Override
     protected int getLayoutResId() {
@@ -39,9 +43,16 @@ public class WalletActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
+        mCurWalletId = getIntent().getLongExtra(KeyDef.WALLET_ID, -1);
         covers.add(imageWallet1);
         covers.add(imageWallet2);
         covers.add(imageWallet3);
+        if(mCurWalletId != -1){
+            mCurWallet = walletBeanDao.queryBuilder().where(WalletBeanDao.Properties.Id.eq(mCurWalletId)).unique();
+            mCurCoverType = mCurWallet.getImageId();
+            editName.setText(mCurWallet.getTitle());
+        }
+        changeCoverState(mCurCoverType);
     }
 
     @Override
@@ -73,9 +84,12 @@ public class WalletActivity extends BaseActivity {
                 changeCoverState(mCurCoverType);
                 break;
             case R.id.btn_ok:
-                WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
-                WalletBean bean = new WalletBean(null, mCurCoverType, editName.getEditableText().toString(), System.currentTimeMillis());
-                walletBeanDao.insert(bean);
+                mCurWallet = new WalletBean(mCurWalletId != -1 ? mCurWalletId : null, mCurCoverType, editName.getEditableText().toString(), mCurWalletId != -1 ? mCurWallet.getStartTime() : System.currentTimeMillis());
+                if(mCurWalletId != -1){
+                    walletBeanDao.update(mCurWallet);
+                }else {
+                    walletBeanDao.insert(mCurWallet);
+                }
                 EventBus.getDefault().post(new UpdateWalletListEvent());
                 finish();
                 break;

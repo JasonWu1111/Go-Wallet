@@ -1,5 +1,6 @@
 package com.rightteam.accountbook.module;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -20,10 +21,12 @@ import com.rightteam.accountbook.adapter.MainAdapter;
 import com.rightteam.accountbook.adapter.OnItemClickListener;
 import com.rightteam.accountbook.adapter.WalletListAdapter;
 import com.rightteam.accountbook.base.BaseActivity;
+import com.rightteam.accountbook.bean.BillBean;
 import com.rightteam.accountbook.bean.WalletBean;
 import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.event.UpdateBillListEvent;
 import com.rightteam.accountbook.event.UpdateWalletListEvent;
+import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.greendao.WalletBeanDao;
 import com.rightteam.accountbook.utils.SharedPreferencesUtil;
 
@@ -86,6 +89,29 @@ public class MainActivity extends BaseActivity {
         tabLayout.setViewPager(viewPager);
 
         initDrawerView();
+
+        mWalletAdapter = new WalletListAdapter(this);
+        mWalletAdapter.setOnItemClickListener((position, action, id) -> {
+            switch (action){
+                case KeyDef.ACTION_DELETE:
+                    if(walletBeanDao.queryBuilder().list().size() > 1){
+                        walletBeanDao.deleteByKey(id);
+                        mCurWalletId = walletBeanDao.queryBuilder().list().get(0).getId();
+                        updateData();
+                        EventBus.getDefault().post(new UpdateBillListEvent(mCurWalletId));
+                        SharedPreferencesUtil.getInstance().putLong(KeyDef.CURRENT_WALLET_ID, mCurWalletId);
+                        BillBeanDao billBeanDao = MyApplication.getsDaoSession().getBillBeanDao();
+                        List<BillBean> billBeans = billBeanDao.queryBuilder().where(BillBeanDao.Properties.WalletId.eq(id)).list();
+                        billBeanDao.deleteInTx(billBeans);
+                    }
+                    break;
+                case KeyDef.ACTION_MODIFY:
+                    startActivity(new Intent(MainActivity.this, WalletActivity.class).putExtra(KeyDef.WALLET_ID, id));
+                    break;
+            }
+        });
+        walletList.setLayoutManager(new LinearLayoutManager(this));
+        walletList.setAdapter(mWalletAdapter);
     }
 
     private void initDrawerView() {
@@ -101,11 +127,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void updateData() {
+        mWalletAdapter.setCurWalletId(mCurWalletId);
         List<WalletBean> beans = walletBeanDao.queryBuilder().list();
-        mWalletAdapter = new WalletListAdapter(this, mCurWalletId);
         mWalletAdapter.setData(beans);
-        walletList.setLayoutManager(new LinearLayoutManager(this));
-        walletList.setAdapter(mWalletAdapter);
     }
 
     @Override

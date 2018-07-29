@@ -28,6 +28,7 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
     private final static int VIEW_TYPE_BILL_NORMAL = 2;
     private final static int VIEW_TYPE_BILL_TODO = 3;
     private final static int VIEW_TYPE_BLANK = 4;
+    private final static int VIEW_TYPE_NULL = 5;
 
     private List<Integer> itemTypes = new ArrayList<>();
     private List<Object> itemData = new ArrayList<>();
@@ -56,6 +57,9 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
             case VIEW_TYPE_BLANK:
                 layoutId = R.layout.view_adapter_blank;
                 break;
+            case VIEW_TYPE_NULL:
+                layoutId = R.layout.view_adapter_null;
+                break;
         }
         return new BillListViewHolder(LayoutInflater.from(mContext).inflate(layoutId, parent, false));
     }
@@ -65,22 +69,31 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
         ((BillListViewHolder) holder).bind(position);
     }
 
-    @Override
-    public void setData(List<BillBean> data) {
+
+    public void setData(List<BillBean> data, boolean isChosen) {
 //        super.setData(data);
         itemTypes.clear();
         itemData.clear();
-        itemTypes.add(VIEW_TYPE_DATE);
-        itemData.add("TODAY");
 
-        if(data.size() == 0){
-            itemTypes.add(VIEW_TYPE_BILL_TODO);
-            itemData.add("");
-            itemTypes.add(VIEW_TYPE_BLANK);
-            itemData.add("");
-            notifyDataSetChanged();
-            return;
+        if (isChosen) {
+            if (data.size() == 0) {
+                itemTypes.add(VIEW_TYPE_NULL);
+                itemData.add("");
+                notifyDataSetChanged();
+                return;
+            }
+        } else {
+            itemTypes.add(VIEW_TYPE_DATE);
+            itemData.add("TODAY");
+
+            if (data.size() == 0) {
+                itemTypes.add(VIEW_TYPE_BILL_TODO);
+                itemData.add("");
+                notifyDataSetChanged();
+                return;
+            }
         }
+
 
         String date = "TODAY";
         boolean hasAddTodo = false;
@@ -90,6 +103,11 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
             if (curDate.equals(date)) {
                 hasAddTodo = true;
                 if (isTodayFirst && date.equals("TODAY")) {
+                    if(isChosen){
+                        itemTypes.add(VIEW_TYPE_DATE);
+                        itemData.add("TODAY");
+                    }
+
                     itemTypes.add(VIEW_TYPE_BILL_TOP);
                     itemData.add(billBean);
                     isTodayFirst = false;
@@ -98,7 +116,7 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
                     itemData.add(billBean);
                 }
             } else {
-                if (!hasAddTodo) {
+                if (!hasAddTodo && !isChosen) {
                     itemTypes.add(VIEW_TYPE_BILL_TODO);
                     itemData.add("");
                     hasAddTodo = true;
@@ -133,16 +151,16 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
         }
 
         void bind(int position) {
-            switch ( itemTypes.get(position)){
+            switch (itemTypes.get(position)) {
                 case VIEW_TYPE_DATE:
                     TextView dateText = itemView.findViewById(R.id.text_cat);
-                    dateText.setText((String)itemData.get(position));
+                    dateText.setText((String) itemData.get(position));
                     break;
                 case VIEW_TYPE_BILL_TOP:
                     View view = itemView.findViewById(R.id.view_top);
                     view.setVisibility(View.INVISIBLE);
                 case VIEW_TYPE_BILL_NORMAL:
-                    BillBean bean = (BillBean)itemData.get(position);
+                    BillBean bean = (BillBean) itemData.get(position);
                     ImageView icon = itemView.findViewById(R.id.icon_bill);
                     TextView textType = itemView.findViewById(R.id.text_type);
                     TextView textPrice = itemView.findViewById(R.id.text_price);
@@ -153,7 +171,7 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
                     textPrice.setText(price);
 
                     itemView.setOnClickListener(v -> {
-                        onItemClickListener.onClick(position, KeyDef.JUMP_TO_DETAIL, ((BillBean)itemData.get(position)).getId());
+                        onItemClickListener.onClick(position, KeyDef.JUMP_TO_DETAIL, ((BillBean) itemData.get(position)).getId());
                     });
                     break;
                 case VIEW_TYPE_BILL_TODO:

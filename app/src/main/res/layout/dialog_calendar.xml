@@ -1,12 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <DatePicker
-        android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_close2"
+        android:padding="10dp"
+        android:layout_gravity="end"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/btn_close"/>
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/view_calendar"
-        android:calendarViewShown="false"/>
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:layout_width="73dp"
+            android:layout_height="157dp"
+            android:layout_marginRight="36.5dp"
+            android:solidColor="@color/white"
+            app:np_dividerColor="@color/light_grey3"
+            app:np_dividerThickness="1dp"
+            app:np_max="12"
+            app:np_min="1"
+            app:np_selectedTextColor="@color/blue_dark"
+            app:np_selectedTextSize="20dp"
+            app:np_textColor="@color/light_grey3"
+            app:np_textSize="20dp"
+            android:id="@+id/pick_month">
+
+        </com.shawnlin.numberpicker.NumberPicker>
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:layout_width="73dp"
+            android:layout_height="157dp"
+            android:solidColor="@color/white"
+            app:np_dividerColor="@color/light_grey3"
+            app:np_dividerThickness="1dp"
+            app:np_max="2018"
+            app:np_min="2000"
+            app:np_selectedTextColor="@color/blue_dark"
+            app:np_selectedTextSize="20dp"
+            app:np_textColor="@color/light_grey3"
+            app:np_textSize="20dp"
+            android:id="@+id/pick_year">
+
+        </com.shawnlin.numberpicker.NumberPicker>
+        
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="139dp"
+        android:layout_height="46dp"
+        android:background="@drawable/frame_long_blue2"
+        android:gravity="center"
+        android:text="OK"
+        android:id="@+id/btn_ok"
+        android:textSize="19sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
 
 </LinearLayout>
+

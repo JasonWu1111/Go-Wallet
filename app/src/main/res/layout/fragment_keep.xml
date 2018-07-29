@@ -49,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:text="- $"
                 android:textColor="@color/grey_dark"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:id="@+id/text_dollar"/>
 
             <EditText
                 android:id="@+id/edit_price"
@@ -57,7 +58,8 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:inputType="number|numberDecimal"
-                android:text="0.00"
+                android:hint="0.00"
+                android:textColorHint="@color/light_grey3"
                 android:textColor="@color/grey_dark"
                 android:textSize="32sp" />
 

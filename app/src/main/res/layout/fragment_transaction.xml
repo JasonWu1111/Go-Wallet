@@ -60,10 +60,11 @@
                             android:textSize="20sp" />
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="5dp"
-                            android:src="@drawable/arrow_drop_down" />
+                            android:layout_width="15.5dp"
+                            android:layout_height="15.5dp"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_triangle"
+                            android:scaleY="-1" />
 
                     </LinearLayout>
 
@@ -117,10 +118,11 @@
                             android:textSize="20sp" />
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="5dp"
-                            android:src="@drawable/arrow_drop_down" />
+                            android:layout_width="15.5dp"
+                            android:layout_height="15.5dp"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_triangle"
+                            android:scaleY="-1" />
 
                     </LinearLayout>
 
@@ -152,7 +154,6 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
