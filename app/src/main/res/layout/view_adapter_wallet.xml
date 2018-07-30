@@ -39,7 +39,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Wallet 1"
                     android:textColor="@color/grey_dark"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:id="@+id/text_title"/>
 
                 <TextView
@@ -48,7 +48,7 @@
                     android:layout_marginTop="4dp"
                     android:text="Starting time"
                     android:textColor="@color/light_grey3"
-                    android:textSize="13sp" />
+                    android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -11,7 +11,7 @@ import java.util.TimeZone;
 public class CommonUtils {
 
     public static final String DEFAULT_DAY_PATTERN = "MM/dd/yyyy";
-    public static final String WEEK_DAY_PATTERN = "EEEE, dd MMMM";
+    public static final String WEEK_DAY_PATTERN = "EEEE, MMMM dd";
     public static final String YEAR_MONTH_PATTERN = "yyyyMM";
 
 

@@ -12,8 +12,8 @@
 
         <LinearLayout
             android:id="@+id/btn_cat"
-            android:layout_width="119dp"
-            android:layout_height="38dp"
+            android:layout_width="104dp"
+            android:layout_height="34dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="26dp"
             android:background="@drawable/frame_long_blue"
@@ -21,8 +21,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="27.5dp"
-                android:layout_height="20.5dp"
+                android:layout_width="24dp"
+                android:layout_height="18dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_cash" />
 
@@ -32,12 +32,12 @@
                 android:layout_height="wrap_content"
                 android:text="Cash"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16dp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="42dp"
+            android:layout_height="48dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="34dp"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:text="- $"
                 android:textColor="@color/grey_dark"
-                android:textSize="30sp"
+                android:textSize="30dp"
                 android:id="@+id/text_dollar"/>
 
             <EditText
@@ -61,7 +61,8 @@
                 android:hint="0.00"
                 android:textColorHint="@color/light_grey3"
                 android:textColor="@color/grey_dark"
-                android:textSize="32sp" />
+                android:textSize="30dp"
+                android:maxLength="7"/>
 
         </LinearLayout>
 
@@ -70,19 +71,22 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="28dp"
+        android:layout_height="24dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="24dp">
+        android:layout_marginTop="16dp">
 
         <ImageView
             android:id="@+id/icon_pen"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
             android:src="@drawable/ic_pen" />
 
         <View

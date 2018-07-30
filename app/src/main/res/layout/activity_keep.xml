@@ -11,64 +11,65 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="125dp">
-
-        <ImageView
-            android:id="@+id/btn_close"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="18.5dp"
-            android:src="@drawable/ic_close"
-            android:padding="2dp"/>
-
-        <ImageView
-            android:id="@+id/btn_sure"
-            android:layout_width="26dp"
-            android:layout_height="22dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_tick"
-            android:padding="2dp"/>
-
-        <ImageView
-            android:layout_width="148dp"
-            android:layout_height="34dp"
-            android:src="@drawable/frame_long_white"
-            android:alpha="0.25"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"/>
-
-        <TextView
-            android:id="@+id/text_calendar"
-            android:layout_width="148dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="14.5dp"
-            android:gravity="center"
-            android:text="07/17/2018"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true" />
+        android:layout_height="106dp">
 
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="86dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
             app:tl_indicator_color="@color/white"
             app:tl_indicator_height="12.7dp"
             app:tl_indicator_width="25.5dp"
             app:tl_tab_space_equal="true"
             app:tl_textSelectColor="@color/white"
             app:tl_textUnselectColor="@color/white"
-            app:tl_textsize="18sp"
+            app:tl_textsize="16dp"
             app:tl_indicator_style="TRIANGLE"
             app:tl_textBold="BOTH"/>
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:src="@drawable/frame_long_white"
+            android:alpha="0.25"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/text_calendar"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="07/17/2018"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_close"
+            android:padding="12dp"/>
+
+        <ImageView
+            android:id="@+id/btn_sure"
+            android:layout_width="42dp"
+            android:layout_height="38dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_tick"
+            android:padding="12dp"/>
+
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager

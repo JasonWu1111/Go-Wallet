@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -58,6 +60,11 @@ public class MainActivity extends BaseActivity {
     private WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
 
     @Override
+    protected String getTypeface() {
+        return "Roboto-Medium.ttf";
+    }
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.activity_main;
     }
@@ -65,6 +72,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initViews() {
         EventBus.getDefault().register(this);
+        drawerView.setOnTouchListener((v, event) -> true);
         mCurWalletId = SharedPreferencesUtil.getInstance().getLong(KeyDef.CURRENT_WALLET_ID, -1);
         if(mCurWalletId == -1){
             WalletBean bean = new WalletBean(null, 0, "Wallet1", System.currentTimeMillis());
@@ -95,14 +103,26 @@ public class MainActivity extends BaseActivity {
             switch (action){
                 case KeyDef.ACTION_DELETE:
                     if(walletBeanDao.queryBuilder().list().size() > 1){
-                        walletBeanDao.deleteByKey(id);
-                        mCurWalletId = walletBeanDao.queryBuilder().list().get(0).getId();
-                        updateData();
-                        EventBus.getDefault().post(new UpdateBillListEvent(mCurWalletId));
-                        SharedPreferencesUtil.getInstance().putLong(KeyDef.CURRENT_WALLET_ID, mCurWalletId);
-                        BillBeanDao billBeanDao = MyApplication.getsDaoSession().getBillBeanDao();
-                        List<BillBean> billBeans = billBeanDao.queryBuilder().where(BillBeanDao.Properties.WalletId.eq(id)).list();
-                        billBeanDao.deleteInTx(billBeans);
+                        new AlertDialog.Builder(this)
+                                .setTitle("Delete this wallet?")
+                                .setPositiveButton("Yes", (dialog, which) -> {
+                                    walletBeanDao.deleteByKey(id);
+                                    mCurWalletId = walletBeanDao.queryBuilder().list().get(0).getId();
+                                    updateData();
+                                    EventBus.getDefault().post(new UpdateBillListEvent(mCurWalletId));
+                                    SharedPreferencesUtil.getInstance().putLong(KeyDef.CURRENT_WALLET_ID, mCurWalletId);
+                                    BillBeanDao billBeanDao = MyApplication.getsDaoSession().getBillBeanDao();
+                                    List<BillBean> billBeans = billBeanDao.queryBuilder().where(BillBeanDao.Properties.WalletId.eq(id)).list();
+                                    billBeanDao.deleteInTx(billBeans);
+                                    dialog.dismiss();
+                                    finish();
+                                })
+                                .setNegativeButton("No", (dialog, which) -> {
+                                    dialog.dismiss();
+                                })
+                                .create()
+                                .show();
+
                     }
                     break;
                 case KeyDef.ACTION_MODIFY:

@@ -1,6 +1,8 @@
 package com.rightteam.accountbook.module;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,6 +48,11 @@ public class DetailActivity extends BaseActivity {
 
 
     @Override
+    protected String getTypeface() {
+        return "Roboto-Regular.ttf";
+    }
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.activity_detail;
     }
@@ -86,9 +93,20 @@ public class DetailActivity extends BaseActivity {
                 onModifyBill();
                 break;
             case R.id.btn_delete:
-                billBeanDao.delete(mBill);
-                EventBus.getDefault().post(new UpdateBillListEvent(mCurWalletId));
-                finish();
+                new AlertDialog.Builder(this)
+                        .setTitle("Delete this record?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            billBeanDao.delete(mBill);
+                            EventBus.getDefault().post(new UpdateBillListEvent(mCurWalletId));
+                            dialog.dismiss();
+                            finish();
+                        })
+                        .setNegativeButton("No", (dialog, which) -> {
+                            dialog.dismiss();
+                        })
+                        .create()
+                        .show();
+
                 break;
         }
     }

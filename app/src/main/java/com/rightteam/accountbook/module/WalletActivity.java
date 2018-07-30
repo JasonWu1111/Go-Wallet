@@ -11,6 +11,7 @@ import com.rightteam.accountbook.bean.WalletBean;
 import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.event.UpdateWalletListEvent;
 import com.rightteam.accountbook.greendao.WalletBeanDao;
+import com.rightteam.accountbook.utils.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -35,6 +36,11 @@ public class WalletActivity extends BaseActivity {
     private long mCurWalletId = -1;
     private WalletBean mCurWallet;
     private WalletBeanDao walletBeanDao = MyApplication.getsDaoSession().getWalletBeanDao();
+
+    @Override
+    protected String getTypeface() {
+        return "Roboto-Medium.ttf";
+    }
 
     @Override
     protected int getLayoutResId() {
@@ -84,7 +90,21 @@ public class WalletActivity extends BaseActivity {
                 changeCoverState(mCurCoverType);
                 break;
             case R.id.btn_ok:
-                mCurWallet = new WalletBean(mCurWalletId != -1 ? mCurWalletId : null, mCurCoverType, editName.getEditableText().toString(), mCurWalletId != -1 ? mCurWallet.getStartTime() : System.currentTimeMillis());
+                String name = editName.getEditableText().toString();
+                if(name.length() == 0){
+                    ToastUtil.showToast("Please enter the name!");
+                    return;
+                }
+
+                List<WalletBean> beans = walletBeanDao.queryBuilder().list();
+                for(WalletBean bean : beans){
+                    if(bean.getTitle().equals(name)){
+                        ToastUtil.showToast("Duplicate name!");
+                        return;
+                    }
+                }
+
+                mCurWallet = new WalletBean(mCurWalletId != -1 ? mCurWalletId : null, mCurCoverType, name, mCurWalletId != -1 ? mCurWallet.getStartTime() : System.currentTimeMillis());
                 if(mCurWalletId != -1){
                     walletBeanDao.update(mCurWallet);
                 }else {

@@ -48,6 +48,11 @@ public class KeepActivity extends BaseActivity {
     private BillBeanDao billBeanDao = MyApplication.getsDaoSession().getBillBeanDao();
 
     @Override
+    protected String getTypeface() {
+        return "Roboto-Medium.ttf";
+    }
+
+    @Override
     protected int getLayoutResId() {
         return R.layout.activity_keep;
     }

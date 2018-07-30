@@ -7,7 +7,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="34dp"
+        android:layout_height="39dp"
         android:background="@drawable/blue_gradient" />
 
     <LinearLayout
@@ -17,10 +17,10 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="148dp"
+            android:layout_height="130dp"
             android:layout_gravity="center|top"
-            android:layout_marginLeft="28.5dp"
-            android:layout_marginRight="28.5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:elevation="100dp"
             app:cardCornerRadius="5dp">
 
@@ -41,13 +41,13 @@
                         android:id="@+id/btn_choose_cat"
                         android:layout_width="wrap_content"
                         android:layout_height="38dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="28.5dp"
-                            android:layout_height="28.5dp"
+                            android:layout_width="25.3dp"
+                            android:layout_height="25.3dp"
                             android:src="@drawable/ic_all" />
 
                         <TextView
@@ -57,11 +57,11 @@
                             android:layout_marginStart="7.2dp"
                             android:text="All"
                             android:textColor="@color/grey_dark"
-                            android:textSize="20sp" />
+                            android:textSize="16dp" />
 
                         <ImageView
-                            android:layout_width="15.5dp"
-                            android:layout_height="15.5dp"
+                            android:layout_width="13.5dp"
+                            android:layout_height="13.5dp"
                             android:layout_marginStart="10dp"
                             android:src="@drawable/ic_triangle"
                             android:scaleY="-1" />
@@ -72,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="10dp"
                         android:background="@color/light_grey" />
 
                     <TextView
@@ -81,16 +81,16 @@
                         android:layout_marginTop="10dp"
                         android:text="Expense"
                         android:textColor="@color/orange"
-                        android:textSize="18sp" />
+                        android:textSize="16dp" />
 
                     <TextView
                         android:id="@+id/text_expense_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:text="$1,800.00"
                         android:textColor="@color/grey"
-                        android:textSize="16sp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -104,7 +104,7 @@
                         android:id="@+id/btn_choose_date"
                         android:layout_width="wrap_content"
                         android:layout_height="38dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -115,7 +115,7 @@
                             android:layout_marginStart="7.2dp"
                             android:text="07/2018"
                             android:textColor="@color/grey_dark"
-                            android:textSize="20sp" />
+                            android:textSize="16dp" />
 
                         <ImageView
                             android:layout_width="15.5dp"
@@ -130,7 +130,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginEnd="24dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="10dp"
                         android:background="@color/light_grey" />
 
                     <TextView
@@ -139,16 +139,16 @@
                         android:layout_marginTop="10dp"
                         android:text="Income"
                         android:textColor="@color/green"
-                        android:textSize="18sp" />
+                        android:textSize="16dp" />
 
                     <TextView
                         android:id="@+id/text_income_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:text="$3,600.00"
                         android:textColor="@color/grey"
-                        android:textSize="16sp" />
+                        android:textSize="14dp" />
                 </LinearLayout>
 
             </LinearLayout>

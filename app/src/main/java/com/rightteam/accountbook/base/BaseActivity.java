@@ -30,7 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Roboto-Regular.ttf")
+                .setDefaultFontPath(getTypeface())
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
@@ -44,6 +44,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     public String getTAG() {
         return this.getClass().getSimpleName();
     }
+
+    protected abstract String getTypeface();
 
     protected abstract int getLayoutResId();
 

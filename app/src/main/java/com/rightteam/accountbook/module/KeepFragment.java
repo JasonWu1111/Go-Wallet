@@ -69,7 +69,7 @@ public class KeepFragment extends BaseFragment {
             mCurCat = mCurBill.getCategory();
             textCat.setText(mCurCat);
             editMemo.setText(mCurBill.getMemo());
-            editPrice.setText(CommonUtils.formatNumberWithComma(mCurBill.getPrice()));
+            editPrice.setText(String.valueOf(mCurBill.getPrice()));
         }
 
         List<TypeBean> beans = new ArrayList<>();

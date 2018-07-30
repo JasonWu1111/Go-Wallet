@@ -6,8 +6,8 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/ex_car"
         android:id="@+id/icon_type"/>
@@ -18,7 +18,7 @@
         android:layout_marginTop="8dp"
         android:text="Entertainment"
         android:textColor="@color/grey2"
-        android:textSize="13sp"
+        android:textSize="12dp"
         android:id="@+id/text_cat"/>
 
 </LinearLayout>
