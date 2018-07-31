@@ -23,16 +23,15 @@ import java.util.List;
  * Created by JasonWu on 7/21/2018
  */
 public class BillListAdapter extends BaseRvAdapter<BillBean> {
-    public final static int VIEW_TYPE_DATE = 0;
-    private final static int VIEW_TYPE_BILL_TOP = 1;
-    private final static int VIEW_TYPE_BILL_NORMAL = 2;
+    private final static int VIEW_TYPE_DATE = 0;
+    public final static int VIEW_TYPE_BILL_TOP = 1;
+    public final static int VIEW_TYPE_BILL_NORMAL = 2;
     private final static int VIEW_TYPE_BILL_TODO = 3;
     private final static int VIEW_TYPE_BLANK = 4;
     private final static int VIEW_TYPE_NULL = 5;
 
     private List<Integer> itemTypes = new ArrayList<>();
     private List<Object> itemData = new ArrayList<>();
-    private List<String> monthData = new ArrayList<>();
 
     public BillListAdapter(Context context) {
         super(context);
@@ -70,86 +69,72 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
         ((BillListViewHolder) holder).bind(position);
     }
 
+    public BillBean getItemData(int position) {
+        return (BillBean) itemData.get(position);
+    }
 
     public void setData(List<BillBean> data, boolean isChosen) {
-//        super.setData(data);
+        mData = data;
         itemTypes.clear();
         itemData.clear();
-        monthData.clear();
 
         if (isChosen) {
             if (data.size() == 0) {
                 itemTypes.add(VIEW_TYPE_NULL);
                 itemData.add("");
-                monthData.add("");
                 notifyDataSetChanged();
                 return;
             }
         } else {
             itemTypes.add(VIEW_TYPE_DATE);
             itemData.add("TODAY");
-            monthData.add("");
 
             if (data.size() == 0) {
                 itemTypes.add(VIEW_TYPE_BILL_TODO);
                 itemData.add("");
-                monthData.add("");
                 notifyDataSetChanged();
                 return;
             }
         }
-
 
         String date = "TODAY";
         boolean hasAddTodo = false;
         boolean isTodayFirst = true;
         for (BillBean billBean : data) {
             String curDate = CommonUtils.formatWithToday(billBean.getTime(), CommonUtils.WEEK_DAY_PATTERN);
-            String ym = CommonUtils.formatTimestamp(billBean.getTime(), CommonUtils.YEAR_MONTH_PATTERN);
             if (curDate.equals(date)) {
                 hasAddTodo = true;
                 if (isTodayFirst && date.equals("TODAY")) {
                     if(isChosen){
                         itemTypes.add(VIEW_TYPE_DATE);
                         itemData.add("TODAY");
-                        monthData.add(ym);
                     }
 
                     itemTypes.add(VIEW_TYPE_BILL_TOP);
                     itemData.add(billBean);
-                    monthData.add("");
                     isTodayFirst = false;
                 } else {
                     itemTypes.add(VIEW_TYPE_BILL_NORMAL);
                     itemData.add(billBean);
-                    monthData.add("");
                 }
             } else {
                 if (!hasAddTodo && !isChosen) {
                     itemTypes.add(VIEW_TYPE_BILL_TODO);
                     itemData.add("");
-                    monthData.add("");
                     hasAddTodo = true;
                 }
 
                 date = curDate;
                 itemTypes.add(VIEW_TYPE_DATE);
                 itemData.add(date);
-                monthData.add(ym);
 
                 itemTypes.add(VIEW_TYPE_BILL_TOP);
                 itemData.add(billBean);
-                monthData.add("");
             }
         }
         itemTypes.add(VIEW_TYPE_BLANK);
         itemData.add("");
-        monthData.add("");
         notifyDataSetChanged();
-    }
-
-    public String getMonthData(int position) {
-        return monthData.get(position);
     }
 
     @Override

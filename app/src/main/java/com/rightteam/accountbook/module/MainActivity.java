@@ -91,7 +91,7 @@ public class MainActivity extends BaseActivity {
         bundle.putLong(KeyDef.WALLET_ID, mCurWalletId);
         fragment.setArguments(bundle);
         fragments.add(fragment);
-        fragments.add(new Fragment());
+        fragments.add(new StatementsFragment());
         MainAdapter mainAdapter = new MainAdapter(getSupportFragmentManager(), titles, fragments);
         viewPager.setAdapter(mainAdapter);
         tabLayout.setViewPager(viewPager);

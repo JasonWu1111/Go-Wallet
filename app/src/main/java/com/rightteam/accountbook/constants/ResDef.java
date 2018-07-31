@@ -103,4 +103,11 @@ public class ResDef {
             R.drawable.ic_cash2,
             R.drawable.ic_card2
     };
+
+    public static int[] TYPE_COLORS = {
+            R.color.green,
+            R.color.orange,
+            R.color.blue_dark,
+            R.color.grey
+    };
 }
