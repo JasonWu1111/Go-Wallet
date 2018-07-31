@@ -48,7 +48,8 @@
                         <ImageView
                             android:layout_width="25.3dp"
                             android:layout_height="25.3dp"
-                            android:src="@drawable/ic_all" />
+                            android:src="@drawable/ic_all"
+                            android:id="@+id/icon_cat"/>
 
                         <TextView
                             android:id="@+id/text_cat"

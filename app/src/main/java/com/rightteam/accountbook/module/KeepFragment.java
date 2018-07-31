@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rightteam.accountbook.MyApplication;
@@ -15,6 +16,7 @@ import com.rightteam.accountbook.base.BaseFragment;
 import com.rightteam.accountbook.bean.BillBean;
 import com.rightteam.accountbook.bean.TypeBean;
 import com.rightteam.accountbook.constants.KeyDef;
+import com.rightteam.accountbook.constants.ResDef;
 import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.utils.CommonUtils;
 import com.rightteam.accountbook.utils.ToastUtil;
@@ -35,6 +37,8 @@ public class KeepFragment extends BaseFragment {
     RecyclerView recyclerView;
     @BindView(R.id.text_cat)
     TextView textCat;
+    @BindView(R.id.icon_cat)
+    ImageView iconCat;
     @BindView(R.id.edit_price)
     EditText editPrice;
     @BindView(R.id.edit_memo)
@@ -101,6 +105,7 @@ public class KeepFragment extends BaseFragment {
         popup.setOnMenuItemClickListener(item -> {
             mCurCat = item.getTitle().toString();
             textCat.setText(mCurCat);
+            iconCat.setImageResource(ResDef.CATEGORY_ICONS2[item.getOrder()]);
             return true;
         });
         popup.show();

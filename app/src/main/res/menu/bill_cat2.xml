@@ -2,8 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/type_cash"
-        android:title="Cash" />
+        android:title="Cash"
+        android:orderInCategory="0"/>
     <item
         android:id="@+id/type_card"
-        android:title="Card" />
+        android:title="Card"
+        android:orderInCategory="1"/>
 </menu>

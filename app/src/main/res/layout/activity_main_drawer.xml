@@ -15,10 +15,10 @@
         android:id="@+id/btn_wallet">
 
         <ImageView
-            android:layout_width="23dp"
-            android:layout_height="23dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="27.5dp"
+            android:layout_marginStart="24dp"
             android:id="@+id/icon_wallet"
             android:src="@drawable/ic_wallet"/>
 
@@ -29,30 +29,30 @@
             android:text="My Wallet"
             android:textColor="@color/grey_dark"
             android:layout_toEndOf="@+id/icon_wallet"
-            android:textSize="18dp"
-            android:layout_marginStart="16dp"/>
+            android:textSize="16dp"
+            android:layout_marginStart="14dp"/>
 
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
-        android:layout_height="330dp"
+        android:layout_height="300dp"
         android:id="@+id/drawer_recycler_view"
         android:layout_marginTop="20dp"
         android:layout_gravity="center"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="53dp"
+        android:layout_height="47dp"
         android:id="@+id/btn_setting"
         android:layout_marginTop="40dp">
 
         <ImageView
-            android:layout_width="22.5dp"
-            android:layout_height="22.5dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/ic_setting"
             android:layout_centerVertical="true"
-            android:layout_marginStart="27.5dp"
+            android:layout_marginStart="24dp"
             android:id="@+id/icon_setting"/>
 
         <TextView
@@ -62,8 +62,8 @@
             android:text="Setting"
             android:textColor="@color/grey_dark"
             android:layout_toEndOf="@+id/icon_setting"
-            android:layout_marginStart="16dp"
-            android:textSize="18dp"/>
+            android:layout_marginStart="14dp"
+            android:textSize="16dp"/>
 
         <View
             android:layout_width="match_parent"
@@ -77,15 +77,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="53dp"
+        android:layout_height="47dp"
         android:id="@+id/btn_feedback">
 
         <ImageView
-            android:layout_width="22.5dp"
-            android:layout_height="22.5dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/ic_feedback"
             android:layout_centerVertical="true"
-            android:layout_marginStart="27.5dp"
+            android:layout_marginStart="24dp"
             android:id="@+id/icon_feedback"/>
 
         <TextView
@@ -95,8 +95,8 @@
             android:text="Feedback"
             android:textColor="@color/grey_dark"
             android:layout_toEndOf="@+id/icon_feedback"
-            android:layout_marginStart="16dp"
-            android:textSize="18dp"/>
+            android:layout_marginStart="14dp"
+            android:textSize="16dp"/>
 
         <View
             android:layout_width="match_parent"

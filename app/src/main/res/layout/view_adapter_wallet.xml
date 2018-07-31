@@ -2,8 +2,8 @@
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="194dp"
-    android:layout_height="85dp"
+    android:layout_width="170dp"
+    android:layout_height="74dp"
     android:layout_marginBottom="9.5dp"
     android:layout_marginLeft="2dp"
     android:layout_marginRight="2dp"
@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="97dp"
+                android:layout_width="85.4dp"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/cover_wallet2"
@@ -39,7 +39,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Wallet 1"
                     android:textColor="@color/grey_dark"
-                    android:textSize="18dp"
+                    android:textSize="14dp"
                     android:id="@+id/text_title"/>
 
                 <TextView
@@ -48,14 +48,15 @@
                     android:layout_marginTop="4dp"
                     android:text="Starting time"
                     android:textColor="@color/light_grey3"
-                    android:textSize="13dp" />
+                    android:textSize="11dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="07/22/2018"
                     android:textColor="@color/light_grey3"
-                    android:id="@+id/text_date"/>
+                    android:id="@+id/text_date"
+                    android:textSize="11dp"/>
 
             </LinearLayout>
 
@@ -69,8 +70,8 @@
             android:visibility="invisible">
 
             <ImageView
-                android:layout_width="12.5dp"
-                android:layout_height="14dp"
+                android:layout_width="11dp"
+                android:layout_height="12dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="5dp"
                 android:src="@drawable/ic_label" />
@@ -91,20 +92,20 @@
 
             <ImageView
                 android:id="@+id/btn_modify"
-                android:layout_width="35dp"
-                android:layout_height="32.5dp"
+                android:layout_width="32dp"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="31dp"
+                android:layout_marginStart="28dp"
                 android:padding="5dp"
                 android:src="@drawable/ic_modify" />
 
             <ImageView
                 android:id="@+id/btn_delete"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="31dp"
+                android:layout_marginEnd="28dp"
                 android:padding="5dp"
                 android:src="@drawable/ic_delete" />
 

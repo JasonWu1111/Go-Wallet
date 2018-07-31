@@ -24,7 +24,8 @@
                 android:layout_width="24dp"
                 android:layout_height="18dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_cash" />
+                android:src="@drawable/ic_cash2"
+                android:id="@+id/icon_cat"/>
 
             <TextView
                 android:id="@+id/text_cat"

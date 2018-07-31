@@ -5,11 +5,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
-    android:paddingTop="60dp">
+    android:paddingTop="58dp">
     
     <ImageView
-        android:layout_width="99.5dp"
-        android:layout_height="99.5dp"
+        android:layout_width="87.3dp"
+        android:layout_height="87.3dp"
         android:src="@drawable/ic_null"
         tools:ignore="ContentDescription" />
 
@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No related records found.\nPlease filter again."
-        android:textSize="19dp"
+        android:textSize="16dp"
         android:textColor="@color/grey2"
         android:layout_marginTop="20dp"
         android:gravity="center"/>

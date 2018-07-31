@@ -115,7 +115,6 @@ public class MainActivity extends BaseActivity {
                                     List<BillBean> billBeans = billBeanDao.queryBuilder().where(BillBeanDao.Properties.WalletId.eq(id)).list();
                                     billBeanDao.deleteInTx(billBeans);
                                     dialog.dismiss();
-                                    finish();
                                 })
                                 .setNegativeButton("No", (dialog, which) -> {
                                     dialog.dismiss();

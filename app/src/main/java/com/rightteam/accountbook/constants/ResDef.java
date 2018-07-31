@@ -53,10 +53,10 @@ public class ResDef {
     };
 
     public static int[] TYPE_ICONS2_IN = {
-            R.drawable.in_salary,
-            R.drawable.in_investment,
-            R.drawable.in_bonus,
-            R.drawable.in_others
+            R.drawable.in_salary2,
+            R.drawable.in_investment2,
+            R.drawable.in_bonus2,
+            R.drawable.in_others2
     };
 
     public static int[] TYPE_ICONS_GREY_IN = {
@@ -66,12 +66,6 @@ public class ResDef {
             R.drawable.in_others_grey
     };
 
-    public static int[] TYPE_ICONS2_GREY_IN = {
-            R.drawable.in_salary,
-            R.drawable.in_investment,
-            R.drawable.in_bonus,
-            R.drawable.in_others
-    };
 
     public static String[] TYPE_NAMES_EX = {
             "Car",
@@ -99,9 +93,14 @@ public class ResDef {
             R.drawable.cover_wallet3
     };
 
-    public static String[] CATEGORY = {
-            "All",
-            "Cash",
-            "Card"
+    public static int[] CATEGORY_ICONS = {
+            R.drawable.ic_all,
+            R.drawable.ic_cash,
+            R.drawable.ic_card
+    };
+
+    public static int[] CATEGORY_ICONS2 = {
+            R.drawable.ic_cash2,
+            R.drawable.ic_card2
     };
 }

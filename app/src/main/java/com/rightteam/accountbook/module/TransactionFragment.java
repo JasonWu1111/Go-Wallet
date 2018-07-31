@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,6 +18,7 @@ import com.rightteam.accountbook.adapter.BillListAdapter;
 import com.rightteam.accountbook.base.BaseFragment;
 import com.rightteam.accountbook.bean.BillBean;
 import com.rightteam.accountbook.constants.KeyDef;
+import com.rightteam.accountbook.constants.ResDef;
 import com.rightteam.accountbook.event.UpdateBillListEvent;
 import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.utils.CommonUtils;
@@ -33,6 +35,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -50,6 +53,9 @@ public class TransactionFragment extends BaseFragment {
     TextView textCat;
     @BindView(R.id.text_date)
     TextView textDate;
+    @BindView(R.id.icon_cat)
+    ImageView iconCat;
+
 
     private Long mCurWalletId;
     private BillListAdapter mAdapter;
@@ -59,6 +65,8 @@ public class TransactionFragment extends BaseFragment {
     private String mCurCat;
     private int mCurYear;
     private int mCurMonth;
+
+    private boolean mIsChosen = false;
 
     @Override
     protected int getLayoutResId() {
@@ -90,46 +98,72 @@ public class TransactionFragment extends BaseFragment {
                     break;
             }
         });
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mAdapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int position = linearLayoutManager.findFirstVisibleItemPosition();
+                int type = mAdapter.getItemViewType(position);
+                if(type == BillListAdapter.VIEW_TYPE_DATE){
+                    String ym = mAdapter.getMonthData(position);
+                    if(ym.length() > 0){
+                        int year = Integer.parseInt(ym.substring(0, 4));
+                        int month = Integer.parseInt(ym.substring(4, 6));
+                        if(year != mCurYear || month - 1 != mCurMonth){
+                            mCurYear = year;
+                            mCurMonth = month - 1;
+                            textDate.setText(CommonUtils.formatDateSimple(mCurYear, month));
+                            updateData();
+                        }
+                    }
+                }
+            }
+        });
     }
 
     @Override
     protected void updateData() {
-//        WalletBeanDao walletDao = MyApplication.getsDaoSession().getWalletBeanDao();
-//        WalletBean walletBean = walletDao.queryBuilder().where(WalletBeanDao.Properties.Id.eq(mCurWalletId)).unique();
-//        List<BillBean> beans = walletBean.getBills();
         mExTotal = 0f;
         mInTotal = 0f;
 
         WhereCondition condition1 = BillBeanDao.Properties.WalletId.eq(mCurWalletId);
         WhereCondition condition2 = BillBeanDao.Properties.Category.eq(mCurCat);
-        WhereCondition condition3 = BillBeanDao.Properties.Time.between(
-                CommonUtils.transformStartMonthToMillis(mCurYear, mCurMonth)
-                , CommonUtils.transformEndMonthToMillis(mCurYear, mCurMonth));
+        long startTime = CommonUtils.transformStartMonthToMillis(mCurYear, mCurMonth);
+        long endTime = CommonUtils.transformEndMonthToMillis(mCurYear, mCurMonth);
+        WhereCondition condition3 = BillBeanDao.Properties.Time.between(startTime, endTime);
 
-        boolean isChosen = false;
         List<BillBean> beans;
-        if (mCurCat.equals("All")) {
-            if (isCurrentMonth(mCurYear, mCurMonth)) {
-                beans = billBeanDao.queryBuilder().where(condition1).list();
-            } else {
+        if(mIsChosen){
+            if(mCurCat.equals("All")){
                 beans = billBeanDao.queryBuilder().where(condition1, condition3).list();
-                isChosen = true;
+            }else {
+                beans = billBeanDao.queryBuilder().where(condition1, condition2, condition3).list();
             }
-        } else {
-            beans = billBeanDao.queryBuilder().where(condition1, condition2, condition3).list();
-            isChosen = true;
+        }else {
+            beans = billBeanDao.queryBuilder().where(condition1).list();
         }
-
 
         for (BillBean bean : beans) {
-            if (bean.getIsExpense()) {
-                mExTotal += bean.getPrice();
-            } else {
-                mInTotal += bean.getPrice();
+            if(!mIsChosen){
+                if(bean.getTime() >= startTime && bean.getTime() <= endTime){
+                    if (bean.getIsExpense()) {
+                        mExTotal += bean.getPrice();
+                    } else {
+                        mInTotal += bean.getPrice();
+                    }
+                }
+            }else {
+                if (bean.getIsExpense()) {
+                    mExTotal += bean.getPrice();
+                } else {
+                    mInTotal += bean.getPrice();
+                }
             }
         }
+
         exTolText.setText("$" + CommonUtils.formatNumberWithComma(mExTotal));
         inTolText.setText("$" + CommonUtils.formatNumberWithComma(mInTotal));
 
@@ -137,8 +171,9 @@ public class TransactionFragment extends BaseFragment {
             Collections.sort(beans, (b1, b2) -> Long.compare(b2.getTime(), b1.getTime()));
         }
 
-        mAdapter.setData(beans, isChosen);
+        mAdapter.setData(beans, mIsChosen);
     }
+
 
     private boolean isCurrentMonth(int year, int month) {
         Calendar c = Calendar.getInstance();
@@ -180,9 +215,14 @@ public class TransactionFragment extends BaseFragment {
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.bill_cat, popup.getMenu());
         popup.setOnMenuItemClickListener(item -> {
-            mCurCat = item.getTitle().toString();
-            textCat.setText(mCurCat);
-            updateData();
+            String cat = item.getTitle().toString();
+            if(!mCurCat.equals(cat) || !mIsChosen){
+                mIsChosen = true;
+                mCurCat = cat;
+                textCat.setText(mCurCat);
+                iconCat.setImageResource(ResDef.CATEGORY_ICONS[item.getOrder()]);
+                updateData();
+            }
             return true;
         });
         popup.show();
@@ -203,7 +243,8 @@ public class TransactionFragment extends BaseFragment {
             dialog.dismiss();
         });
         btnOk.setOnClickListener(v -> {
-            if (mCurYear != yearPicker.getValue() || mCurMonth != monthPicker.getValue() - 1) {
+            if (mCurYear != yearPicker.getValue() || mCurMonth != monthPicker.getValue() - 1 || !mIsChosen) {
+                mIsChosen = true;
                 mCurYear = yearPicker.getValue();
                 mCurMonth = monthPicker.getValue() - 1;
                 textDate.setText(CommonUtils.formatDateSimple(mCurYear, mCurMonth + 1));
