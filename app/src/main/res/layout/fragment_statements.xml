@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="48dp"
+            android:layout_marginStart="44dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -49,11 +49,12 @@
                 android:layout_height="30dp"
                 android:background="@drawable/frame_half_blue_left"
                 android:gravity="center"
-                android:paddingStart="10dp"
+                android:paddingStart="8dp"
                 android:text="Expense"
                 android:textColor="@color/white"
                 android:textSize="15dp"
-                tools:ignore="RtlSymmetry" />
+                tools:ignore="RtlSymmetry"
+                android:id="@+id/btn_expense"/>
 
             <TextView
                 android:layout_width="75dp"
@@ -61,21 +62,58 @@
                 android:layout_marginEnd="34dp"
                 android:background="@drawable/frame_half_blue2_right"
                 android:gravity="center"
-                android:paddingEnd="10dp"
+                android:paddingEnd="6dp"
                 android:text="Income"
                 android:textColor="@color/blue_dark"
                 android:textSize="15dp"
-                tools:ignore="RtlSymmetry" />
+                tools:ignore="RtlSymmetry"
+                android:id="@+id/btn_income"/>
 
         </LinearLayout>
 
     </RelativeLayout>
-    
-    <com.rightteam.accountbook.ui.RingView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center"
-        android:id="@+id/ring_view"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:id="@+id/frame_stat"
+        android:layout_marginTop="20dp">
+
+        <com.rightteam.accountbook.ui.RingView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:id="@+id/ring_view"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expense"
+                android:id="@+id/text_source"
+                android:textSize="17dp"
+                android:textColor="@color/grey_dark"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$ 357,00"
+                android:id="@+id/text_price"
+                android:textSize="20dp"
+                android:textColor="@color/grey_dark"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+        <!--<include layout="@layout/view_bill_info_left" />-->
+
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

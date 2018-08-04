@@ -14,6 +14,12 @@ public class CommonUtils {
     public static final String WEEK_DAY_PATTERN = "EEEE, MMMM dd";
     public static final String YEAR_MONTH_PATTERN = "yyyyMM";
 
+    public static String formatNumberPercent(float value) {
+        BigDecimal bigDecimal = new BigDecimal(value);
+        value = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        return decimalFormat.format(value);
+    }
 
     public static String formatNumberWithComma(float value) {
         BigDecimal bigDecimal = new BigDecimal(value);

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+
+    <ImageView
+        android:id="@+id/icon_type"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="37.3dp"
+        android:src="@drawable/ex_car"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/text_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="14.3dp"
+        android:layout_toEndOf="@+id/icon_type"
+        android:text="Car"
+        android:textColor="@color/grey_dark"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/text_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="177dp"
+        android:text="$200.00"
+        android:textColor="@color/light_grey3"
+        android:textSize="14dp"
+        android:layout_marginRight="50.3dp"/>
+
+    <TextView
+        android:id="@+id/text_per"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="36dp"
+        android:text="46.39%"
+        android:textColor="@color/light_grey3"
+        android:textSize="14dp" />
+
+</RelativeLayout>

@@ -1,19 +1,47 @@
 package com.rightteam.accountbook.module;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.os.Debug;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.rightteam.accountbook.MyApplication;
 import com.rightteam.accountbook.R;
+import com.rightteam.accountbook.adapter.BillPerAdapter;
 import com.rightteam.accountbook.base.BaseFragment;
+import com.rightteam.accountbook.bean.BillBean;
+import com.rightteam.accountbook.bean.BillPerBean;
+import com.rightteam.accountbook.constants.KeyDef;
+import com.rightteam.accountbook.event.UpdateBillListEvent;
+import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.ui.RingView;
+import com.rightteam.accountbook.utils.CommonUtils;
+import com.rightteam.accountbook.utils.DensityUtil;
+import com.shawnlin.numberpicker.NumberPicker;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -22,6 +50,28 @@ import butterknife.Unbinder;
 public class StatementsFragment extends BaseFragment {
     @BindView(R.id.ring_view)
     RingView ringView;
+    @BindView(R.id.text_date)
+    TextView textDate;
+    @BindView(R.id.frame_stat)
+    FrameLayout frameStat;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+    @BindView(R.id.text_source)
+    TextView textSource;
+    @BindView(R.id.text_price)
+    TextView textPrice;
+    @BindView(R.id.btn_expense)
+    TextView btnExpense;
+    @BindView(R.id.btn_income)
+    TextView btnIncome;
+
+
+    private Long mCurWalletId;
+    private int mCurYear;
+    private int mCurMonth;
+    private boolean mIsExpense = true;
+    private BillBeanDao billBeanDao;
+    private BillPerAdapter mAdapter;
 
     @Override
     protected int getLayoutResId() {
@@ -30,16 +80,145 @@ public class StatementsFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
-        List<Float> pers = new ArrayList<>();
-        pers.add(0.21f);
-        pers.add(0.15f);
-        pers.add(0.35f);
-        pers.add(0.10f);
-        ringView.setPers(pers);
+        EventBus.getDefault().register(this);
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        mCurYear = year;
+        mCurMonth = month;
+
+        billBeanDao = MyApplication.getsDaoSession().getBillBeanDao();
+        textDate.setText(CommonUtils.formatDateSimple(year, month + 1));
+        mCurWalletId = getArguments() != null ? getArguments().getLong(KeyDef.WALLET_ID) : -1;
+
+        mAdapter = new BillPerAdapter(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
     protected void updateData() {
+        textSource.setText(mIsExpense ? "Expense" : "Income");
+        WhereCondition condition1 = BillBeanDao.Properties.WalletId.eq(mCurWalletId);
+        WhereCondition condition2 = BillBeanDao.Properties.IsExpense.eq(mIsExpense);
 
+        long startTime = CommonUtils.transformStartMonthToMillis(mCurYear, mCurMonth);
+        long endTime = CommonUtils.transformEndMonthToMillis(mCurYear, mCurMonth);
+        WhereCondition condition3 = BillBeanDao.Properties.Time.between(startTime, endTime);
+
+        List<BillBean> beans = billBeanDao.queryBuilder().where(condition1, condition2, condition3).list();
+        List<BillPerBean> perBeans = new ArrayList<>();
+        float total = 0;
+        HashMap<Integer, Float> map = new HashMap<>();
+        for (int i = 0; i < (mIsExpense ? 10 : 4); i++) {
+            map.put(i, 0f);
+        }
+
+        for (BillBean bean : beans) {
+            total += bean.getPrice();
+            float amount = map.get(bean.getType());
+            amount += bean.getPrice();
+            map.put(bean.getType(), amount);
+        }
+
+        textPrice.setText("$" + CommonUtils.formatNumberWithComma(total));
+
+        for (int i = 0; i < (mIsExpense ? 10 : 4); i++) {
+            if (map.get(i) != 0f) {
+                BillPerBean perBean = new BillPerBean();
+                perBean.setExpense(mIsExpense);
+                perBean.setPrice(map.get(i));
+                perBean.setType(i);
+                float per = Float.parseFloat(CommonUtils.formatNumberPercent(map.get(i) * 100 / total));
+                perBean.setPer(per);
+                perBeans.add(perBean);
+            }
+        }
+
+        mAdapter.setData(perBeans);
+        ringView.setPers(perBeans);
+        View view = View.inflate(getContext(), R.layout.view_bill_info_left, frameStat);
+        frameStat.post(() -> {
+            View content = view.findViewById(R.id.view_container);
+            Log.i(getTAG(), "" + Math.sin(Math.PI / 6));
+            content.setTranslationX((float) (frameStat.getWidth()/ 2
+//                    + DensityUtil.dp2px(getContext(), 180) * Math.sin(45)
+                    ));
+        });
+
+//        content.setTranslationY((float) (frameStat.getHeight() / 2 + ringView.mSHeight));
+    }
+
+
+    @OnClick({R.id.btn_choose_date, R.id.btn_expense, R.id.btn_income})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.btn_choose_date:
+                showDateDialog();
+                break;
+            case R.id.btn_expense:
+                if (!mIsExpense) {
+                    mIsExpense = true;
+                    changeBtnState();
+                }
+                break;
+            case R.id.btn_income:
+                if (mIsExpense) {
+                    mIsExpense = false;
+                    changeBtnState();
+                }
+                break;
+        }
+
+    }
+
+    private void changeBtnState() {
+        btnExpense.setTextColor(getResources().getColor(mIsExpense ? R.color.white : R.color.blue_dark));
+        btnExpense.setBackgroundResource(mIsExpense ? R.drawable.frame_half_blue_left : R.drawable.frame_half_blue2_left);
+        btnIncome.setTextColor(getResources().getColor(!mIsExpense ? R.color.white : R.color.blue_dark));
+        btnIncome.setBackgroundResource(!mIsExpense ? R.drawable.frame_half_blue_right : R.drawable.frame_half_blue2_right);
+        updateData();
+    }
+
+    private void showDateDialog() {
+        View view = View.inflate(getContext(), R.layout.dialog_calendar, null);
+        ImageView btnClose = view.findViewById(R.id.btn_close);
+        TextView btnOk = view.findViewById(R.id.btn_ok);
+        NumberPicker monthPicker = view.findViewById(R.id.pick_month);
+        NumberPicker yearPicker = view.findViewById(R.id.pick_year);
+        monthPicker.setValue(mCurMonth + 1);
+        yearPicker.setValue(mCurYear);
+        AlertDialog dialog = new AlertDialog.Builder(getContext())
+                .setView(view)
+                .create();
+        btnClose.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+        btnOk.setOnClickListener(v -> {
+            if (mCurYear != yearPicker.getValue() || mCurMonth != monthPicker.getValue() - 1) {
+                mCurYear = yearPicker.getValue();
+                mCurMonth = monthPicker.getValue() - 1;
+                textDate.setText(CommonUtils.formatDateSimple(mCurYear, mCurMonth + 1));
+                updateData();
+            }
+            dialog.dismiss();
+        });
+        dialog.show();
+        WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+        params.width = DensityUtil.dp2px(getContext(), 300);
+        dialog.getWindow().setAttributes(params);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUpdateData(UpdateBillListEvent event) {
+        mCurWalletId = event.getWalletId();
+        updateData();
     }
 }

@@ -165,14 +165,6 @@ public class TransactionFragment extends BaseFragment {
         mAdapter.setData(beans, mIsChosen);
     }
 
-
-    private boolean isCurrentMonth(int year, int month) {
-        Calendar c = Calendar.getInstance();
-        int year1 = c.get(Calendar.YEAR);
-        int month1 = c.get(Calendar.MONTH);
-        return year1 == year && month1 == month;
-    }
-
     private void JumpToDetail(long billId) {
         Intent intent = new Intent(getContext(), DetailActivity.class);
         intent.putExtra(KeyDef.WALLET_ID, mCurWalletId);

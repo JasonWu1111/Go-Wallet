@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="75dp"
+    android:layout_height="32dp"
+    android:id="@+id/view_container">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11dp"
+        android:textColor="@color/grey"
+        android:text="$200"
+        android:id="@+id/text_price"
+        android:paddingStart="2dp"/>
+    
+    <View
+        android:layout_width="15dp"
+        android:layout_height="1dp"
+        android:background="@color/blue_dark"
+        android:id="@+id/line_slash_up"
+        android:layout_toEndOf="@+id/line_straight"
+        android:rotation="-45"
+        android:layout_alignBottom="@+id/line_straight"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="-3dp"/>
+
+    <View
+        android:layout_width="15dp"
+        android:layout_height="1dp"
+        android:background="@color/blue_dark"
+        android:id="@+id/line_slash_down"
+        android:layout_toEndOf="@+id/line_straight"
+        android:rotation="45"
+        android:layout_alignTop="@+id/line_straight"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="-3dp"/>
+
+    <View
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_toEndOf="@+id/line_straight"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="-2dp"
+        android:background="@color/blue_dark"
+        android:layout_centerInParent="true"/>
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="1dp"
+        android:background="@color/blue_dark"
+        android:id="@+id/line_straight"
+        android:layout_below="@+id/text_price"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11dp"
+        android:textColor="@color/grey"
+        android:text="car"
+        android:id="@+id/text_car"
+        android:layout_below="@+id/line_straight"
+        android:paddingStart="2dp"
+        tools:ignore="RtlSymmetry" />
+
+</RelativeLayout>

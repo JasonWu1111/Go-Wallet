@@ -104,10 +104,24 @@ public class ResDef {
             R.drawable.ic_card2
     };
 
-    public static int[] TYPE_COLORS = {
-            R.color.green,
-            R.color.orange,
-            R.color.blue_dark,
-            R.color.grey
+    public static String[] TYPE_COLORS = {
+            "#84D2FF",
+            "#649FE6",
+            "#A58BFF",
+            "#E2AAFE",
+            "#4CCCB4",
+            "#FF8E8E",
+            "#FFC562",
+            "#FFE773",
+            "#D3E849",
+            "#C2C2C2"
     };
+
+    public static String[] TYPE_COLORS2 = {
+            "#FF9696",
+            "#FFC562",
+            "#FFACDA",
+            "#B5D9E9"
+    };
+
 }
