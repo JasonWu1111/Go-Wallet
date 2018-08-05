@@ -104,7 +104,7 @@ public class ResDef {
             R.drawable.ic_card2
     };
 
-    public static String[] TYPE_COLORS = {
+    public static String[] TYPE_COLORS_EX = {
             "#84D2FF",
             "#649FE6",
             "#A58BFF",
@@ -117,7 +117,7 @@ public class ResDef {
             "#C2C2C2"
     };
 
-    public static String[] TYPE_COLORS2 = {
+    public static String[] TYPE_COLORS_IN = {
             "#FF9696",
             "#FFC562",
             "#FFACDA",

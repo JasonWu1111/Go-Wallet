@@ -7,12 +7,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.bean.BillPerBean;
 import com.rightteam.accountbook.constants.ResDef;
+import com.rightteam.accountbook.utils.DensityUtil;
 
 import java.util.List;
 
@@ -22,7 +22,8 @@ import java.util.List;
 public class RingView extends View {
     private List<BillPerBean> mBillPerBeans;
     private Paint mPaint;
-    private float mCircleWidth = 80;
+    private float mCircleWidth;
+    private Context mContext;
 
     public RingView(Context context) {
         this(context, null, -1);
@@ -34,10 +35,12 @@ public class RingView extends View {
 
     public RingView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
         initPaint();
     }
 
     private void initPaint(){
+        mCircleWidth = DensityUtil.dp2px(mContext, 27);
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -66,7 +69,7 @@ public class RingView extends View {
            for(int i = 0; i < mBillPerBeans.size(); i++){
                BillPerBean bean = mBillPerBeans.get(i);
                float sweep = bean.getPer() * 360 / 100 ;
-               mPaint.setColor(Color.parseColor(ResDef.TYPE_COLORS[bean.getType()]));
+               mPaint.setColor(Color.parseColor(bean.isExpense() ? ResDef.TYPE_COLORS_EX[bean.getType()] : ResDef.TYPE_COLORS_IN[bean.getType()]));
                canvas.drawArc(rectF, startAngle,  sweep + 1, false, mPaint);
                startAngle += sweep;
            }

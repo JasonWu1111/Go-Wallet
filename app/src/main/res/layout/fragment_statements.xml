@@ -7,7 +7,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp">
 
         <LinearLayout
             android:id="@+id/btn_choose_date"
@@ -75,9 +76,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:id="@+id/frame_stat"
-        android:layout_marginTop="20dp">
+        android:layout_height="250dp"
+        android:layout_marginTop="11dp">
 
         <com.rightteam.accountbook.ui.RingView
             android:layout_width="180dp"
@@ -111,7 +111,12 @@
 
         </LinearLayout>
 
-        <!--<include layout="@layout/view_bill_info_left" />-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/frame_stat">
+
+        </FrameLayout>
 
     </FrameLayout>
 

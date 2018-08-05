@@ -1,15 +1,10 @@
 package com.rightteam.accountbook.module;
 
 import android.app.AlertDialog;
-import android.os.Bundle;
-import android.os.Debug;
+import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -22,9 +17,11 @@ import com.rightteam.accountbook.base.BaseFragment;
 import com.rightteam.accountbook.bean.BillBean;
 import com.rightteam.accountbook.bean.BillPerBean;
 import com.rightteam.accountbook.constants.KeyDef;
+import com.rightteam.accountbook.constants.ResDef;
 import com.rightteam.accountbook.event.UpdateBillListEvent;
 import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.ui.RingView;
+import com.rightteam.accountbook.ui.RoundView;
 import com.rightteam.accountbook.utils.CommonUtils;
 import com.rightteam.accountbook.utils.DensityUtil;
 import com.shawnlin.numberpicker.NumberPicker;
@@ -40,9 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * Created by JasonWu on 7/31/2018
@@ -99,6 +94,8 @@ public class StatementsFragment extends BaseFragment {
 
     @Override
     protected void updateData() {
+        frameStat.removeAllViews();
+
         textSource.setText(mIsExpense ? "Expense" : "Income");
         WhereCondition condition1 = BillBeanDao.Properties.WalletId.eq(mCurWalletId);
         WhereCondition condition2 = BillBeanDao.Properties.IsExpense.eq(mIsExpense);
@@ -124,6 +121,7 @@ public class StatementsFragment extends BaseFragment {
 
         textPrice.setText("$" + CommonUtils.formatNumberWithComma(total));
 
+
         for (int i = 0; i < (mIsExpense ? 10 : 4); i++) {
             if (map.get(i) != 0f) {
                 BillPerBean perBean = new BillPerBean();
@@ -138,16 +136,67 @@ public class StatementsFragment extends BaseFragment {
 
         mAdapter.setData(perBeans);
         ringView.setPers(perBeans);
-        View view = View.inflate(getContext(), R.layout.view_bill_info_left, frameStat);
-        frameStat.post(() -> {
-            View content = view.findViewById(R.id.view_container);
-            Log.i(getTAG(), "" + Math.sin(Math.PI / 6));
-            content.setTranslationX((float) (frameStat.getWidth()/ 2
-//                    + DensityUtil.dp2px(getContext(), 180) * Math.sin(45)
-                    ));
-        });
 
-//        content.setTranslationY((float) (frameStat.getHeight() / 2 + ringView.mSHeight));
+        frameStat.post(() -> {
+            double startAngle = 0;
+            int ringRadius = DensityUtil.dp2px(getContext(), 93);
+            int contentWidth = DensityUtil.dp2px(getContext(), 95);
+            int contentHeight = DensityUtil.dp2px(getContext(), 32);
+            int rv_offsetX = DensityUtil.dp2px(getContext(), 10);
+            int rv_offsetY = DensityUtil.dp2px(getContext(), 10.5F);
+
+            for (BillPerBean bean : perBeans) {
+                double sweep = bean.getPer() * Math.PI * 2 / 100;
+
+                double cos = Math.cos(-startAngle - sweep / 2);
+                double sin = Math.sin(-startAngle - sweep / 2);
+
+                boolean isRight = cos >= 0;
+                boolean isUp = sin >= 0;
+
+                int resId = isRight ? R.layout.view_bill_info_right : R.layout.view_bill_info_left;
+
+                View view = View.inflate(getContext(), resId, null);
+                frameStat.addView(view);
+                TextView textPrice = view.findViewById(R.id.text_price);
+                TextView textCat = view.findViewById(R.id.text_cat);
+                textPrice.setText("$" + CommonUtils.formatNumberWithComma(bean.getPrice()));
+                textCat.setText(mIsExpense ? ResDef.TYPE_NAMES_EX[bean.getType()] : ResDef.TYPE_NAMES_IN[bean.getType()]);
+
+                View lingView = view.findViewById(R.id.line_straight);
+                View upView = view.findViewById(R.id.line_slash_up);
+                View downView = view.findViewById(R.id.line_slash_down);
+                RoundView roundView = view.findViewById(R.id.view_round);
+                int color = Color.parseColor(mIsExpense ? ResDef.TYPE_COLORS_EX[bean.getType()] : ResDef.TYPE_COLORS_IN[bean.getType()]);
+                lingView.setBackgroundColor(color);
+                upView.setBackgroundColor(color);
+                downView.setBackgroundColor(color);
+                roundView.setPaintColor(color);
+
+                int offsetX = 0;
+                int offsetY = 0;
+
+                if (isUp) {
+                    offsetY = -contentHeight;
+                    upView.setVisibility(View.INVISIBLE);
+                    roundView.setTranslationY(rv_offsetY);
+                } else {
+                    downView.setVisibility(View.INVISIBLE);
+                    roundView.setTranslationY(-rv_offsetY);
+                }
+
+                if(isRight){
+                    roundView.setTranslationX(-rv_offsetX);
+                }else {
+                    offsetX = -contentWidth;
+                    roundView.setTranslationX(rv_offsetX);
+                }
+
+                view.setTranslationX((float) (frameStat.getWidth() / 2 + ringRadius * cos + offsetX));
+                view.setTranslationY((float) (frameStat.getHeight() / 2 - ringRadius * sin + offsetY));
+                startAngle += sweep;
+            }
+        });
     }
 
 

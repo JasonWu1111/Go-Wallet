@@ -232,6 +232,7 @@ public class TransactionFragment extends BaseFragment {
                 mCurMonth = monthPicker.getValue() - 1;
                 textDate.setText(CommonUtils.formatDateSimple(mCurYear, mCurMonth + 1));
                 updateAmountText(mAdapter.getData());
+                updateData();
             }
             dialog.dismiss();
         });
