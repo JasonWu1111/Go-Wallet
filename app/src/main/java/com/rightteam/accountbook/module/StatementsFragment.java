@@ -33,6 +33,7 @@ import org.greenrobot.greendao.query.WhereCondition;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -121,7 +122,6 @@ public class StatementsFragment extends BaseFragment {
 
         textPrice.setText("$" + CommonUtils.formatNumberWithComma(total));
 
-
         for (int i = 0; i < (mIsExpense ? 10 : 4); i++) {
             if (map.get(i) != 0f) {
                 BillPerBean perBean = new BillPerBean();
@@ -134,20 +134,22 @@ public class StatementsFragment extends BaseFragment {
             }
         }
 
+        if (perBeans.size() >= 2) {
+            Collections.sort(perBeans, (b1, b2) -> Float.compare(b2.getPer(), b1.getPer()));
+        }
         mAdapter.setData(perBeans);
-        ringView.setPers(perBeans);
 
+        ringView.setPers(perBeans);
         frameStat.post(() -> {
             double startAngle = 0;
             int ringRadius = DensityUtil.dp2px(getContext(), 93);
-            int contentWidth = DensityUtil.dp2px(getContext(), 95);
+            int contentWidth = DensityUtil.dp2px(getContext(), 88);
             int contentHeight = DensityUtil.dp2px(getContext(), 32);
             int rv_offsetX = DensityUtil.dp2px(getContext(), 10);
             int rv_offsetY = DensityUtil.dp2px(getContext(), 10.5F);
 
             for (BillPerBean bean : perBeans) {
                 double sweep = bean.getPer() * Math.PI * 2 / 100;
-
                 double cos = Math.cos(-startAngle - sweep / 2);
                 double sin = Math.sin(-startAngle - sweep / 2);
 
@@ -255,7 +257,7 @@ public class StatementsFragment extends BaseFragment {
         });
         dialog.show();
         WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-        params.width = DensityUtil.dp2px(getContext(), 300);
+        params.width = DensityUtil.dp2px(getContext(), 270);
         dialog.getWindow().setAttributes(params);
     }
 

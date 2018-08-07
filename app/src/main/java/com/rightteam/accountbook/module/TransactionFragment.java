@@ -238,7 +238,7 @@ public class TransactionFragment extends BaseFragment {
         });
         dialog.show();
         WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-        params.width = DensityUtil.dp2px(getContext(), 300);
+        params.width = DensityUtil.dp2px(getContext(), 270);
         dialog.getWindow().setAttributes(params);
     }
 
