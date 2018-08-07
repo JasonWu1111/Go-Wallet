@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -59,6 +60,7 @@ public class TransactionFragment extends BaseFragment {
     private String mCurCat;
     private int mCurYear;
     private int mCurMonth;
+    private List<BillBean> mAllBill;
 
     private boolean mIsChosen = false;
 
@@ -111,7 +113,7 @@ public class TransactionFragment extends BaseFragment {
                             mCurYear = year;
                             mCurMonth = month - 1;
                             textDate.setText(CommonUtils.formatDateSimple(mCurYear, month));
-                            updateData();
+                            updateAmountText(mAllBill);
                         }
                     }
                 }
@@ -120,6 +122,7 @@ public class TransactionFragment extends BaseFragment {
     }
 
     private void updateAmountText(List<BillBean> beans){
+        Log.i(getTAG(), "" + beans.size());
         long startTime = CommonUtils.transformStartMonthToMillis(mCurYear, mCurMonth);
         long endTime = CommonUtils.transformEndMonthToMillis(mCurYear, mCurMonth);
         float exTotal = 0f;
@@ -154,6 +157,7 @@ public class TransactionFragment extends BaseFragment {
             }
         }else {
             beans = billBeanDao.queryBuilder().where(condition1).list();
+            mAllBill = beans;
         }
 
         updateAmountText(beans);
@@ -231,8 +235,6 @@ public class TransactionFragment extends BaseFragment {
                 mCurYear = yearPicker.getValue();
                 mCurMonth = monthPicker.getValue() - 1;
                 textDate.setText(CommonUtils.formatDateSimple(mCurYear, mCurMonth + 1));
-                updateAmountText(mAdapter.getData());
-                updateData();
             }
             dialog.dismiss();
         });
