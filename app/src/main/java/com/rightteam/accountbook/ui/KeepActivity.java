@@ -1,4 +1,4 @@
-package com.rightteam.accountbook.module;
+package com.rightteam.accountbook.ui;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;

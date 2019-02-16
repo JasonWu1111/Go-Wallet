@@ -1,4 +1,4 @@
-package com.rightteam.accountbook.module;
+package com.rightteam.accountbook.ui;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.PopupMenu;
@@ -18,7 +18,6 @@ import com.rightteam.accountbook.bean.TypeBean;
 import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.constants.ResDef;
 import com.rightteam.accountbook.greendao.BillBeanDao;
-import com.rightteam.accountbook.utils.CommonUtils;
 import com.rightteam.accountbook.utils.ToastUtil;
 
 import java.util.ArrayList;

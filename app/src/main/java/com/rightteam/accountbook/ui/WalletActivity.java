@@ -1,4 +1,4 @@
-package com.rightteam.accountbook.module;
+package com.rightteam.accountbook.ui;
 
 import android.view.View;
 import android.widget.EditText;

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".module.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/TranslucentTheme"
             android:screenOrientation="portrait">
@@ -21,14 +21,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".module.KeepActivity"
+            android:name=".ui.KeepActivity"
             android:theme="@style/TranslucentTheme"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.DetailActivity"
+            android:name=".ui.DetailActivity"
             android:theme="@style/TranslucentTheme"
             android:screenOrientation="portrait"/>
-        <activity android:name=".module.WalletActivity"
+        <activity android:name=".ui.WalletActivity"
             android:theme="@style/TranslucentTheme"
             android:screenOrientation="portrait"/>
     </application>

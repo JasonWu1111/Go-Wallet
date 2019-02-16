@@ -7,7 +7,7 @@
     android:background="@drawable/blue_gradient"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".module.DetailActivity">
+    tools:context=".ui.DetailActivity">
 
     <LinearLayout
         android:id="@+id/btn_back"

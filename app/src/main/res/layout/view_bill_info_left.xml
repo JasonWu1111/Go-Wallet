@@ -41,7 +41,7 @@
             android:background="@color/blue_dark"
             android:rotation="45" />
 
-        <com.rightteam.accountbook.ui.RoundView
+        <com.rightteam.accountbook.view.RoundView
             android:layout_width="6dp"
             android:layout_height="6dp"
             android:layout_centerInParent="true"

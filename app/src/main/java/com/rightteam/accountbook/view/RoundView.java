@@ -1,4 +1,4 @@
-package com.rightteam.accountbook.ui;
+package com.rightteam.accountbook.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

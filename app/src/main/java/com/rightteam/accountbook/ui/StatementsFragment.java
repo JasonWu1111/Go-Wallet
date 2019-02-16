@@ -1,4 +1,4 @@
-package com.rightteam.accountbook.module;
+package com.rightteam.accountbook.ui;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
@@ -20,8 +20,8 @@ import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.constants.ResDef;
 import com.rightteam.accountbook.event.UpdateBillListEvent;
 import com.rightteam.accountbook.greendao.BillBeanDao;
-import com.rightteam.accountbook.ui.RingView;
-import com.rightteam.accountbook.ui.RoundView;
+import com.rightteam.accountbook.view.RingView;
+import com.rightteam.accountbook.view.RoundView;
 import com.rightteam.accountbook.utils.CommonUtils;
 import com.rightteam.accountbook.utils.DensityUtil;
 import com.shawnlin.numberpicker.NumberPicker;

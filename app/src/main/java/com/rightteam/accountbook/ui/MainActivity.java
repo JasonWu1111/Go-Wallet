@@ -1,8 +1,7 @@
-package com.rightteam.accountbook.module;
+package com.rightteam.accountbook.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -10,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -20,7 +18,6 @@ import com.flyco.tablayout.SlidingTabLayout;
 import com.rightteam.accountbook.MyApplication;
 import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.adapter.MainAdapter;
-import com.rightteam.accountbook.adapter.OnItemClickListener;
 import com.rightteam.accountbook.adapter.WalletListAdapter;
 import com.rightteam.accountbook.base.BaseActivity;
 import com.rightteam.accountbook.bean.BillBean;

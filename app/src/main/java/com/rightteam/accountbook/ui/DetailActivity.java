@@ -1,6 +1,5 @@
-package com.rightteam.accountbook.module;
+package com.rightteam.accountbook.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.constants.ResDef;
 import com.rightteam.accountbook.event.ModifyBillEvent;
 import com.rightteam.accountbook.event.UpdateBillListEvent;
-import com.rightteam.accountbook.event.UpdateWalletListEvent;
 import com.rightteam.accountbook.greendao.BillBeanDao;
 import com.rightteam.accountbook.utils.CommonUtils;
 

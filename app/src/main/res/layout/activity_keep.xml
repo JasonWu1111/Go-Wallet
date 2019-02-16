@@ -7,7 +7,7 @@
     android:background="@drawable/blue_gradient"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".module.KeepActivity">
+    tools:context=".ui.KeepActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
