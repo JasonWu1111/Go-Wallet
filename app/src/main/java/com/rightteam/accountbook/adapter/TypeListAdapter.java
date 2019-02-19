@@ -1,6 +1,5 @@
 package com.rightteam.accountbook.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +13,6 @@ import com.rightteam.accountbook.R;
 import com.rightteam.accountbook.base.BaseRvAdapter;
 import com.rightteam.accountbook.bean.TypeBean;
 import com.rightteam.accountbook.constants.ResDef;
-
-import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

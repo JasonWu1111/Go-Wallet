@@ -173,14 +173,10 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
                     String price = CommonUtils.formatPriceWithSource(bean.getPrice(), bean.getIsExpense());
                     textPrice.setText(price);
 
-                    itemView.setOnClickListener(v -> {
-                        onItemClickListener.onClick(position, KeyDef.JUMP_TO_DETAIL, ((BillBean) itemData.get(position)).getId());
-                    });
+                    itemView.setOnClickListener(v -> onItemClickListener.onClick(position, KeyDef.JUMP_TO_DETAIL, ((BillBean) itemData.get(position)).getId()));
                     break;
                 case VIEW_TYPE_BILL_TODO:
-                    itemView.setOnClickListener(v -> {
-                        onItemClickListener.onClick(position, KeyDef.JUMP_TO_KEEP, -1L);
-                    });
+                    itemView.setOnClickListener(v -> onItemClickListener.onClick(position, KeyDef.JUMP_TO_KEEP, -1L));
                     break;
             }
         }
