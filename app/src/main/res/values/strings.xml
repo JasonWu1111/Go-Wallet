@@ -6,4 +6,27 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="expense">Expense</string>
+    <string name="income">Income</string>
+    <string name="details">Details</string>
+    <string name="payment">Payment</string>
+    <string name="date">Date</string>
+    <string name="memo">Memo</string>
+    <string name="modify">Modify</string>
+    <string name="delete">Delete</string>
+    <string name="my_wallet">My Wallet</string>
+    <string name="setting">Setting</string>
+    <string name="feedback">Feedback</string>
+    <string name="wallet">Wallet</string>
+    <string name="cover">Cover</string>
+    <string name="name">Name</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="cash">Cash</string>
+    <string name="all">All</string>
+    <string name="today">TODAY</string>
+    <string name="no_records_found">No records found.</string>
+    <string name="fliter_again">No related records found. Please filter again.</string>
+    <string name="accounting">Don\'t forget to do accounting.</string>
+    <string name="starting_time">Starting time</string>
 </resources>

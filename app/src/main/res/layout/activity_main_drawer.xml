@@ -1,110 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="24dp"
-    android:fitsSystemWindows="true"
     android:layout_gravity="start"
     android:background="@color/white"
-    android:id="@+id/drawer_view">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:paddingTop="24dp">
 
     <RelativeLayout
+        android:id="@+id/btn_wallet"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/btn_wallet">
+        android:layout_height="40dp">
 
         <ImageView
+            android:id="@+id/icon_wallet"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="24dp"
-            android:id="@+id/icon_wallet"
-            android:src="@drawable/ic_wallet"/>
+            android:src="@drawable/ic_wallet"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="My Wallet"
-            android:textColor="@color/grey_dark"
+            android:layout_marginStart="14dp"
             android:layout_toEndOf="@+id/icon_wallet"
+            android:text="@string/my_wallet"
+            android:textColor="@color/grey_dark"
             android:textSize="16dp"
-            android:layout_marginStart="14dp"/>
+            tools:ignore="SpUsage" />
 
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/drawer_recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
-        android:id="@+id/drawer_recycler_view"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp" />
 
     <RelativeLayout
+        android:id="@+id/btn_setting"
         android:layout_width="match_parent"
         android:layout_height="47dp"
-        android:id="@+id/btn_setting"
         android:layout_marginTop="40dp">
 
         <ImageView
+            android:id="@+id/icon_setting"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_setting"
             android:layout_centerVertical="true"
             android:layout_marginStart="24dp"
-            android:id="@+id/icon_setting"/>
+            android:src="@drawable/ic_setting"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="Setting"
-            android:textColor="@color/grey_dark"
-            android:layout_toEndOf="@+id/icon_setting"
             android:layout_marginStart="14dp"
-            android:textSize="16dp"/>
+            android:layout_toEndOf="@+id/icon_setting"
+            android:text="@string/setting"
+            android:textColor="@color/grey_dark"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/grey"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:background="@color/grey" />
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/btn_feedback"
         android:layout_width="match_parent"
-        android:layout_height="47dp"
-        android:id="@+id/btn_feedback">
+        android:layout_height="47dp">
 
         <ImageView
+            android:id="@+id/icon_feedback"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_feedback"
             android:layout_centerVertical="true"
             android:layout_marginStart="24dp"
-            android:id="@+id/icon_feedback"/>
+            android:src="@drawable/ic_feedback"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="Feedback"
-            android:textColor="@color/grey_dark"
-            android:layout_toEndOf="@+id/icon_feedback"
             android:layout_marginStart="14dp"
-            android:textSize="16dp"/>
+            android:layout_toEndOf="@+id/icon_feedback"
+            android:text="@string/feedback"
+            android:textColor="@color/grey_dark"
+            android:textSize="16dp"
+            tools:ignore="SpUsage" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/grey"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:background="@color/grey" />
 
     </RelativeLayout>
 

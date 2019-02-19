@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/view_container"
         android:layout_width="88dp"
         android:layout_height="32dp"
-        android:id="@+id/view_container">
+        tools:ignore="UselessParent">
 
         <TextView
             android:id="@+id/text_price"
@@ -17,15 +19,16 @@
             android:paddingEnd="2dp"
             android:text="$200"
             android:textColor="@color/grey"
-            android:textSize="11dp" />
+            android:textSize="11dp"
+            tools:ignore="HardcodedText,RtlSymmetry,SpUsage" />
 
         <View
             android:id="@+id/line_slash_up"
             android:layout_width="15dp"
             android:layout_height="1dp"
             android:layout_alignBottom="@+id/line_straight"
-            android:layout_marginBottom="5dp"
             android:layout_marginEnd="-3dp"
+            android:layout_marginBottom="5dp"
             android:layout_toStartOf="@+id/line_straight"
             android:background="@color/blue_dark"
             android:rotation="45" />
@@ -35,40 +38,40 @@
             android:layout_width="15dp"
             android:layout_height="1dp"
             android:layout_alignTop="@+id/line_straight"
-            android:layout_marginEnd="-3dp"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="-3dp"
             android:layout_toStartOf="@+id/line_straight"
             android:background="@color/blue_dark"
             android:rotation="-45" />
 
         <com.rightteam.accountbook.view.RoundView
+            android:id="@+id/view_round"
             android:layout_width="6dp"
             android:layout_height="6dp"
             android:layout_centerInParent="true"
-            android:layout_marginEnd="-3dp"
             android:layout_marginTop="2dp"
-            android:layout_toStartOf="@+id/line_straight"
-            android:id="@+id/view_round" />
+            android:layout_marginEnd="-3dp"
+            android:layout_toStartOf="@+id/line_straight" />
 
         <View
             android:id="@+id/line_straight"
             android:layout_width="75dp"
             android:layout_height="1dp"
-            android:layout_alignParentEnd="true"
             android:layout_below="@+id/text_price"
+            android:layout_alignParentEnd="true"
             android:background="@color/blue_dark" />
 
         <TextView
             android:id="@+id/text_cat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_below="@+id/line_straight"
+            android:layout_alignParentEnd="true"
             android:paddingEnd="2dp"
             android:text="car"
             android:textColor="@color/grey"
             android:textSize="11dp"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="HardcodedText,RtlSymmetry,SpUsage" />
 
     </RelativeLayout>
 

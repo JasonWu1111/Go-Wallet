@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:gravity="center"
-    android:paddingTop="58dp">
-    
+    android:orientation="vertical"
+    android:paddingTop="58dp"
+    tools:ignore="UseCompoundDrawables">
+
     <ImageView
         android:layout_width="87.3dp"
         android:layout_height="87.3dp"
@@ -16,11 +17,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No related records found.\nPlease filter again."
-        android:textSize="16dp"
-        android:textColor="@color/grey2"
         android:layout_marginTop="20dp"
-        android:gravity="center"/>
-    
+        android:gravity="center"
+        android:text="@string/fliter_again"
+        android:textColor="@color/grey2"
+        android:textSize="16dp"
+        tools:ignore="SpUsage" />
+
 </LinearLayout>
 

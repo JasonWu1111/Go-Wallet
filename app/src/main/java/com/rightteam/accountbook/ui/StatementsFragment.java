@@ -162,7 +162,7 @@ public class StatementsFragment extends BaseFragment {
                 frameStat.addView(view);
                 TextView textPrice = view.findViewById(R.id.text_price);
                 TextView textCat = view.findViewById(R.id.text_cat);
-                textPrice.setText("$" + CommonUtils.formatNumberWithComma(bean.getPrice()));
+                textPrice.setText(String.format("$%s", CommonUtils.formatNumberWithComma(bean.getPrice())));
                 textCat.setText(mIsExpense ? ResDef.TYPE_NAMES_EX[bean.getType()] : ResDef.TYPE_NAMES_IN[bean.getType()]);
 
                 View lingView = view.findViewById(R.id.line_straight);

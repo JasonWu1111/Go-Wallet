@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center|top"
@@ -21,49 +22,53 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/icon_cat"
                 android:layout_width="24dp"
                 android:layout_height="18dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_cash2"
-                android:id="@+id/icon_cat"/>
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/text_cat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cash"
+                android:text="@string/cash"
                 android:textColor="@color/white"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                tools:ignore="SpUsage" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginEnd="34dp"
             android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/text_dollar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="- $"
                 android:textColor="@color/grey_dark"
                 android:textSize="30dp"
-                android:id="@+id/text_dollar"/>
+                tools:ignore="HardcodedText,SpUsage" />
 
             <EditText
                 android:id="@+id/edit_price"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@null"
-                android:inputType="number|numberDecimal"
                 android:hint="0.00"
-                android:textColorHint="@color/light_grey3"
+                android:inputType="number|numberDecimal"
+                android:maxLength="7"
                 android:textColor="@color/grey_dark"
+                android:textColorHint="@color/light_grey3"
                 android:textSize="30dp"
-                android:maxLength="7"/>
+                tools:ignore="Autofill,HardcodedText,SpUsage" />
 
         </LinearLayout>
 
@@ -75,20 +80,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:paddingLeft="8dp"
-        android:paddingRight="8dp"/>
+        android:paddingRight="8dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="24dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="30dp">
 
         <ImageView
             android:id="@+id/icon_pen"
             android:layout_width="21dp"
             android:layout_height="21dp"
-            android:src="@drawable/ic_pen" />
+            android:src="@drawable/ic_pen"
+            tools:ignore="ContentDescription" />
 
         <View
             android:layout_width="match_parent"
@@ -107,7 +113,8 @@
             android:maxLines="1"
             android:padding="2dp"
             android:singleLine="true"
-            android:textColor="@color/grey" />
+            android:textColor="@color/grey"
+            tools:ignore="Autofill,LabelFor,TextFields" />
     </RelativeLayout>
 
 </LinearLayout>
