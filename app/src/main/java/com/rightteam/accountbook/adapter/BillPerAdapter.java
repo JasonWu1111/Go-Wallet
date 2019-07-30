@@ -32,17 +32,15 @@ public class BillPerAdapter extends BaseRvAdapter<BillPerBean> {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType) {
-            case VIEW_TYPE_NO_RECORD:
-                return new BaseViewHolder(LayoutInflater.from(mContext).inflate(R.layout.view_adapter_no_record, parent, false));
-            default:
-                return new BillPerViewHolder(LayoutInflater.from(mContext).inflate(R.layout.view_adapter_per, parent, false));
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == VIEW_TYPE_NO_RECORD) {
+            return new BaseViewHolder(LayoutInflater.from(mContext).inflate(R.layout.view_adapter_no_record, parent, false));
         }
+        return new BillPerViewHolder(LayoutInflater.from(mContext).inflate(R.layout.view_adapter_per, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(getItemViewType(position) == VIEW_TYPE_NO_NORMAL){
             ((BillPerViewHolder) holder).bind(position);
         }

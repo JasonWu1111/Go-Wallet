@@ -39,15 +39,13 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         int layoutId = -1;
         switch (viewType) {
             case VIEW_TYPE_DATE:
                 layoutId = R.layout.view_adapter_date;
                 break;
             case VIEW_TYPE_BILL_TOP:
-                layoutId = R.layout.view_adapter_bill;
-                break;
             case VIEW_TYPE_BILL_NORMAL:
                 layoutId = R.layout.view_adapter_bill;
                 break;
@@ -65,7 +63,7 @@ public class BillListAdapter extends BaseRvAdapter<BillBean> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((BillListViewHolder) holder).bind(position);
     }
 
