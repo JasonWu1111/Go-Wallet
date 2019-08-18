@@ -2,31 +2,34 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="220dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/white">
-    
+    android:background="@color/white"
+    android:orientation="vertical">
+
     <ImageView
+        android:id="@+id/btn_close"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:src="@drawable/ic_close2"
-        android:padding="11dp"
         android:layout_gravity="end"
-        android:layout_marginRight="4dp"
         android:layout_marginTop="4dp"
-        android:id="@+id/btn_close"/>
-    
+        android:layout_marginEnd="4dp"
+        android:padding="11dp"
+        android:src="@drawable/ic_close2"
+        tools:ignore="ContentDescription" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/pick_month"
             android:layout_width="64dp"
             android:layout_height="138dp"
-            android:layout_marginRight="36.5dp"
+            android:layout_marginEnd="36.5dp"
             android:solidColor="@color/white"
             app:np_dividerColor="@color/light_grey3"
             app:np_dividerThickness="1dp"
@@ -35,12 +38,12 @@
             app:np_selectedTextColor="@color/blue_dark"
             app:np_selectedTextSize="20dp"
             app:np_textColor="@color/light_grey3"
-            app:np_textSize="18dp"
-            android:id="@+id/pick_month">
+            app:np_textSize="18dp">
 
         </com.shawnlin.numberpicker.NumberPicker>
 
         <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/pick_year"
             android:layout_width="64dp"
             android:layout_height="138dp"
             android:solidColor="@color/white"
@@ -51,25 +54,25 @@
             app:np_selectedTextColor="@color/blue_dark"
             app:np_selectedTextSize="20dp"
             app:np_textColor="@color/light_grey3"
-            app:np_textSize="18dp"
-            android:id="@+id/pick_year">
+            app:np_textSize="18dp">
 
         </com.shawnlin.numberpicker.NumberPicker>
-        
+
     </LinearLayout>
 
     <TextView
+        android:id="@+id/btn_ok"
         android:layout_width="122dp"
         android:layout_height="40dp"
-        android:background="@drawable/frame_long_blue2"
-        android:gravity="center"
-        android:text="OK"
-        android:id="@+id/btn_ok"
-        android:textSize="19dp"
-        android:textColor="@color/white"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="18dp"/>
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/frame_long_blue2"
+        android:gravity="center"
+        android:text="@string/ok"
+        android:textColor="@color/white"
+        android:textSize="19dp"
+        tools:ignore="SpUsage" />
 
 </LinearLayout>
 

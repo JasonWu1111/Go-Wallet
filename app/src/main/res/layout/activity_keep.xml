@@ -22,33 +22,35 @@
             android:layout_marginRight="36dp"
             app:tl_indicator_color="@color/white"
             app:tl_indicator_height="12.7dp"
+            app:tl_indicator_style="TRIANGLE"
             app:tl_indicator_width="25.5dp"
             app:tl_tab_space_equal="true"
+            app:tl_textBold="BOTH"
             app:tl_textSelectColor="@color/white"
             app:tl_textUnselectColor="@color/white"
-            app:tl_textsize="16dp"
-            app:tl_indicator_style="TRIANGLE"
-            app:tl_textBold="BOTH"/>
+            app:tl_textsize="16dp" />
 
         <ImageView
             android:layout_width="130dp"
             android:layout_height="30dp"
-            android:src="@drawable/frame_long_white"
-            android:alpha="0.25"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:alpha="0.25"
+            android:src="@drawable/frame_long_white"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/text_calendar"
             android:layout_width="130dp"
             android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="07/17/2018"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="16dp"
             android:textStyle="bold"
-            android:layout_centerHorizontal="true" />
+            tools:ignore="SpUsage" />
 
         <ImageView
             android:id="@+id/btn_close"
@@ -57,18 +59,20 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="18dp"
             android:layout_marginTop="4dp"
+            android:padding="12dp"
             android:src="@drawable/ic_close"
-            android:padding="12dp"/>
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/btn_sure"
             android:layout_width="42dp"
             android:layout_height="38dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="18dp"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="18dp"
+            android:padding="12dp"
             android:src="@drawable/ic_tick"
-            android:padding="12dp"/>
+            tools:ignore="ContentDescription" />
 
     </RelativeLayout>
 

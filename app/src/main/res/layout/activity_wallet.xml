@@ -18,18 +18,20 @@
         android:fitsSystemWindows="true"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:layout_width="9dp"
             android:layout_height="16dp"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="11.5dp"
-            android:text="Wallet"
+            android:text="@string/wallet"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -41,8 +43,8 @@
         android:layout_height="312dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
         android:layout_marginTop="56dp"
+        android:layout_marginRight="25dp"
         app:cardCornerRadius="5dp">
 
         <LinearLayout
@@ -54,12 +56,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:text="Cover"
+                android:text="@string/cover"
                 android:textColor="@color/grey_dark"
-                android:textSize="16sp"
-                android:layout_marginLeft="8dp"/>
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -76,7 +78,8 @@
                     android:outlineProvider="bounds"
                     android:padding="1dp"
                     android:src="@drawable/cover_wallet1"
-                    android:tag="0" />
+                    android:tag="0"
+                    tools:ignore="ContentDescription" />
 
                 <View
                     android:layout_width="20dp"
@@ -90,7 +93,8 @@
                     android:outlineProvider="bounds"
                     android:padding="1dp"
                     android:src="@drawable/cover_wallet2"
-                    android:tag="1" />
+                    android:tag="1"
+                    tools:ignore="ContentDescription" />
 
                 <View
                     android:layout_width="20dp"
@@ -104,18 +108,19 @@
                     android:outlineProvider="bounds"
                     android:padding="1dp"
                     android:src="@drawable/cover_wallet3"
-                    android:tag="2" />
+                    android:tag="2"
+                    tools:ignore="ContentDescription" />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
-                android:text="Name"
+                android:text="@string/name"
                 android:textColor="@color/grey_dark"
-                android:textSize="16sp"
-                android:layout_marginLeft="8dp"/>
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -128,7 +133,8 @@
                     android:id="@+id/icon_pen"
                     android:layout_width="21dp"
                     android:layout_height="21dp"
-                    android:src="@drawable/ic_pen" />
+                    android:src="@drawable/ic_pen"
+                    tools:ignore="ContentDescription" />
 
                 <View
                     android:layout_width="match_parent"
@@ -147,7 +153,8 @@
                     android:maxLines="1"
                     android:padding="2dp"
                     android:singleLine="true"
-                    android:textColor="@color/grey" />
+                    android:textColor="@color/grey"
+                    tools:ignore="Autofill,LabelFor,TextFields" />
             </RelativeLayout>
 
             <LinearLayout
@@ -164,7 +171,7 @@
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/frame_long_blue2"
                     android:gravity="center"
-                    android:text="Cancel"
+                    android:text="@string/cancel"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -174,7 +181,7 @@
                     android:layout_height="40dp"
                     android:background="@drawable/frame_long_blue2"
                     android:gravity="center"
-                    android:text="OK"
+                    android:text="@string/ok"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 

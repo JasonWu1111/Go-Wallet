@@ -39,12 +39,12 @@ public class TypeListAdapter extends BaseRvAdapter<TypeBean> {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new TypeListViewHolder(LayoutInflater.from(mContext).inflate(R.layout.view_adapter_type, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((TypeListViewHolder) holder).bind(position);
     }
 

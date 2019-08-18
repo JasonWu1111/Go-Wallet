@@ -62,7 +62,7 @@ public class WalletListAdapter extends BaseRvAdapter<WalletBean> {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_WALLET) {
             return new WalletViewHolder(LayoutInflater.from(mContext).inflate(R.layout.view_adapter_wallet, parent, false));
         } else {
@@ -71,7 +71,7 @@ public class WalletListAdapter extends BaseRvAdapter<WalletBean> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (position == getItemCount() - 1) {
             ((WalletAddViewHolder) holder).bind(position);
         } else {
