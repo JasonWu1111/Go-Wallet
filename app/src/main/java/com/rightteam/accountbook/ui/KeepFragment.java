@@ -18,6 +18,7 @@ import com.rightteam.accountbook.bean.TypeBean;
 import com.rightteam.accountbook.constants.KeyDef;
 import com.rightteam.accountbook.constants.ResDef;
 import com.rightteam.accountbook.greendao.BillBeanDao;
+import com.rightteam.accountbook.utils.CommonUtils;
 import com.rightteam.accountbook.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class KeepFragment extends BaseFragment {
             mCurBillId = getArguments().getLong(KeyDef.BILL_ID, -1);
         }
 
-        textDollar.setText(mIsExpense ? "- $" : "+ $");
+        textDollar.setText(String.format("%s%s", mIsExpense ? "- " : "+ ", CommonUtils.getCurrency()));
 
         if (mCurBillId != -1) {
             mCurBill = billBeanDao.queryBuilder().where(BillBeanDao.Properties.Id.eq(mCurBillId)).unique();

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Currency;
 import java.util.Date;
 import java.util.Locale;
 
@@ -50,7 +51,7 @@ public class CommonUtils {
     }
 
     public static String formatPriceWithSource(float price, boolean isExpense){
-        return (isExpense ? "-" : "+") + " $" + formatNumberWithComma(price);
+        return (isExpense ? "- " : "+ ") + CommonUtils.getCurrency() + formatNumberWithComma(price);
     }
 
     public static String formatDateSimple(int year, int month, int dayOfMonth){
@@ -76,4 +77,11 @@ public class CommonUtils {
         calendar.set(year, month + 1, 0);
         return calendar.getTimeInMillis() - 1;
     }
+
+    public static String getCurrency() {
+        Currency currency = Currency.getInstance(Locale.getDefault());
+        return currency.getSymbol();
+//        return "¥";
+    }
+
 }

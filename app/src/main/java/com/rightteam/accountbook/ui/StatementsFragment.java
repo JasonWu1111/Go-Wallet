@@ -1,5 +1,6 @@
 package com.rightteam.accountbook.ui;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +37,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -108,7 +110,7 @@ public class StatementsFragment extends BaseFragment {
         List<BillBean> beans = billBeanDao.queryBuilder().where(condition1, condition2, condition3).list();
         List<BillPerBean> perBeans = new ArrayList<>();
         float total = 0;
-        HashMap<Integer, Float> map = new HashMap<>();
+        @SuppressLint("UseSparseArrays") HashMap<Integer, Float> map = new HashMap<>();
         for (int i = 0; i < (mIsExpense ? 10 : 4); i++) {
             map.put(i, 0f);
         }
@@ -120,7 +122,7 @@ public class StatementsFragment extends BaseFragment {
             map.put(bean.getType(), amount);
         }
 
-        textPrice.setText("$" + CommonUtils.formatNumberWithComma(total));
+        textPrice.setText(String.format("%s%s", CommonUtils.getCurrency(), CommonUtils.formatNumberWithComma(total)));
 
         for (int i = 0; i < (mIsExpense ? 10 : 4); i++) {
             if (map.get(i) != 0f) {
@@ -162,7 +164,7 @@ public class StatementsFragment extends BaseFragment {
                 frameStat.addView(view);
                 TextView textPrice = view.findViewById(R.id.text_price);
                 TextView textCat = view.findViewById(R.id.text_cat);
-                textPrice.setText(String.format("$%s", CommonUtils.formatNumberWithComma(bean.getPrice())));
+                textPrice.setText(String.format("%s%s", CommonUtils.getCurrency(), CommonUtils.formatNumberWithComma(bean.getPrice())));
                 textCat.setText(mIsExpense ? ResDef.TYPE_NAMES_EX[bean.getType()] : ResDef.TYPE_NAMES_IN[bean.getType()]);
 
                 View lingView = view.findViewById(R.id.line_straight);
@@ -256,8 +258,8 @@ public class StatementsFragment extends BaseFragment {
             dialog.dismiss();
         });
         dialog.show();
-        WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-        params.width = DensityUtil.dp2px(getContext(), 270);
+        WindowManager.LayoutParams params = Objects.requireNonNull(dialog.getWindow()).getAttributes();
+        params.width = DensityUtil.dp2px(Objects.requireNonNull(getContext()), 270);
         dialog.getWindow().setAttributes(params);
     }
 

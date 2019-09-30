@@ -34,6 +34,7 @@ import org.greenrobot.greendao.query.WhereCondition;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -137,8 +138,8 @@ public class TransactionFragment extends BaseFragment {
                 }
             }
         }
-        exTolText.setText("$" + CommonUtils.formatNumberWithComma(exTotal));
-        inTolText.setText("$" + CommonUtils.formatNumberWithComma(inTotal));
+        exTolText.setText(String.format("%s%s", CommonUtils.getCurrency(), CommonUtils.formatNumberWithComma(exTotal)));
+        inTolText.setText(String.format("%s%s", CommonUtils.getCurrency(), CommonUtils.formatNumberWithComma(inTotal)));
     }
 
     @Override
@@ -199,7 +200,7 @@ public class TransactionFragment extends BaseFragment {
     }
 
     public void showPopup(View v) {
-        PopupMenu popup = new PopupMenu(getContext(), v);
+        PopupMenu popup = new PopupMenu(Objects.requireNonNull(getContext()), v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.bill_cat, popup.getMenu());
         popup.setOnMenuItemClickListener(item -> {
@@ -227,9 +228,7 @@ public class TransactionFragment extends BaseFragment {
         AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setView(view)
                 .create();
-        btnClose.setOnClickListener(v -> {
-            dialog.dismiss();
-        });
+        btnClose.setOnClickListener(v -> dialog.dismiss());
         btnOk.setOnClickListener(v -> {
             if (mCurYear != yearPicker.getValue() || mCurMonth != monthPicker.getValue() - 1 || !mIsChosen) {
                 mIsChosen = true;
@@ -241,8 +240,8 @@ public class TransactionFragment extends BaseFragment {
             dialog.dismiss();
         });
         dialog.show();
-        WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
-        params.width = DensityUtil.dp2px(getContext(), 270);
+        WindowManager.LayoutParams params = Objects.requireNonNull(dialog.getWindow()).getAttributes();
+        params.width = DensityUtil.dp2px(Objects.requireNonNull(getContext()), 270);
         dialog.getWindow().setAttributes(params);
     }
 

@@ -1,9 +1,8 @@
 package com.rightteam.accountbook.bean;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Property;
+import org.greenrobot.greendao.annotation.Id;
 
 /**
  * Created by JasonWu on 7/21/2018

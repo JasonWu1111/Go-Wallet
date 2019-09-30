@@ -75,7 +75,7 @@ public class BillPerAdapter extends BaseRvAdapter<BillPerBean> {
             BillPerBean bean = getData().get(position);
             iconType.setImageResource(bean.isExpense() ? ResDef.TYPE_ICONS_EX[bean.getType()] : ResDef.TYPE_ICONS_IN[bean.getType()]);
             textType.setText(bean.isExpense() ? ResDef.TYPE_NAMES_EX[bean.getType()] : ResDef.TYPE_NAMES_IN[bean.getType()]);
-            textPrice.setText(String.format("$%s", CommonUtils.formatNumberWithComma(bean.getPrice())));
+            textPrice.setText(String.format("%s%s", CommonUtils.getCurrency(), CommonUtils.formatNumberWithComma(bean.getPrice())));
             textPer.setText(String.format("%s%%", CommonUtils.formatNumberPercent(bean.getPer())));
         }
     }
