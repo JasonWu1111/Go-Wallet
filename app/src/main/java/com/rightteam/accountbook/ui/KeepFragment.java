@@ -1,8 +1,8 @@
 package com.rightteam.accountbook.ui;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
